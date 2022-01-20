@@ -57,6 +57,6 @@ func stopHttpServer(server interface{}, ts time.Duration) {
 	ctx, cancel := context.WithTimeout(context.Background(), ts)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		logging.Fatal().Msgf("Server forced to shutdown:", err)
+		logging.Fatal().Msgf("Server forced to shutdown:%s", err.Error())
 	}
 }

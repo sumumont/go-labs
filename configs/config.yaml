@@ -2,3 +2,132 @@
 port: 8001
 grpc: 8002
 debug: true # gin debug模式
+
+
+spark:
+  appName: data-work-flow-org
+  cpu:
+    nodeSelector:
+      spark: active
+      # 加组织
+    sparkConf:
+      spark.driver.extraClassPath: "/app/data-work-flow-1.0.jar"
+      spark.executor.extraClassPath: "/app/data-work-flow-1.0.jar"
+      spark.sql.extensions: "io.delta.sql.DeltaSparkSessionExtension"
+      spark.sql.catalog.spark_catalog: "org.apache.spark.sql.delta.catalog.DeltaCatalog"
+      spark.kubernetes.driver.annotation.sidecar.istio.io/inject: "false"
+      spark.kubernetes.executor.annotation.sidecar.istio.io/inject: "false"
+    type: Scala
+    mode: cluster
+    image: "harbor.apulis.cn:8443/aistudio/app/data-work-flow:1.0" # all.yaml
+    imagePullPolicy: Always
+    mainClass: com.apulis.dataworkflow.GrpcRunner
+    mainApplicationFile: "local:///app/data-work-flow-1.0.jar"
+    sparkVersion: "3.1.2"
+    arguments:
+      - "--grpc_port"
+      - "50051"
+      - "--queue_stream_key"
+      - "dataworkflow:stream:org:status:org04"  # 配置文件
+      - "--redis_url"
+      - "redis://c3Cnh0TFf8Axbse1@redis-master.kube-system:6379" # 配置文件
+      - "--send_msg"
+    restartPolicy:
+      type: Never
+    volumes:
+      - name: "dataset-pvc"
+        persistentVolumeClaim:
+          claimName: aiplatform-app-data-pvc # 不能写死
+    driver:
+      cores: 2
+      memory: "8G"
+      labels:
+        version: 3.1.2
+      serviceAccount: spark
+      volumeMounts:
+        - name: "dataset-pvc"
+          mountPath: "/data/dataset" # 配置文件 InstallationYTung
+    executor:
+      cores: 4
+      instances: 2
+      memory: "16G"
+      labels:
+        version: 3.1.2
+      volumeMounts:
+        - name: "dataset-pvc"
+          mountPath: "/data/dataset" # 配置文件 InstallationYTung
+  gpu:
+    nodeSelector:
+      spark: active
+      # 加组织
+    deps:
+      jars:
+        - local:///opt/sparkRapidsPlugin/rapids-4-spark_2.12-21.10.0.jar
+        - local:///opt/sparkRapidsPlugin/cudf-21.10.0-cuda11.jar
+    sparkConf:
+      spark.driver.extraClassPath: /app/data-work-flow-1.0.jar
+      spark.executor.extraClassPath: /app/data-work-flow-1.0.jar
+      spark.rapids.sql.concurrentGpuTasks: "1"
+      spark.executor.resource.gpu.amount: "1"
+      spark.task.cpus: "1"
+      spark.task.resource.gpu.amount: "0.25"
+      spark.executor.resource.gpu.vendor: nvidia.com
+      spark.sql.files.maxPartitionBytes: 512m
+      spark.plugins: com.nvidia.spark.SQLPlugin
+      spark.executor.resource.gpu.discoveryScript: /opt/sparkRapidsPlugin/getGpusResources.sh
+      spark.locality.wait: 0s
+      spark.sql.extensions: io.delta.sql.DeltaSparkSessionExtension
+      spark.sql.catalog.spark_catalog: org.apache.spark.sql.delta.catalog.DeltaCatalog
+      spark.kubernetes.driver.annotation.sidecar.istio.io/inject: "false"
+      spark.kubernetes.executor.annotation.sidecar.istio.io/inject: "false"
+    type: Scala
+    mode: cluster
+    image: "harbor.apulis.cn:8443/aistudio/app/data-work-flow:1.0-gpu"
+    imagePullPolicy: Always
+    mainClass: com.apulis.dataworkflow.GrpcRunner
+    mainApplicationFile: "local:///app/data-work-flow-1.0.jar"
+    sparkVersion: "3.1.2"
+    arguments:
+      - "--grpc_port"
+      - "50051"
+      - "--queue_stream_key"
+      - "dataworkflow:stream:org:status:org04"
+      - "--redis_url"
+      - "redis://c3Cnh0TFf8Axbse1@redis-master.kube-system:6379"
+      - "--send_msg"
+    restartPolicy:
+      type: Never
+    volumes:
+      - name: "dataset-pvc"
+        persistentVolumeClaim:
+          claimName: aiplatform-app-data-pvc
+    driver:
+      cores: 2
+      memory: "8G"
+      labels:
+        version: 3.1.2
+      serviceAccount: spark
+      volumeMounts:
+        - name: "dataset-pvc"
+          mountPath: "/data/dataset"
+    executor:
+      instances: 2
+      memory: "16G"
+      sparkPodSpec:
+        cores: 4
+        gpu:
+          name: nvidia.com/gpu
+          quantity: 1
+      labels:
+        version: 3.1.2
+      volumeMounts:
+        - name: "dataset-pvc"
+          mountPath: "/data/dataset"
+  executor:
+    summary: summary
+    description: description
+    key: hysen
+    value: 123
+    gpu:
+      name: nvidia.com/gpu
+      quantity: 1

@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/go-labs/internal/configs"
 	"strconv"
 	"strings"
 	"testing"
@@ -85,4 +87,26 @@ func TestString(t *testing.T) {
 	filePath := "/app/ai-labs-data/default/iqi/334/eval-4217b01d-4796-49e4-a82b-a76f8bde36af/ok_images"
 	imageProxyPath := strings.TrimPrefix(filePath, "/app")
 	fmt.Println(imageProxyPath)
+}
+
+func TestInline(t *testing.T) {
+	var key = "key"
+	var value = "value"
+	dataProject := configs.Project{
+		Key:   &key,
+		Value: &value,
+	}
+	dataJiraHttpReqField := &configs.JiraHttpReqField{
+		Project:     dataProject,
+		Summary:     "Summary",
+		Description: "Description",
+	}
+	data, _ := json.Marshal(dataJiraHttpReqField)
+	fmt.Println(string(data))
+	var config = configs.JiraHttpReqField{}
+	err := json.Unmarshal(data, &config)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(config)
 }
