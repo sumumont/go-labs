@@ -45,8 +45,10 @@ func InitRouter() *gin.Engine {
 
 	r.Use(gin.Recovery())
 
-	r.POST("/test", func(context *gin.Context) {
-		logging.Info().Msg(context.Request.URL.RawQuery)
+	r.POST("/test", func(c *gin.Context) {
+		var req interface{}
+		c.ShouldBindJSON(&req)
+		logging.Info().Msg(c.Request.URL.RawQuery)
 	})
 
 	return r
