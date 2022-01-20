@@ -23,7 +23,6 @@ RUN apk --no-cache add git pkgconfig build-base
 # Cache go modules
 ADD go.mod .
 ADD go.sum .
-ADD deps deps
 RUN go mod download
 ADD . .
 
