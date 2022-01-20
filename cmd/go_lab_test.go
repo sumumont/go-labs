@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -78,4 +79,10 @@ type SearchCond struct {
 	EqualFilters map[string]string
 	// filters by advacned operator
 	AdvanceOpFilters map[string]interface{}
+}
+
+func TestString(t *testing.T) {
+	filePath := "/app/ai-labs-data/default/iqi/334/eval-4217b01d-4796-49e4-a82b-a76f8bde36af/ok_images"
+	imageProxyPath := strings.TrimPrefix(filePath, "/app")
+	fmt.Println(imageProxyPath)
 }
