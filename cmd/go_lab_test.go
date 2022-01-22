@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/go-labs/internal/configs"
 	"strconv"
@@ -93,8 +94,8 @@ func TestInline(t *testing.T) {
 	var key = "key"
 	var value = "value"
 	dataProject := configs.Project{
-		Key:   &key,
-		Value: &value,
+		Key:   key,
+		Value: value,
 	}
 	dataJiraHttpReqField := &configs.JiraHttpReqField{
 		Project:     dataProject,
@@ -109,4 +110,22 @@ func TestInline(t *testing.T) {
 		panic(err)
 	}
 	fmt.Println(config)
+}
+func TestDefer(t *testing.T) {
+	getString(true)
+}
+
+func getString(ok bool) error {
+	fmt.Println(ok)
+	if !ok {
+		return errors.New("dsadsa")
+	}
+	defer fmt.Print("2132121")
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+		defer fmt.Println(i, "defer")
+	}
+	fmt.Println(21321312)
+	return nil
 }
