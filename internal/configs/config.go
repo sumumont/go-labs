@@ -19,7 +19,6 @@ package configs
 
 import (
 	"fmt"
-	"github.com/GoogleCloudPlatform/spark-on-k8s-operator/pkg/apis/sparkoperator.k8s.io/v1beta2"
 	"github.com/fsnotify/fsnotify"
 	"github.com/go-labs/internal/logging"
 	"github.com/spf13/viper"
@@ -28,34 +27,25 @@ import (
 var appConfig *AppConfig
 
 type AppConfig struct {
-	Port  int         `json:"port"`
-	Grpc  int         `json:"grpc"`
-	Debug bool        `json:"debug"`
-	Spark SparkConfig `json:"spark"`
-}
-type SparkConfig struct {
-	AppName  string                       `json:"appName"`
-	Cpu      v1beta2.SparkApplicationSpec `json:"cpu"`
-	Gpu      v1beta2.SparkApplicationSpec `json:"gpu"`
-	Executor JiraHttpReqField             `json:"executor"`
-}
-type Project struct {
-	Key   string           `json:"key"`
-	Value string           `json:"value"`
-	GPU   *v1beta2.GPUSpec `json:"gpu,omitempty"`
+	Port     int            `json:"port"`
+	Grpc     int            `json:"grpc"`
+	Debug    bool           `json:"debug"`
+	ImgProxy ImgProxyConfig `json:"imgProxy"`
 }
 
-type JiraHttpReqField struct {
-	Project     `json:",inline"`
-	Summary     string `json:"summary"`
-	Description string `json:"description"`
+type ImgProxyConfig struct {
+	Enctypted     bool
+	Key           string
+	Salt          string
+	StorageType   string
+	RealUrlPrefix string
 }
 
-func InitConfig() (*AppConfig, error) {
+func InitConfig(path string) (*AppConfig, error) {
 	logging.Info().Msg("reading config")
 	v := viper.NewWithOptions(viper.KeyDelimiter("::"))
 	v.SetConfigName("config")
-	v.AddConfigPath("configs")
+	v.AddConfigPath(path)
 
 	err := v.ReadInConfig()
 	if err != nil {
