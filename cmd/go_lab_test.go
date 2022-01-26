@@ -1,13 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/go-labs/internal/configs"
 	"strconv"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestPageUtil(t *testing.T) {
@@ -90,27 +89,6 @@ func TestString(t *testing.T) {
 	fmt.Println(imageProxyPath)
 }
 
-func TestInline(t *testing.T) {
-	var key = "key"
-	var value = "value"
-	dataProject := configs.Project{
-		Key:   key,
-		Value: value,
-	}
-	dataJiraHttpReqField := &configs.JiraHttpReqField{
-		Project:     dataProject,
-		Summary:     "Summary",
-		Description: "Description",
-	}
-	data, _ := json.Marshal(dataJiraHttpReqField)
-	fmt.Println(string(data))
-	var config = configs.JiraHttpReqField{}
-	err := json.Unmarshal(data, &config)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(config)
-}
 func TestDefer(t *testing.T) {
 	getString(true)
 }
@@ -128,4 +106,13 @@ func getString(ok bool) error {
 	}
 	fmt.Println(21321312)
 	return nil
+}
+
+func TestUnix(t *testing.T) {
+	now1 := time.Now().Unix()
+	fmt.Println(now1)
+	time.Sleep(time.Second * 5)
+	now2 := time.Now().Unix()
+	fmt.Println(now2)
+	fmt.Println(now2 - now1)
 }
