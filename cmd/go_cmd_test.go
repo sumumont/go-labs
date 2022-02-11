@@ -19,7 +19,12 @@ func TestCmd(t *testing.T) {
 		panic(err)
 	}
 	defer stdout.Close()
+	err = cmd.Run()
+	if err != nil {
+		panic(err)
+	}
 	log.Println("1")
+
 	if opBytes, err := ioutil.ReadAll(stdout); err != nil { // 读取输出结果
 		log.Println("2")
 		panic(err)
