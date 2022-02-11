@@ -7,6 +7,9 @@ import (
 	"testing"
 )
 
+func TestA(t *testing.T) {
+	log.Println("test TestA")
+}
 func TestCmd(t *testing.T) {
 	log.Println("test cmd")
 	cmd := exec.Command("ps", "-ef", "|grep git")
