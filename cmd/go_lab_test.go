@@ -116,3 +116,7 @@ func TestUnix(t *testing.T) {
 	fmt.Println(now2)
 	fmt.Println(now2 - now1)
 }
+
+type Metadata struct {
+	Result *bool `json:"result"`
+}
