@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"io"
 	"io/ioutil"
 	"log"
 	"os/exec"
@@ -33,4 +35,22 @@ func TestCmd(t *testing.T) {
 		log.Println(string(opBytes))
 	}
 	log.Println("end")
+}
+func TestCmdPs(t *testing.T) {
+	ps := exec.Command("ps", "-ef")
+	grep := exec.Command("grep", "-i", "git")
+
+	r, w := io.Pipe() // 创建一个管道
+	defer r.Close()
+	defer w.Close()
+	ps.Stdout = w  // ps向管道的一端写
+	grep.Stdin = r // grep从管道的一端读
+	var buffer bytes.Buffer
+	grep.Stdout = &buffer // grep的输出为buffer
+	_ = ps.Start()
+	_ = grep.Start()
+	ps.Wait()
+	w.Close()
+	grep.Wait()
+	log.Println(buffer.String())
 }
