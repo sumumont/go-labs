@@ -21,8 +21,11 @@ func TestCmd(t *testing.T) {
 	defer stdout.Close()
 	log.Println("1")
 	if opBytes, err := ioutil.ReadAll(stdout); err != nil { // 读取输出结果
+		log.Println("2")
 		panic(err)
 	} else {
+		log.Println("3")
 		log.Println(string(opBytes))
 	}
+	log.Println("end")
 }
