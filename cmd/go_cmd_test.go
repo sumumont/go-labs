@@ -37,8 +37,13 @@ func TestA(t *testing.T) {
 //	log.Println("end")
 //}
 func TestCmdPs(t *testing.T) {
+	fmt.Println("TestCmdPs")
+	status := getProcess("git")
+	fmt.Println(status)
+}
+func getProcess(processName string) string {
 	ps := exec.Command("ps", "-ef")
-	grep := exec.Command("grep", "-i", "git")
+	grep := exec.Command("grep", "-i", processName)
 	r, w := io.Pipe() // 创建一个管道
 	defer r.Close()
 	defer w.Close()
@@ -51,5 +56,5 @@ func TestCmdPs(t *testing.T) {
 	ps.Wait()
 	w.Close()
 	grep.Wait()
-	fmt.Println(buffer.String())
+	return buffer.String()
 }
