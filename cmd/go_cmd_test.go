@@ -70,7 +70,7 @@ func getProcess(processName string) string {
 	ps.Wait()
 	w.Close()
 	grep.Wait()
-	return buffer.String()
+	return strings.TrimRight(buffer.String(), "\n")
 }
 
 type Process struct {
