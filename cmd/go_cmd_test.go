@@ -41,23 +41,23 @@ func TestA(t *testing.T) {
 //}
 func TestCmdPs(t *testing.T) {
 	fmt.Println("TestCmdPs")
-	result := getProcess("git2")
+	result := getProcess("git")
 	fmt.Println(result)
-	lines := strings.Split(result, "\n")
-	for idx, line := range lines {
-		if line == "" {
-			continue
-		}
-		fmt.Println("idx:", idx, " line:", line)
-		columns := strings.Split(line, "\t")
-		for i, column := range columns {
-			fmt.Println("i:", i, " column:", column)
-		}
-	}
+	//lines := strings.Split(result, "\n")
+	//for idx, line := range lines {
+	//	if line == "" {
+	//		continue
+	//	}
+	//	fmt.Println("idx:", idx, " line:", line)
+	//	columns := strings.Split(line, "\t")
+	//	for i, column := range columns {
+	//		fmt.Println("i:", i, " column:", column)
+	//	}
+	//}
 }
 func getProcess(processName string) string {
 	ps := exec.Command("ps", "-ef")
-	grep := exec.Command("grep", "-i", processName)
+	grep := exec.Command("grep", "-i", processName, "-c")
 	r, w := io.Pipe() // 创建一个管道
 	defer r.Close()
 	defer w.Close()
@@ -115,6 +115,6 @@ func getPcs() {
 	}
 }
 
-func TestPcs(t *testing.T) {
-	getPcs()
-}
+//func TestPcs(t *testing.T) {
+//	getPcs()
+//}
