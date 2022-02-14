@@ -38,8 +38,7 @@ func TestA(t *testing.T) {
 //}
 func TestCmdPs(t *testing.T) {
 	ps := exec.Command("ps", "-ef")
-	grep := exec.Command("grep", "-i", "dwsadsa")
-
+	grep := exec.Command("grep", "-i", "git")
 	r, w := io.Pipe() // 创建一个管道
 	defer r.Close()
 	defer w.Close()
