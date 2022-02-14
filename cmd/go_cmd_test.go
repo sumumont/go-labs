@@ -43,7 +43,14 @@ func TestCmdPs(t *testing.T) {
 	fmt.Println(result)
 	lines := strings.Split(result, "\n")
 	for idx, line := range lines {
+		if line == "" {
+			continue
+		}
 		fmt.Println("idx:", idx, " line:", line)
+		columns := strings.Split(line, "\t")
+		for i, column := range columns {
+			fmt.Println("i:", i, " column:", column)
+		}
 	}
 }
 func getProcess(processName string) string {
