@@ -2,14 +2,14 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"io"
-	"log"
 	"os/exec"
 	"testing"
 )
 
 func TestA(t *testing.T) {
-	log.Println("test TestA")
+	fmt.Println("test TestA")
 }
 
 //func TestCmd(t *testing.T) {
@@ -51,5 +51,5 @@ func TestCmdPs(t *testing.T) {
 	ps.Wait()
 	w.Close()
 	grep.Wait()
-	log.Println(buffer.String())
+	fmt.Println(buffer.String())
 }
