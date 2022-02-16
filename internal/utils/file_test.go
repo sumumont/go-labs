@@ -6,7 +6,7 @@ import (
 )
 
 func TestFileObject(t *testing.T) {
-	child := &FileObject{
+	child := FileObject{
 		Subpath: "go-labs",
 		Name:    "go-labs",
 		IsDir:   true,
@@ -16,7 +16,7 @@ func TestFileObject(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	printFile(*child)
+	printFile(child)
 }
 func printFile(fileObj FileObject) {
 	fmt.Println(fileObj.Subpath, " ", fileObj.Name, " ", fileObj.IsDir)
