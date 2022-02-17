@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/go-labs/internal/logging"
 	"io"
 	"log"
 	"os/exec"
@@ -118,3 +119,34 @@ func getPcs() {
 //func TestPcs(t *testing.T) {
 //	getPcs()
 //}
+
+func TestProcessPortExsits(t *testing.T) {
+	if ProcessPortExsits("8888") {
+		logging.Info().Msg("port in used")
+	}
+}
+func ProcessPortExsits(port string) bool {
+	ps := exec.Command("netstat", "-tunlp")
+	grep := exec.Command("grep", "-i", port, "-c")
+	r, w := io.Pipe() // 创建一个管道
+	defer r.Close()
+	defer w.Close()
+	ps.Stdout = w  // ps向管道的一端写
+	grep.Stdin = r // grep从管道的一端读
+	var buffer bytes.Buffer
+	grep.Stdout = &buffer // grep的输出为buffer
+	_ = ps.Start()
+	_ = grep.Start()
+	ps.Wait()
+	w.Close()
+	grep.Wait()
+	count, err := strconv.ParseInt(strings.TrimRight(buffer.String(), "\n"), 10, 64)
+	if err != nil {
+		logging.Error(err).Send()
+		return false
+	}
+	if count >= 1 {
+		return true
+	}
+	return false
+}

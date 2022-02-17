@@ -120,3 +120,8 @@ func TestUnix(t *testing.T) {
 type Metadata struct {
 	Result *bool `json:"result"`
 }
+
+func TestTimeFormat(t *testing.T) {
+	now := time.Now().Format("20060102150405")
+	fmt.Println("now:", now)
+}
