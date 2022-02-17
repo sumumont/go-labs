@@ -123,6 +123,8 @@ func getPcs() {
 func TestProcessPortExsits(t *testing.T) {
 	if ProcessPortExsits("8888") {
 		logging.Info().Msg("port in used")
+	} else {
+
 	}
 }
 func ProcessPortExsits(port string) bool {
@@ -140,6 +142,7 @@ func ProcessPortExsits(port string) bool {
 	ps.Wait()
 	w.Close()
 	grep.Wait()
+	fmt.Println(buffer.String())
 	count, err := strconv.ParseInt(strings.TrimRight(buffer.String(), "\n"), 10, 64)
 	if err != nil {
 		logging.Error(err).Send()
