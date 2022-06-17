@@ -1,8 +1,12 @@
 package main
 
 import (
+	"encoding/base64"
 	"errors"
 	"fmt"
+	"github.com/google/uuid"
+	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"testing"
@@ -124,4 +128,141 @@ type Metadata struct {
 func TestTimeFormat(t *testing.T) {
 	now := time.Now().Format("20060102150405")
 	fmt.Println("now:", now)
+}
+
+type ProjectModelTemplate struct {
+	Field string `json:"field"`
+	Task  string `json:"task"`
+}
+
+type ProjectModelTemplates []ProjectModelTemplate
+
+func (p ProjectModelTemplates) Len() int { return len(p) }
+func (p ProjectModelTemplates) Less(i, j int) bool {
+	if p[i].Field < p[j].Field {
+		return true
+	}
+	if p[i].Field > p[j].Field {
+		return false
+	}
+	return p[i].Task < p[j].Task
+}
+func (p ProjectModelTemplates) Swap(i, j int) { p[i], p[j] = p[j], p[i] }
+
+func TestSort(t *testing.T) {
+	var req = ProjectModelTemplates{
+		ProjectModelTemplate{
+			Field: "a",
+			Task:  "a1",
+		},
+		ProjectModelTemplate{
+			Field: "a",
+			Task:  "a2",
+		},
+		ProjectModelTemplate{
+			Field: "b",
+			Task:  "b2",
+		},
+		ProjectModelTemplate{
+			Field: "b",
+			Task:  "b1",
+		},
+		ProjectModelTemplate{
+			Field: "c",
+			Task:  "c2",
+		},
+		ProjectModelTemplate{
+			Field: "a",
+			Task:  "c1",
+		},
+	}
+	sort.Sort(req)
+	for _, v := range req {
+		fmt.Println(v)
+	}
+}
+
+func TestReg(t *testing.T) {
+	//regex := regexp.MustCompile("^[a-zA-Z0-9_\u4e00-\u9fa5]+$")
+	regex := regexp.MustCompile("^[\u4e00-\u9fa5_a-zA-Z0-9-]+$")
+	str := "--大河坎打-."
+	var result = regex.MatchString(str)
+	fmt.Println(result)
+
+	uid := uuid.New().String()
+	fmt.Println(uid)
+}
+
+func TestBase64(t *testing.T) {
+	uploadmeta := `location aXFp,moduleName YXB1bGlzLWlxaQ==,objectPrefix dW5kZWZpbmVk,taskType c2Rr,relativePath bnVsbA==,name c2VydmUxLnppcA==,type YXBwbGljYXRpb24veC16aXAtY29tcHJlc3NlZA==,filetype YXBwbGljYXRpb24veC16aXAtY29tcHJlc3NlZA==,filename c2VydmUxLnppcA==`
+	fmt.Println(uploadmeta)
+	ups := strings.Split(uploadmeta, ",")
+	kv := []Kv{}
+	for _, up := range ups {
+		tmp := strings.Split(up, " ")
+		vstr, _ := base64.StdEncoding.DecodeString(tmp[1])
+		k := tmp[0]
+		v := string(vstr)
+		fmt.Println(k, v)
+		kv = append(kv, Kv{
+			K: k,
+			V: v,
+		})
+	}
+	res := printKv(kv)
+	fmt.Println(res)
+
+	ds := []Kv{
+		{
+			K: "location", V: "iqi",
+		}, {
+			K: "moduleName", V: "apulis-iqi",
+		}, {
+			K: "objectPrefix", V: "undefined",
+		}, {
+			K: "taskType", V: "sdk",
+		}, {
+			K: "relativePath", V: "null",
+		}, {
+			K: "name", V: "serve2.zip",
+		}, {
+			K: "type", V: "application/x-zip-compressed",
+		}, {
+			K: "filetype", V: "application/x-zip-compressed",
+		}, {
+			K: "filename", V: "serve2.zip",
+		},
+	}
+	res1 := printKv(ds)
+	fmt.Println(res1)
+	fmt.Println(res == res1)
+}
+func printKv(kv []Kv) string {
+	str := strings.Builder{}
+	for idx, up := range kv {
+		v := up.V
+		v = base64.StdEncoding.EncodeToString([]byte(v))
+		if idx == len(kv)-1 {
+			str.WriteString(up.K + " " + v)
+		} else {
+			str.WriteString(up.K + " " + v + ",")
+		}
+	}
+	return str.String()
+}
+
+type Kv struct {
+	K string
+	V string
+}
+
+func TestReflect(t *testing.T) {
+
+	//"upload.url":"https://internal-proxy.default.svc.cluster.local/file-servers/apulis/file-server/api/v1/files/"}
+	domain1 := strings.Split("https://internal-proxy.default.svc.cluster.local/file-servers/apulis/file-server/api/v1/files/", "/file-server/")
+	domains := strings.Split(domain1[0], "://")
+	domain := domains[1]
+	proto := domains[0]
+	fmt.Println(domain, proto)
+
 }

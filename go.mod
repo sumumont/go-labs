@@ -3,16 +3,14 @@ module github.com/go-labs
 go 1.16
 
 require (
-	github.com/GoogleCloudPlatform/spark-on-k8s-operator v0.0.0-20220113170521-22cd4a2c6990
 	github.com/fsnotify/fsnotify v1.5.1
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.7.4
+	github.com/go-git/go-git/v5 v5.4.2
 	github.com/go-playground/validator/v10 v10.8.0 // indirect
+	github.com/google/uuid v1.3.0
 	github.com/rs/zerolog v1.22.0
 	github.com/spf13/viper v1.10.0
-	k8s.io/api v0.23.1 // indirect
-	k8s.io/apimachinery v0.23.1 // indirect
-	gopkg.in/yaml.v2 v2.4.0
 )
 
 replace (

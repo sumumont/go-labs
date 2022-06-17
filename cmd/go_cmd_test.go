@@ -127,6 +127,19 @@ func TestProcessPortExsits(t *testing.T) {
 
 	}
 }
+func TestDdsadsa(t *testing.T) {
+	filePath := fmt.Sprintf("%s/%s", "/data/app", strings.TrimPrefix("dirpath", fmt.Sprintf("pvc://%s/", "aiplatform-app-data-pvc")))
+	fmt.Println(filePath)
+}
+func TestDDD(t *testing.T) {
+	key := "key-value"
+	idx := strings.LastIndex(key, "-")
+	title := key[:idx]
+	titleTag := key[idx+1:]
+
+	fmt.Println(idx, title, titleTag)
+
+}
 func ProcessPortExsits(port string) bool {
 	ps := exec.Command("netstat", "-tunlp")
 	grep := exec.Command("grep", "-i", port, "-c")
@@ -152,4 +165,24 @@ func ProcessPortExsits(port string) bool {
 		return true
 	}
 	return false
+}
+
+type Container struct {
+	Envs map[string]string `json:"envs"`
+}
+
+type Task struct {
+	Container *Container
+}
+
+func CreateVcWorkerTask(task *Task) {
+	fmt.Println(task.Container)
+}
+func TestTask(t *testing.T) {
+	task := Task{}
+	container := &Container{Envs: make(map[string]string, 0)}
+	container.Envs["name"] = "hysen"
+	task.Container = container
+	container.Envs["age"] = "dsads"
+	CreateVcWorkerTask(&task)
 }
