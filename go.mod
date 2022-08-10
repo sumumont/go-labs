@@ -3,14 +3,17 @@ module github.com/go-labs
 go 1.16
 
 require (
+	github.com/coocood/freecache v1.2.1
 	github.com/fsnotify/fsnotify v1.5.1
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.7.4
+	github.com/gliderlabs/ssh v0.3.3 // indirect
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/go-playground/validator/v10 v10.8.0 // indirect
 	github.com/google/uuid v1.3.0
 	github.com/rs/zerolog v1.22.0
 	github.com/spf13/viper v1.10.0
+	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
 )
 
 replace (

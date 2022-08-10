@@ -1,8 +1,11 @@
 package main
 
 import (
+	"encoding/base64"
+	"fmt"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing/transport/ssh"
+	ssh2 "golang.org/x/crypto/ssh"
 	"os"
 	"testing"
 )
@@ -49,7 +52,16 @@ v4xtYWmgnXVOHJfQY9sDhik1gmmrswLvH9g6oywwGzYXfa7mpmrhd7HuW32AziFIbcuXca
 ILQGkMYrJbhXAkRwAAABdoYWlzZW4uaHVhbmdAYXB1bGlzLmNvbQEC
 -----END OPENSSH PRIVATE KEY-----
 `
+	if privateKey[(len(privateKey)-1):] == "\n" {
+		fmt.Println("yes")
+	}
+	//fmt.Println(privateKey)
+	base64Encode := base64.StdEncoding.EncodeToString([]byte(privateKey))
+	fmt.Println(base64Encode)
+	base64Decodes, _ := base64.StdEncoding.DecodeString(base64Encode)
+	fmt.Println(string(base64Decodes))
 	publicKeys, err := ssh.NewPublicKeys("git", []byte(privateKey), "")
+	publicKeys.HostKeyCallback = ssh2.InsecureIgnoreHostKey()
 	_, err = git.PlainClone(directory, false, &git.CloneOptions{
 		// The intended use of a GitHub personal access token is in replace of your password
 		// because access tokens can easily be revoked.
@@ -58,7 +70,10 @@ ILQGkMYrJbhXAkRwAAABdoYWlzZW4uaHVhbmdAYXB1bGlzLmNvbQEC
 		URL:      gitUrl,
 		Progress: os.Stdout,
 	})
+	//git.ErrRepositoryNotExists
+
 	if err != nil {
 		panic(err)
 	}
+
 }
