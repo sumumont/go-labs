@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path"
 	"path/filepath"
+	"sync"
 	"testing"
 	"time"
 )
@@ -136,4 +137,51 @@ func TestFunc2(t *testing.T) {
 	now := time.Now().UnixNano()
 	now = now / 1000000
 	fmt.Println(now)
+}
+
+func TestFor(t *testing.T) {
+	l := 101
+	step := 20
+	//x := l / step
+	//left := l % step
+	//for i := 0; i < x; i++ {
+	//	start := i * step
+	//	for j := 0; j < step; j++ {
+	//		fmt.Println(start + j)
+	//	}
+	//}
+	//if left > 0 {
+	//	start := x * step
+	//	for j := start; j <= l; j++ {
+	//		fmt.Println(j)
+	//	}
+	//}
+	rows := []int{}
+	for i := 0; i <= l; i++ {
+		rows = append(rows, i)
+	}
+	var sw = sync.WaitGroup{}
+	for i, _ := range rows {
+		if i == 0 {
+			continue
+		}
+		if i != 1 && (i-1)%step == 0 { //每次最多发500条  满500 重置
+			fmt.Printf("group start :%v ========================\n", rows[i])
+			sw = sync.WaitGroup{}
+		}
+		sw.Add(1)
+		go func(i int, rows []int) {
+			defer sw.Done()
+			fmt.Printf("row:%v\n", rows[i])
+			time.Sleep(time.Second * 2)
+		}(i, rows)
+		if (i)%step == 0 || i == (len(rows)-1) {
+			sw.Wait()
+			fmt.Printf("group end :%v ========================\n", rows[i])
+		}
+	}
+}
+
+func TestBox(t *testing.T) {
+
 }
