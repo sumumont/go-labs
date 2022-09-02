@@ -15,6 +15,7 @@ require (
 	github.com/spf13/viper v1.10.0
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
 	golang.org/x/image v0.0.0-20190802002840-cff245a6509b
+	gorm.io/gorm v1.23.8
 )
 
 replace (
