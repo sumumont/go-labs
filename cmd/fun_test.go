@@ -341,13 +341,13 @@ func TestDecodePic(t *testing.T) {
 					first = i
 				}
 			}
-			fmt.Print(pix)
+			//fmt.Print(pix)
 
 			//x := (i + 1) / img.Stride
 			//y := (i+1)%img.Stride - 1
 			line = append(line, pix)
 			if (i+1)%img.Stride == 0 {
-				fmt.Println()
+				//fmt.Println()
 				points = append(points, line)
 				line = nil
 			}
@@ -363,8 +363,8 @@ func TestDecodePic(t *testing.T) {
 					X: x,
 					Y: y,
 				}
-				k := start.getK()
-				if _, ok := allMap[k]; ok {
+				kk := start.getK()
+				if _, ok := allMap[kk]; ok {
 					continue
 				}
 				mp := map[string]point{}
@@ -375,12 +375,40 @@ func TestDecodePic(t *testing.T) {
 					}
 					allPics = append(allPics, mp)
 				}
-				fmt.Println("========================start", y, x)
+				//fmt.Println("========================start", y, x)
 			}
 
 			//fmt.Println()
 		}
-		fmt.Printf("pics.len = %d", len(mpPoints))
+		fmt.Println("pics.len", len(mpPoints))
+		{
+			maxX := -1
+			maxY := -1
+			for _, v := range allMap {
+				if maxX < v.X {
+					maxX = v.X
+				}
+				if maxY < v.Y {
+					maxY = v.Y
+				}
+			}
+
+			for y := 0; y <= maxY; y++ {
+				for x := 0; x <= maxX; x++ {
+					p := point{
+						X: x,
+						Y: y,
+					}
+					k := p.getK()
+					if _, ok := allMap[k]; ok {
+						fmt.Print(1)
+					} else {
+						fmt.Print(0)
+					}
+				}
+				fmt.Println()
+			}
+		}
 		//todo 深度搜索找出属于同一张图片的点位
 
 		//for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
