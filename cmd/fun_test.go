@@ -359,6 +359,9 @@ func TestDecodePic(t *testing.T) {
 		allPics := []map[string]point{}
 		for y := 0; y < len(points); y++ {
 			for x := 0; x < len(points[y]); x++ {
+				if points[y][x] == 0 {
+					continue
+				}
 				start := point{
 					X: x,
 					Y: y,
@@ -368,7 +371,7 @@ func TestDecodePic(t *testing.T) {
 					continue
 				}
 				mp := map[string]point{}
-				deepSearch(start, points, mp, img.Bounds().Dx(), img.Bounds().Dy())
+				dfs(start, points, mp, img.Bounds().Dx(), img.Bounds().Dy())
 				if len(mp) > 0 {
 					for k, v := range mp {
 						allMap[k] = v
@@ -497,7 +500,7 @@ func (p point) Out(xMax, yMax int) bool {
 
 // mp 表示一个图的集合 key= "x,y"   value=像素值
 // pics 也表示一个图的集合
-func deepSearch(point point, points [][]uint8, mp map[string]point, xMax, yMax int) {
+func dfs(point point, points [][]uint8, mp map[string]point, xMax, yMax int) {
 	//节点越界
 	if point.Out(xMax, yMax) {
 		return
@@ -512,21 +515,21 @@ func deepSearch(point point, points [][]uint8, mp map[string]point, xMax, yMax i
 	if _, ok := mp[k]; !ok {
 		mp[k] = point
 		Top := *point.Top()
-		deepSearch(Top, points, mp, xMax, yMax)
+		dfs(Top, points, mp, xMax, yMax)
 		TopLeft := *point.TopLeft()
-		deepSearch(TopLeft, points, mp, xMax, yMax)
+		dfs(TopLeft, points, mp, xMax, yMax)
 		Left := *point.Left()
-		deepSearch(Left, points, mp, xMax, yMax)
+		dfs(Left, points, mp, xMax, yMax)
 		LeftBoot := *point.LeftBoot()
-		deepSearch(LeftBoot, points, mp, xMax, yMax)
+		dfs(LeftBoot, points, mp, xMax, yMax)
 		Boot := *point.Boot()
-		deepSearch(Boot, points, mp, xMax, yMax)
+		dfs(Boot, points, mp, xMax, yMax)
 		BootRight := *point.BootRight()
-		deepSearch(BootRight, points, mp, xMax, yMax)
+		dfs(BootRight, points, mp, xMax, yMax)
 		Right := *point.Right()
-		deepSearch(Right, points, mp, xMax, yMax)
+		dfs(Right, points, mp, xMax, yMax)
 		RightTop := *point.RightTop()
-		deepSearch(RightTop, points, mp, xMax, yMax)
+		dfs(RightTop, points, mp, xMax, yMax)
 	}
 	return
 }
