@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/go-labs/internal/logging"
 	"image"
+	"math"
 	"os"
 	"path"
 	"path/filepath"
@@ -532,6 +533,94 @@ func dfs(point point, points [][]uint8, mp map[string]point, xMax, yMax int) {
 		dfs(RightTop, points, mp, xMax, yMax)
 	}
 	return
+}
+
+// todo 判断所有的点 是否在pointA pointB的同一侧 满足条件的话
+// todo 也许要考虑横线 和 垂线等特殊情况
+// y*(x2-x1)+x(y1-y2)+x1*y2-y1*x2 = 0
+func isOutSide(a, b point, mp map[string]point) bool {
+	z1 := 0
+	for _, p := range mp {
+		if z1 == 0 {
+			z1 = p.line(a, b)
+			if z1 == 0 {
+				continue
+			}
+		}
+		z := p.line(a, b)
+		result := z * z1
+		if result < 0 { //小于0的化表示不同侧
+			return false
+		}
+	}
+	return true
+}
+
+func (p point) onLine(a, b point) bool {
+	return p.line(a, b) == 0
+}
+
+func (p point) line(a, b point) int {
+	return p.Y*(b.X-a.X) + p.X*(a.Y-a.Y) + a.X*b.Y - a.Y*b.X
+}
+
+func findNext(head, node *Node, mp map[string]point) {
+	for _, p := range mp {
+
+		if node.Point.same(p) {
+			continue
+		}
+
+		if node.Pre != nil && node.Pre.Point.same(p) {
+			continue
+		}
+
+		out := isOutSide(node.Point, p, mp)
+		if !out {
+			continue
+
+		}
+		//如果新的点  和 head坐标一致则说明结束了,
+		if head.Point.same(p) {
+			return
+		}
+		//如果这个点在当前点与一个点组成的线上面，则忽略
+		if p.onLine(node.Point, node.Pre.Point) {
+			continue
+		}
+		next := &Node{
+			Point: p,
+			Next:  nil,
+		}
+		if node.Next == nil { //如果还不存在下一个节点，则加入
+			node.Add(next)
+		} else { //如果已经存在下一个点，则看谁的距离最远，选距离最远的
+			if node.Point.length(node.Next.Point) < node.Point.length(p) {
+				node.Add(next)
+			}
+		}
+
+	}
+	findNext(head, node.Next, mp)
+}
+
+func (p point) same(a point) bool {
+	return p.X == a.X && p.Y == a.Y
+}
+
+func (p point) length(b point) float64 {
+	return math.Sqrt(float64((p.X-b.X)*(p.X-b.X)) + float64((p.Y-b.Y)*(p.Y-b.Y)))
+}
+
+type Node struct {
+	Point point
+	Pre   *Node
+	Next  *Node
+}
+
+func (node *Node) Add(next *Node) {
+	node.Next = next
+	next.Pre = node
 }
 
 func TestMp(t *testing.T) {
