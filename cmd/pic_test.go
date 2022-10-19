@@ -86,6 +86,7 @@ func TestDecodePic(t *testing.T) {
 					continue
 				}
 				mp := map[string]point{}
+				// 深搜找出属于同一张图片的点位
 				dfs(start, points, mp, img.Bounds().Dx(), img.Bounds().Dy())
 				if len(mp) > 0 {
 					for k, v := range mp {
@@ -98,6 +99,31 @@ func TestDecodePic(t *testing.T) {
 
 			//fmt.Println()
 		}
+
+		{
+			//todo 找出外接多边形框
+			var nodes []*Node
+			for _, mp := range allPics {
+				head := findHead(mp)
+				findNext(head, head, mp)
+				//fmt.Println("find link===========================")
+				//fmt.Println(head)
+				//fmt.Println("link===========================")
+				nodes = append(nodes, head)
+			}
+			for _, link := range nodes {
+				fmt.Print("link.start")
+				for {
+					fmt.Print("-->", link.Point)
+					if link.Next == nil {
+						break
+					}
+					link = link.Next
+				}
+				fmt.Println("-->link.end")
+			}
+		}
+
 		fmt.Println("pics.len", len(mpPoints))
 		{
 			maxX := -1
@@ -127,7 +153,6 @@ func TestDecodePic(t *testing.T) {
 				fmt.Println()
 			}
 		}
-		//todo 深度搜索找出属于同一张图片的点位
 
 		//for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
 		//	for x := bounds.Min.X; x < bounds.Max.X; x++ {
@@ -253,6 +278,7 @@ func dfs(point point, points [][]uint8, mp map[string]point, xMax, yMax int) {
 // todo 也许要考虑横线 和 垂线等特殊情况
 // y*(x2-x1)+x(y1-y2)+x1*y2-y1*x2 = 0
 func isOutSide(a, b point, mp map[string]point) bool {
+	//fmt.Println("a-b", a, b)
 	z1 := 0
 	for _, p := range mp {
 		if z1 == 0 {
@@ -260,9 +286,11 @@ func isOutSide(a, b point, mp map[string]point) bool {
 			if z1 == 0 {
 				continue
 			}
+			//fmt.Println("start point", p, "z1", z1)
 		}
 		z := p.line(a, b)
 		result := z * z1
+		//fmt.Println("p", p, "z", z, "result", result)
 		if result < 0 { //小于0的化表示不同侧
 			return false
 		}
@@ -274,11 +302,40 @@ func (p point) onLine(a, b point) bool {
 	return p.line(a, b) == 0
 }
 
+// y*(x2-x1)+x(y1-y2)+x1*y2-y1*x2 = 0
 func (p point) line(a, b point) int {
-	return p.Y*(b.X-a.X) + p.X*(a.Y-a.Y) + a.X*b.Y - a.Y*b.X
+	return p.Y*(b.X-a.X) + p.X*(a.Y-b.Y) + a.X*b.Y - a.Y*b.X
 }
+func findHead(mp map[string]point) *Node {
+	var head point
+	for _, p := range mp {
+		head = p
+		break
+	}
+	for _, p := range mp {
+		if p.Y > head.Y {
+			continue
+		}
+		if p.Y < head.Y {
+			head = p
+			continue
+		}
+		if p.Y == head.Y {
+			if p.X < head.X {
+				head = p
+				continue
+			}
+		}
+	}
 
+	return &Node{
+		Point: head,
+	}
+}
 func findNext(head, node *Node, mp map[string]point) {
+	if node == nil {
+		return
+	}
 	for _, p := range mp {
 
 		if node.Point.same(p) {
@@ -292,14 +349,13 @@ func findNext(head, node *Node, mp map[string]point) {
 		out := isOutSide(node.Point, p, mp)
 		if !out {
 			continue
-
 		}
 		//如果新的点  和 head坐标一致则说明结束了,
 		if head.Point.same(p) {
 			return
 		}
 		//如果这个点在当前点与一个点组成的线上面，则忽略
-		if p.onLine(node.Point, node.Pre.Point) {
+		if node.Pre != nil && p.onLine(node.Point, node.Pre.Point) {
 			continue
 		}
 		next := &Node{
@@ -309,8 +365,11 @@ func findNext(head, node *Node, mp map[string]point) {
 		if node.Next == nil { //如果还不存在下一个节点，则加入
 			node.Add(next)
 		} else { //如果已经存在下一个点，则看谁的距离最远，选距离最远的
-			if node.Point.length(node.Next.Point) < node.Point.length(p) {
-				node.Add(next)
+			//但是必须也在这条线上，并且距离最远，则替代掉
+			if p.onLine(node.Point, node.Next.Point) {
+				if node.Point.length(node.Next.Point) < node.Point.length(p) {
+					node.Add(next)
+				}
 			}
 		}
 
