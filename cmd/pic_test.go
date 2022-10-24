@@ -70,8 +70,7 @@ func TestDecodePic(t *testing.T) {
 		fmt.Println("==========================================")
 		fmt.Println("first", first)
 		allMap := map[string]point{}
-		var mpPoints [][]point
-		allPics := []map[string]point{}
+		var allPics []map[string]point
 		for y := 0; y < len(points); y++ {
 			for x := 0; x < len(points[y]); x++ {
 				if points[y][x] == 0 {
@@ -99,16 +98,12 @@ func TestDecodePic(t *testing.T) {
 
 			//fmt.Println()
 		}
-
+		var nodes []*Node
 		{
 			//todo 找出外接多边形框
-			var nodes []*Node
 			for _, mp := range allPics {
 				head := findHead(mp)
 				findNext(head, head, mp)
-				//fmt.Println("find link===========================")
-				//fmt.Println(head)
-				//fmt.Println("link===========================")
 				nodes = append(nodes, head)
 			}
 			for _, link := range nodes {
@@ -123,35 +118,13 @@ func TestDecodePic(t *testing.T) {
 				fmt.Println("-->link.end")
 			}
 		}
-
-		fmt.Println("pics.len", len(mpPoints))
 		{
-			maxX := -1
-			maxY := -1
-			for _, v := range allMap {
-				if maxX < v.X {
-					maxX = v.X
-				}
-				if maxY < v.Y {
-					maxY = v.Y
-				}
-			}
-
-			for y := 0; y <= maxY; y++ {
-				for x := 0; x <= maxX; x++ {
-					p := point{
-						X: x,
-						Y: y,
-					}
-					k := p.getK()
-					if _, ok := allMap[k]; ok {
-						fmt.Print(1)
-					} else {
-						fmt.Print(0)
-					}
-				}
-				fmt.Println()
-			}
+			fmt.Println("=================================")
+			printByNodes(allMap, nodes)
+		}
+		{
+			fmt.Println("=================================")
+			//printMap(allMap)
 		}
 
 		//for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
@@ -164,6 +137,68 @@ func TestDecodePic(t *testing.T) {
 	}
 
 }
+func printByNodes(allMap map[string]point, nodes []*Node) {
+	maxX := -1
+	maxY := -1
+	for _, v := range allMap {
+		if maxX < v.X {
+			maxX = v.X
+		}
+		if maxY < v.Y {
+			maxY = v.Y
+		}
+	}
+	for y := 0; y <= maxY; y++ {
+		for x := 0; x <= maxX; x++ {
+			p := point{
+				X: x,
+				Y: y,
+			}
+			exits := false
+			for _, link := range nodes {
+				if p.inLink(link) {
+					exits = true
+					break
+				}
+			}
+			if exits {
+				fmt.Print(1)
+			} else {
+
+				fmt.Print(0)
+			}
+		}
+		fmt.Println()
+	}
+}
+func printMap(allMap map[string]point) {
+	maxX := -1
+	maxY := -1
+	for _, v := range allMap {
+		if maxX < v.X {
+			maxX = v.X
+		}
+		if maxY < v.Y {
+			maxY = v.Y
+		}
+	}
+
+	for y := 0; y <= maxY; y++ {
+		for x := 0; x <= maxX; x++ {
+			p := point{
+				X: x,
+				Y: y,
+			}
+			k := p.getK()
+			if _, ok := allMap[k]; ok {
+				fmt.Print(1)
+			} else {
+				fmt.Print(0)
+			}
+		}
+		fmt.Println()
+	}
+}
 
 var left, right, top, boot = -1, 1, -1, 1
 
@@ -175,7 +210,15 @@ type point struct {
 func (p point) getK() string {
 	return fmt.Sprintf("%d,%d", p.Y, p.X)
 }
-
+func (p point) inLink(node *Node) bool {
+	if node.Point.same(p) {
+		return true
+	}
+	if node.Next == nil {
+		return false
+	}
+	return p.inLink(node.Next)
+}
 func (p point) Top() *point {
 	return &point{
 		X: p.X,
