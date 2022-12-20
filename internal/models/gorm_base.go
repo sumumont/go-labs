@@ -11,7 +11,7 @@ type BaseModel struct {
 	UpdatedAt int64 `gorm:"autoUpdateTime:milli" json:"updatedAt"`
 }
 type BaseModelId struct {
-	ID int64 `gorm:"primaryKey;autoIncrement" json:"id"`
+	ID int64 `gorm:"primary_key" json:"id"`
 }
 type BaseModelTime struct {
 	CreatedAt int64 `gorm:"autoCreateTime:milli" json:"createdAt"`

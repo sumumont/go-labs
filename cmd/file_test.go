@@ -1,0 +1,335 @@
+package main
+
+import (
+	"bytes"
+	"encoding/base64"
+	"fmt"
+	"golang.org/x/image/bmp"
+	"image/jpeg"
+	"os"
+	"strings"
+	"testing"
+	"time"
+)
+
+func TestFileToBase64(t *testing.T) {
+	//file, err := os.ReadFile("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\aoicar\\aoicar\\20220921\\6081\\A.vrs")
+	file, err := os.ReadFile("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\1666250294.jpg.bmp")
+	if err != nil {
+		panic(err)
+	}
+	str := base64.StdEncoding.EncodeToString(file)
+	fmt.Println(len(str))
+}
+
+func TestBmpToJpg(t *testing.T) {
+	//file, err := os.ReadFile("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\aoicar\\aoicar\\20220921\\6081\\A.vrs")
+	file, err := os.ReadFile("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\1666250294.jpg.bmp")
+	if err != nil {
+		panic(err)
+	}
+	base64Img := base64.StdEncoding.EncodeToString(file)
+	index := strings.Index(base64Img, ",")
+	base64Img = base64Img[index+1:]
+
+	dist, err := base64.StdEncoding.DecodeString(base64Img)
+	if err != nil {
+		panic(err)
+	}
+
+	src, err := jpeg.Decode(bytes.NewBuffer(dist))
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Converting image...")
+	outfile, err := os.Create("out2.jpg")
+	if err != nil {
+		panic(err)
+	}
+	defer outfile.Close()
+
+	err = bmp.Encode(outfile, src)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	fmt.Println("Convert Success!")
+}
+
+type SysParameters map[string]interface{}
+type ResourceType struct {
+	Path        string                 `json:"path,omitempty"`
+	Rpath       string                 `json:"rpath,omitempty"`
+	Type        string                 `json:"type,omitempty"`
+	Version     interface{}            `json:"version,omitempty"`
+	SubResource map[string]interface{} `json:"subResource,omitempty"`
+	Id          interface{}            `json:"id,omitempty"`
+	Access      int64                  `json:"access,omitempty"` //读写权限 1:读写 0:只读
+	//@add: request for submodule path
+	SubModule string `json:"subModule,omitempty"`
+	//@add: scope and name for create new object
+	Scope string `json:"scope,omitempty"`
+	Name  string `json:"name,omitempty"`
+	//@add: other user custom context data
+	Context interface{} `json:"context"`
+}
+
+func (d SysParameters) AddArtifacts(name, path, rpath string, access int64) SysParameters {
+	d[name] = ResourceType{
+		Path:   path,
+		Rpath:  rpath,
+		Access: access,
+	}
+	return d
+}
+func NewSysParameters() SysParameters {
+	return make(SysParameters)
+}
+func TestSysParameters(t *testing.T) {
+	artifacts := NewSysParameters()
+	mountTemplateImageOutput(artifacts)
+	fmt.Println(artifacts)
+}
+func mountTemplateImageOutput(artifacts SysParameters) {
+	path := fmt.Sprintf("pvc://aiplatform-app-data-pvc/apulis-iqi/templates")
+	rpath := fmt.Sprintf("/data/templates")
+	artifacts.AddArtifacts("templates", path, rpath, 1)
+}
+
+func TestBuildImageElem(t *testing.T) {
+	var boxes []int
+	buildImageElem(&boxes, 1)
+	buildImageElem(&boxes, 2)
+	fmt.Println(boxes)
+}
+func buildImageElem(boxes *[]int, a int) {
+	*boxes = append(*boxes, a)
+}
+func TestStr(t *testing.T) {
+	str := `M500000190200121110602242537_1211106_0228.res__C830-12238_586_55624__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+M500000190200121110602242747_1211106_0454.res__R320-290900000029A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+M500000190200121110602242779_1211106_0400.res__C606-13140_190_85721__jia_han__Pseudo_Error__315x270__3.jpg',1669342554075,1669342554075),
+M500000190200121110602242913_1211106_0450.res__R328-290900000488A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+M500000190200121110602242943_1211106_0506.res__U301-23140_190_68731__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+M500000274500121111400000254_1211114_0041.res__C830-12238_586_55624__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+M500000274500121111400000364_1211114_0128.res__R210-290900000389A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+M500000274500121111400000392_1211114_0136.res__C830-12238_586_55624__jia_han__Pseudo_Error__315x270__3.jpg',1669342554075,1669342554075),
+M500000274500121111400000414_1211114_0141.res__C835-22238_586_55628__jia_han__Pseudo_Error__315x270__2.jpg',1669342554075,1669342554075),
+M500000274500121111400000509_1211114_0518.res__C607-13140_190_85721__jia_han__li_bei__315x270__5.jpg',1669342554075,1669342554075),
+M500000274500121111400000510_1211114_0239.res__C830-12238_586_55624__jia_han__li_bei__315x270__15.jpg',1669342554075,1669342554075),
+NGAOITEST1636586345716695.8_1211111_0722.res__R784-190900000046A__jia_han__lou_jian__315x270__8.jpg',1669342554075,1669342554075),
+NGAOITEST1636586345716695.8_1211111_0722.res__R784-190900000046A__yuan_jian_chu_c__lou_jian__315x270__9.jpg',1669342554075,1669342554075),
+NGAOITEST1636586345716695.8_1211111_0722.res__RC26-190900000044A__jia_han__lou_jian__315x270__4.jpg',1669342554075,1669342554075),
+NGAOITEST_1211102_0142.res__C0510-13140_190_85901__jia_han__li_bei__315x270__7.jpg',1669342554075,1669342554075),
+NGAOITEST_1211102_0142.res__R86-190900000268A__jia_han__lou_jian__315x270__3.jpg',1669342554075,1669342554075),
+NGAOITEST_1211102_0839.res__C0510-13140_190_85901__jia_han__li_bei__315x270__7.jpg',1669342554075,1669342554075),
+NGAOITEST_1211104_0425.res__CA21-190800000164A__jia_han__lou_jian__315x270__2.jpg',1669342554075,1669342554075),
+NGAOITEST_1211104_0843.res__CA21-190800000164A__jia_han__lou_jian__315x270__5.jpg',1669342554075,1669342554075),
+NGAOITEST_1211104_1651.res__L10-13140_160_58071__jia_han__yi_wei__315x270__3.jpg',1669342554075,1669342554075),
+NGAOITEST_1211105_0801.res__CA21-190800000164A__jia_han__lou_jian__315x270__5.jpg',1669342554075,1669342554075),
+NGAOITEST_1211105_0843.res__CA21-190800000164A__jia_han__lou_jian__315x270__5.jpg',1669342554075,1669342554075),
+NGAOITEST_1211105_1947.res__C0510-13140_190_85901__jia_han__li_bei__315x270__7.jpg',1669342554075,1669342554075),
+NGAOITEST_1211105_2116.res__C0510-13140_190_85901__jia_han__li_bei__315x270__7.jpg',1669342554075,1669342554075),
+NGAOITEST_1211105_2116.res__R86-190900000268A__jia_han__lou_jian__315x270__3.jpg',1669342554075,1669342554075),
+NGAOITEST_1211105_2252.res__R505-190900000043A__jia_han__lou_jian__315x270__7.jpg',1669342554075,1669342554075),
+NGAOITEST_1211105_2252.res__R505-190900000043A__jia_han__lou_jian__315x270__8.jpg',1669342554075,1669342554075),
+NGAOITEST_1211106_0940.res__L10-13140_160_58071__jia_han__yi_wei__315x270__4.jpg',1669342554075,1669342554075),
+NGAOITEST_1211108_2048.res__RAF11-190900000027A__jia_han__yi_wei__315x270__2.jpg',1669342554075,1669342554075),
+NGAOITEST_1211109_0034.res__CBB48-13140_190_85891__jia_han__lou_jian__315x270__6.jpg',1669342554075,1669342554075),
+NGAOITEST_1211109_0034.res__CBG09-13140_190_85891__jia_han__yi_wei__315x270__7.jpg',1669342554075,1669342554075),
+NGAOITEST_1211109_0034.res__RBG08-190900000076A__jia_han__ce_li__315x270__10.jpg',1669342554075,1669342554075),
+NGAOITEST_1211110_0539.res__R86-190900000268A__jia_han__lou_jian__315x270__3.jpg',1669342554075,1669342554075),
+NGAOITEST_1211110_1901.res__U4-13140_160_62751__jia_han__jia_han__315x270__8.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_0845.res__R784-190900000046A__jia_han__lou_jian__315x270__9.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_0845.res__R784-190900000046A__yuan_jian_chu_c__lou_jian__315x270__10.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_0845.res__RC26-190900000044A__jia_han__lou_jian__315x270__4.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_2129.res__C642-1C0603__jia_han__li_bei__315x270__3.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_2129.res__C642-1C0603__jia_han__li_bei__315x270__4.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_2129.res__RP31-1R0402__jia_han__lou_jian__315x270__6.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_2129.res__RP43-190900000043A__jia_han__ce_li__315x270__28.jpg',1669342554075,1669342554075),
+NGAOITEST_1211111_2129.res__RP43-190900000043A__jia_han__ce_li__315x270__29.jpg',1669342554075,1669342554075),
+NGAOITEST_1211112_0332.res__C209-1C0603__jia_han__lou_jian__315x270__11.jpg',1669342554075,1669342554075),
+NGAOITEST_1211112_0332.res__C209-1C0603__jia_han__lou_jian__315x270__12.jpg',1669342554075,1669342554075),
+NGAOITEST_1211112_1414.res__RQ02-190900000026A__jia_han__shang_xia_fan_t__315x270__8.jpg',1669342554075,1669342554075),
+NGAOITEST_1211115_0221.res__C605-2C0402__jia_han__yi_wei__315x270__4.jpg',1669342554075,1669342554075),
+NGAOITEST_1211115_0425.res__C629-1C0603__jia_han__yi_wei__315x270__10.jpg',1669342554075,1669342554075),
+NGAOITEST_1211115_0425.res__C629-1C0603__jia_han__yi_wei__315x270__9.jpg',1669342554075,1669342554075),
+NGAOITEST_1211115_1537.res__CM18-13140_190_85891__jia_han__yi_wei__315x270__5.jpg',1669342554075,1669342554075),
+NGAOITEST_1211115_1537.res__RL69-190900000043A__jia_han__shang_xia_fan_t__315x270__4.jpg',1669342554075,1669342554075),
+NGAOITEST_1211118_2255.res__CBB48-13140_190_85891__jia_han__lou_jian__315x270__6.jpg',1669342554075,1669342554075),
+NGAOITEST_1211118_2255.res__CBG09-13140_190_85891__jia_han__yi_wei__315x270__5.jpg',1669342554075,1669342554075),
+NGAOITEST_1211118_2255.res__RBG08-190900000076A__jia_han__ce_li__315x270__10.jpg',1669342554075,1669342554075),
+NGAOITEST_1211118_2255.res__RBG08-190900000076A__jia_han__ce_li__315x270__9.jpg',1669342554075,1669342554075),
+NGAOITEST_1211122_1459.res__R784-190900000046A__jia_han__lou_jian__315x270__8.jpg',1669342554075,1669342554075),
+NGAOITEST_1211122_1459.res__R784-190900000046A__yuan_jian_chu_c__lou_jian__315x270__9.jpg',1669342554075,1669342554075),
+NGAOITEST_1211123_0839.res__RD63-190900000028A__jia_han__ce_li__315x270__5.jpg',1669342554075,1669342554075),
+NGAOITEST_1211123_0851.res__RD63-190900000028A__jia_han__ce_li__315x270__5.jpg',1669342554075,1669342554075),
+NGAOITEST_1211123_1216.res__RL69-190900000043A__jia_han__shang_xia_fan_t__315x270__1.jpg',1669342554075,1669342554075),
+NGAOITEST_1211123_1216.res__RM39-190900000026A__jia_han__ce_li__315x270__3.jpg',1669342554075,1669342554075),
+NGAOITEST_1211123_1238.res__RL69-190900000043A__jia_han__shang_xia_fan_t__315x270__1.jpg',1669342554075,1669342554075),
+NGAOITEST_1211124_0028.res__C0736-2c0805__jia_han__li_bei__315x270__7.jpg',1669342554075,1669342554075),
+NGAOITEST_1211124_0028.res__C0736-2c0805__jia_han__li_bei__315x270__8.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_0922.res__C299-190800000012A__yi_wei__jia_han__315x270__2.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_0922.res__L10-13140_160_58071__jia_han__yi_wei__315x270__6.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_2145.res__U18-13140_170_54381__jia_han__lou_jian__315x270__23.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_2145.res__U18-13140_170_54381__jia_han__lou_jian__315x270__27.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_2145.res__U18-13140_170_54381__mei_zhao_dao_yi__lou_jian__315x270__24.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_2145.res__U18-13140_170_54381__mei_zhao_dao_yi__lou_jian__315x270__28.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_2147.res__U18-13140_170_54381__jia_han__lou_jian__315x270__24.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_2147.res__U18-13140_170_54381__jia_han__lou_jian__315x270__28.jpg',1669342554075,1669342554075),
+NGAOITEST_1211125_2147.res__U18-13140_170_54381__mei_zhao_dao_yi__lou_jian__315x270__25.jpg',1669342554075,1669342554075),
+NGAOITEST_1211126_0521.res__C641-13140_190_85891__jia_han__li_bei__315x270__19.jpg',1669342554075,1669342554075),
+NGAOITEST_1211126_0521.res__RB16-190900000038A__jia_han__ce_li__315x270__20.jpg',1669342554075,1669342554075),
+NGAOITEST_1211126_0848.res__C641-13140_190_85891__jia_han__li_bei__315x270__18.jpg',1669342554075,1669342554075),
+NGAOITEST_1211126_1853.res__CX37-190800000282A__jia_han__li_bei__315x270__3.jpg',1669342554075,1669342554075),
+NGAOITEST_1211127_0854.res__C605-2C0402__jia_han__yi_wei__315x270__4.jpg',1669342554075,1669342554075),
+NGAOITEST_1211127_0854.res__D913-2C0603__jia_han__yi_wei__315x270__11.jpg',1669342554075,1669342554075),
+NGAOITEST_1211127_1131.res__C629-1C0603__jia_han__yi_wei__315x270__14.jpg',1669342554075,1669342554075),
+NGAOITEST_1211127_1733.res__CA21-190800000164A__jia_han__lou_jian__315x270__9.jpg',1669342554075,1669342554075),
+NGAOITEST_1211128_0555.res__C299-190800000012A__yi_wei__jia_han__315x270__1.jpg',1669342554075,1669342554075),
+NGAOITEST_1211128_0555.res__L10-13140_160_58071__jia_han__yi_wei__315x270__9.jpg',1669342554075,1669342554075),
+NGAOITEST_1211129_2123.res__CR06-190800000164A__jia_han__lou_jian__315x270__20.jpg',1669342554075,1669342554075),
+NGAOITEST_1211130_1334.res__CR06-190800000164A__jia_han__lou_jian__315x270__15.jpg',1669342554075,1669342554075),
+NGAOITEST_1211130_1848.res__CA21-190800000164A__jia_han__lou_jian__315x270__8.jpg',1669342554075,1669342554075),
+P100017018750121112700006618_1211127_1417.res__C701-1C0805__jia_han__Pseudo_Error__315x270__2.jpg',1669342554075,1669342554075),
+P100017018750121112700006668_1211127_1644.res__C701-1C0805__jia_han__Pseudo_Error__315x270__2.jpg',1669342554075,1669342554075),
+P100017018750121112700006722_1211127_1328.res__C701-1C0805__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012001070121112600001714_1211126_0706.res__LL04-13140_160_68961__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012041490121111200010421_1211112_1740.res__RD103-190900000038A__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012041490121111200010726_1211112_1931.res__RQ08-190900000038A__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012041490121111200010860_1211112_2236.res__RT20-190900000477A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012501400121111900003200_1211119_0756.res__RS23-190900000038A__yuan_jian_chu_c__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012501400121111900003313_1211119_0951.res__UX04-13140_390_61561__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012501400121111900003350_1211119_1027.res__UX04-13140_390_61561__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012501400121111900003423_1211119_1209.res__UX04-13140_390_61561__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012581400121111300000231_1211113_0745.res__RD63-190900000028A__jia_han__ce_li__315x270__4.jpg',1669342554075,1669342554075),
+P300012581400121111300000231_1211113_2021.res__RL69-190900000043A__jia_han__shang_xia_fan_t__315x270__1.jpg',1669342554075,1669342554075),
+P300012591400121111300000181_1211113_0903.res__R882-190900000038A__yuan_jian_chu_c__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012591400121111300000247_1211114_0652.res__UQ00-1350000059050__han_pan_kuan_du__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012591400121111300000287_1211114_0909.res__UQ00-1350000059050__yin_jiao_kuan_d__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012591400121111300000328_1211113_1152.res__C337-13140_190_85891__jia_han__yi_wei__315x270__3.jpg',1669342554075,1669342554075),
+P300012591400121111300000328_1211113_1152.res__R647-190900000043A__jia_han__shang_xia_fan_t__315x270__7.jpg',1669342554075,1669342554075),
+P300012591400121111300000328_1211113_1152.res__R916-190900000026A__jia_han__ce_li__315x270__2.jpg',1669342554075,1669342554075),
+P300012591400121111300000328_1211114_1257.res__CM18-13140_190_85891__jia_han__yi_wei__315x270__5.jpg',1669342554075,1669342554075),
+P300012591400121111300000328_1211115_0915.res__R647-190900000043A__jia_han__shang_xia_fan_t__315x270__17.jpg',1669342554075,1669342554075),
+P300012591400121111300000328_1211115_0915.res__R916-190900000026A__jia_han__ce_li__315x270__2.jpg',1669342554075,1669342554075),
+P300012591400121111500000393_1211115_1636.res__RU14-190900000038A__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012970400121111100040211_1211112_0018.res__RL92-190900000296A__yuan_jian_chu_c__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012980400121111800023127_1211118_1304.res__R306-190900000198A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300012980400121111800023135_1211118_1315.res__RD86-190900000470A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300013061220121112000006106_1211120_1555.res__R318-190900000337A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300013061220121112000006138_1211120_1436.res__RB43-190900000029A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300013061220121112000006917_1211121_0349.res__RT35-190900000030A__yuan_jian_chu_c__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300013061220121112000007029_1211121_0521.res__RT35-190900000030A__yuan_jian_chu_c__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P300013061220121112100007179_1211121_0643.res__RT35-190900000030A__yuan_jian_chu_c__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P500014261900121072900000077_1211108_0936.res__C293-13140_190_81381__jia_han__li_bei__315x270__6.jpg',1669342554075,1669342554075),
+P500014261900121072900000077_1211108_0936.res__C293-13140_190_81381__jia_han__li_bei__315x270__7.jpg',1669342554075,1669342554075),
+P500014261900121072900000077_1211108_0936.res__R261-190900000480A__jia_han__ce_li__315x270__9.jpg',1669342554075,1669342554075),
+P500014261900121112300009076_1211124_2308.res__R274-190900000038A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P500014261900121112300009364_1211124_2351.res__RD07-190900000038A__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P830014030900121110300024073_1211103_0023.res__C46-13140_160_88461__jia_han__yi_wei__315x270__1.jpg',1669342554075,1669342554075),
+P830014030900121111400025173_1211114_1632.res__R274-190900000038A__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P830014030900121111400025219_1211114_1834.res__RW04-190900000029A__jia_han__jia_han__315x270__1.jpg',1669342554075,1669342554075),
+P830014030900121111400025219_1211114_1914.res__RW04-190900000029A__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P830014030900121111700026289_1211118_0410.res__R274-190900000038A__yuan_jian_chu_c__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P830014151900121110400035189_1211104_2149.res__R181-190900000038A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P830014151900121110500036171_1211106_1506.res__R811-190900000026A__jia_han__sun_huai__315x270__1.jpg',1669342554075,1669342554075),
+P830014151900121110800037746_1211109_1815.res__R83-190900000038A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P830014151900121112300041891_1211125_0538.res__R642-190900000038A__jia_han__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075),
+P830014151900121112700043846_1211128_0606.res__C9452-13140_160_87801__jia_han__Pseudo_Error__315x270__5.jpg',1669342554075,1669342554075),
+P830014220900121112500084017_1211126_0228.res__R113-190900000029A__yi_wei__Pseudo_Error__315x270__1.jpg',1669342554075,1669342554075)`
+
+	x := map[string]string{}
+	datas := strings.Split(str, "\n")
+	for _, data := range datas {
+		keys := strings.Split(data, ",")
+		key := keys[0]
+		if v, ok := x[key]; ok {
+			fmt.Println(v)
+			break
+		}
+	}
+
+}
+func TestGetRunTime(t *testing.T) {
+	t1 := time.Now().UnixMilli()
+	fmt.Println(GetRunTime(t1 - 1669342352806))
+}
+
+var second = int64(1)
+var min = 60 * second
+var hour = 60 * min
+var day = 24 * hour
+
+func GetRunTime(timeLong int64) string {
+	if timeLong < 1000 {
+		return fmt.Sprintf("%+vms", timeLong)
+	}
+	timeLong = timeLong / 1000
+
+	{
+		t := timeLong / day
+		if t > 0 {
+			return fmt.Sprintf("%+vd", t)
+		}
+	}
+	{
+		t := timeLong / hour
+		if t > 0 {
+			return fmt.Sprintf("%+vh", t)
+		}
+	}
+	{
+		t := timeLong / min
+		if t > 0 {
+			return fmt.Sprintf("%+vm", t)
+		}
+	}
+	return fmt.Sprintf("%+vs", timeLong)
+}
+func GetRunTimes(timeLong int64) string {
+	if timeLong < 1000 {
+		return fmt.Sprintf("1s")
+	}
+	timeLong = timeLong / 1000
+	{
+		t := timeLong / day
+		if t > 0 {
+			return fmt.Sprintf("%+vd", t)
+		}
+	}
+	{
+		t := timeLong / hour
+		if t > 0 {
+			return fmt.Sprintf("%+vh", t)
+		}
+	}
+	{
+		t := timeLong / min
+		if t > 0 {
+			return fmt.Sprintf("%+vm", t)
+		}
+	}
+	return fmt.Sprintf("%+vs", timeLong)
+}
+
+//select count(*) from $Infer-Schema-From-DataChannelId where (result='OK' or result='NG') and service_id=@serviceId and product_name=@productName and serial_number=@serialNumber and generate_date_time>=@startTime and generate_date_time<=@endTime
+
+func TestFindPrefix(t *testing.T) {
+	FindPrefix()
+}
+func FindPrefix() {
+	sql := `select count(*) from $Infer-Schema-From-DataChannelId where (result='OK' or result='NG') and service_id=@serviceId and product_name=@productName and serial_number=@serialNumber and generate_date_time>=@startTime and generate_date_time<=@endTime`
+	//fmt.Sprintf(sql)
+	idx := strings.Index(sql, "@productName")
+	prefixEnd := idx
+	for {
+		prefixEnd--
+		if prefixEnd < 0 {
+			break
+		}
+		if sql[prefixEnd] == ' ' {
+			continue
+		}
+	}
+}

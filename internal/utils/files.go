@@ -3,6 +3,7 @@ package utils
 import (
 	"io/ioutil"
 	"path/filepath"
+	"strings"
 )
 
 type FileObject struct {
@@ -53,8 +54,8 @@ func (receiver *FileObject) ReadChild(sourceRootPath string) error {
 	return nil
 }
 
-//如果没有child 并且是文件夹,则直接copy整个文件夹
-//如果有child,则遍历子文件
+// 如果没有child 并且是文件夹,则直接copy整个文件夹
+// 如果有child,则遍历子文件
 func (receiver *FileObject) CopySelf(sourceRootPath string, targetRootPath string) error {
 	sourcePath := receiver.SourceFullPath(sourceRootPath)
 	targertPath := receiver.TargetFullPath(targetRootPath)
@@ -83,4 +84,10 @@ func (receiver *FileObject) CopySelf(sourceRootPath string, targetRootPath strin
 		}
 	}
 	return nil
+}
+func SplitKey(key string, split string) (string, string) {
+	idx := strings.LastIndex(key, split)
+	key1 := key[:idx]
+	key2 := key[idx+1:]
+	return key1, key2
 }

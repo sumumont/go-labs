@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
-	"strings"
 	"testing"
 	"time"
 )
@@ -61,13 +60,6 @@ func TestImg(t *testing.T) {
 		result, _ = strconv.ParseInt(resultStr, 10, 64)
 	}
 	fmt.Println(result)
-}
-
-func SplitKey(key string, split string) (string, string) {
-	idx := strings.LastIndex(key, split)
-	key1 := key[:idx]
-	key2 := key[idx+1:]
-	return key1, key2
 }
 
 func TestTime(t *testing.T) {

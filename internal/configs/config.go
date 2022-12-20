@@ -18,7 +18,6 @@
 package configs
 
 import (
-	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/go-labs/internal/logging"
 	"github.com/spf13/viper"
@@ -31,6 +30,22 @@ type AppConfig struct {
 	Grpc     int            `json:"grpc"`
 	Debug    bool           `json:"debug"`
 	ImgProxy ImgProxyConfig `json:"imgProxy"`
+	Db       DbConfig
+}
+
+type DbConfig struct {
+	ServerType      string
+	Username        string
+	Password        string
+	Host            string
+	Port            int
+	Database        string
+	StatsDataBase   string //数据通道统计数据库
+	MaxOpenConns    int
+	MaxIdleConns    int
+	MaxConnLifeTime int
+	Debug           bool
+	Sslmode         string
 }
 
 type ImgProxyConfig struct {
@@ -65,14 +80,7 @@ func InitConfig(path string) (*AppConfig, error) {
 		return nil, err
 	}
 	a := appConfig
-	fmt.Println(a)
-	//
-	//var b AppConfig
-	//yfile, _ := os.Open("./configs/config.yaml")	//test.yaml由下一个例子生成
-	//defer yfile.Close()
-	//ydecode:= yaml.NewDecoder(yfile)
-	//ydecode.Decode(&b)
-	//fmt.Println(b.Spark.AppName)
+	logging.Debug().Interface("config", a).Send()
 	return appConfig, nil
 }
 
