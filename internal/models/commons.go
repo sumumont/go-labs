@@ -1,3 +1,21 @@
+/*******************************************************************************
+* 2019 - present Contributed by Apulis Technology (Shenzhen) Co. LTD
+*
+* This program and the accompanying materials are made available under the
+* terms of the MIT License, which is available at
+* https://www.opensource.org/licenses/MIT
+*
+* See the NOTICE file distributed with this work for additional
+* information regarding copyright ownership.
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations
+* under the License.
+*
+* SPDX-License-Identifier: MIT
+******************************************************************************/
+
 package models
 
 import (
@@ -29,6 +47,10 @@ func (t UnixTime) MarshalJSON() ([]byte, error) {
 }
 
 func (t UnixTime) Value() (driver.Value, error) {
+	//var zeroTime time.Time
+	//if t.Time.UnixNano() == zeroTime.UnixNano() {
+	//	return nil, nil
+	//}
 	if t.IsZero() {
 		return nil, nil
 	}
@@ -54,7 +76,6 @@ func (j *JsonB) Scan(value interface{}) error {
 	if value == nil {
 		return nil
 	}
-
 	return json.Unmarshal(value.([]byte), &j)
 }
 
@@ -122,6 +143,12 @@ func (JsonMetaData) GormDBDataType(db *gorm.DB, _ *schema.Field) string {
 		return "JSONB"
 	}
 	return ""
+}
+
+func assertCheck(v bool, msg string) {
+	if !v {
+		panic(msg)
+	}
 }
 
 type StringJsonB []string

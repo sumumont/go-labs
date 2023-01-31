@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/go-labs/internal/logging"
 	"github.com/go-labs/internal/models"
+	"gorm.io/datatypes"
 	"gorm.io/gorm/clause"
 )
 
@@ -61,4 +62,37 @@ func (svc ProductDao) DeleteBatch(ctx context.Context, num int) error {
 	}
 	logging.Debug().Interface("rows", ids).Send()
 	return nil
+}
+func (svc ProductDao) DeleteByAttr(ctx context.Context, attr map[string]interface{}) error {
+	tx := GetDB(ctx)
+	var ids []models.Product
+	logging.Error(errors.New("test error")).Send()
+	var querys []*datatypes.JSONQueryExpression
+	for k, v := range attr {
+		tx = tx.Where(datatypes.JSONQuery("attributes").Equals(v, k))
+	}
+	tx = tx.Delete(&ids, querys)
+	err := tx.Error
+	if err != nil {
+		logging.Error(err).Send()
+		return err
+	}
+	logging.Debug().Interface("rows", ids).Send()
+	return nil
+}
+func (svc ProductDao) FindByAttr(ctx context.Context, attr map[string]interface{}) ([]models.Product, error) {
+	tx := GetDB(ctx)
+	var ids []models.Product
+	for k, v := range attr {
+		//tx = tx.Where(datatypes.JSONQuery("attributes").Equals(v, k))
+		tx = tx.Where(datatypes.JSONQuery("attributes").Equals(v, k))
+	}
+	tx = tx.Find(&ids)
+	err := tx.Error
+	if err != nil {
+		logging.Error(err).Send()
+		return ids, err
+	}
+	logging.Debug().Interface("rows", ids).Send()
+	return ids, nil
 }

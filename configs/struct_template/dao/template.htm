@@ -1,0 +1,104 @@
+package dao
+
+import (
+	"context"
+	"<< .modulePrefix >>/internal/dto"
+	"<< .modulePrefix >>/internal/utils"
+
+	"<< .modulePrefix >>/internal/models"
+	"<< .modulePrefix >>/pkg/exports"
+	"<< .logging >>"
+	"gorm.io/gorm/clause"
+)
+
+type << .modelName >>Dao struct {
+}
+
+var << .privateModelName >>Dao = << .modelName >>Dao{}
+
+func Get<< .modelName >>Dao() << .modelName >>Dao {
+	return << .privateModelName >>Dao
+}
+
+func (svc << .modelName >>Dao) FindByParam(ctx context.Context, param dto.<< .modelName >>Param, userInfo *models.UserInfo) ([]models.<< .modelName >>, int64, exports.APIError) {
+	baseList := param.Conversion()
+	db := GetDB(ctx).Model(&models.<< .modelName >>{})
+	var p []models.<< .modelName >>
+	var total int64
+	db.Count(&total)
+	db, errs := models.PageList(db, baseList)
+	if errs != nil {
+		logging.Error(errs).Send()
+		return nil, 0, exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_QUERY_FAILED, errs.Error())
+	}
+	if total == 0 {
+		return nil, 0, nil
+	}
+	err := db.Find(&p).Error
+	if err != nil {
+		logging.Error(err).Send()
+		return nil, 0, exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_QUERY_FAILED, err.Error())
+	}
+	return p, total, nil
+}
+
+func (svc << .modelName >>Dao) Create(ctx context.Context, model *models.<< .modelName >>) exports.APIError {
+	tx := GetDB(ctx)
+	err := tx.Create(model).Error
+	if err != nil {
+		logging.Error(err).Send()
+		return exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_UPDATE_UNEXPECT, err.Error())
+	}
+	return nil
+}
+
+func (svc << .modelName >>Dao) FindById(ctx context.Context, id int64) (*models.<< .modelName >>, exports.APIError) {
+	tx := GetDB(ctx)
+	p := models.<< .modelName >>{}
+	tx = tx.Where("id = ?", id)
+	err := tx.First(&p).Error
+	if err != nil {
+		logging.Error(err).Send()
+		return nil, exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_UPDATE_UNEXPECT, err.Error())
+	}
+	return &p, nil
+}
+func (svc << .modelName >>Dao) Delete(ctx context.Context, id int64) exports.APIError {
+	tx := GetDB(ctx)
+	tx = tx.Where("id = ?", id)
+	err := tx.Delete(models.<< .modelName >>{}).Error
+	if err != nil {
+		logging.Error(err).Send()
+		return exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_UPDATE_UNEXPECT, err.Error())
+	}
+	return nil
+}
+
+func (svc << .modelName >>Dao) SaveOrUpdate(c context.Context, model *models.<< .modelName >>) exports.APIError {
+	tx := GetDB(c)
+	model.BaseModelTime.UpdatedAt = utils.GetNowTime()
+	err := tx.Clauses(clause.OnConflict{
+		Columns:   []clause.Column{{Name: "type"}, {Name: "name"}, {Name: "user_id"}},
+		DoUpdates: clause.AssignmentColumns([]string{"config", "updated_at"}),
+	}).Create(model).Error
+	if err != nil {
+		logging.Error(err).Send()
+		return exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_EXEC_FAILED, err.Error())
+	}
+	return nil
+}
+func (svc << .modelName >>Dao) BatchSaveOrUpdate(c context.Context, model []models.<< .modelName >>) exports.APIError {
+	tx := GetDB(c)
+	for _, m := range model {
+		m.UpdatedAt = utils.GetNowTime()
+	}
+	err := tx.Clauses(clause.OnConflict{
+		Columns:   []clause.Column{{Name: "type"}, {Name: "name"}, {Name: "user_id"}},
+		DoUpdates: clause.AssignmentColumns([]string{"config", "updated_at"}),
+	}).Create(model).Error
+	if err != nil {
+		logging.Error(err).Send()
+		return exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_EXEC_FAILED, err.Error())
+	}
+	return nil
+}

@@ -1,0 +1,58 @@
+package controllers
+
+import (
+	"<< .modulePrefix >>/internal/dto"
+	"<< .modulePrefix >>/internal/services"
+	"<< .modulePrefix >>/pkg/exports"
+	"<< .logging >>"
+	"github.com/gin-gonic/gin"
+)
+
+type << .modelName >>Ctl struct {
+	BaseController
+}
+
+func New<< .modelName >>Ctl() *<< .modelName >>Ctl {
+	return &<< .modelName >>Ctl{}
+}
+
+func (p *<< .modelName >>Ctl) Save(c *gin.Context) (interface{}, exports.APIError) {
+	var param dto.<< .modelName >>
+	err := Bind(c, &param)
+	if err != nil {
+		return nil, err
+	}
+	rsp, err := services.Get<< .modelName >>Svc().Save(c, &param)
+	if err != nil {
+		logging.Error(err).Send()
+		return nil, err
+	}
+	return rsp, nil
+
+}
+func (p *<< .modelName >>Ctl) FindAll(c *gin.Context) (interface{}, exports.APIError) {
+	var param dto.<< .modelName >>Param
+	err := Bind(c, &param)
+	if err != nil {
+		return nil, err
+	}
+	rsp, err := services.Get<< .modelName >>Svc().Find(c, param)
+	if err != nil {
+		logging.Error(err).Send()
+		return nil, err
+	}
+	return rsp, nil
+}
+func (p *<< .modelName >>Ctl) Delete(c *gin.Context) (interface{}, exports.APIError) {
+	var param dto.<< .modelName >>Id
+	err := Bind(c, &param)
+	if err != nil {
+		return nil, err
+	}
+	rsp, err := services.Get<< .modelName >>Svc().Delete(c, param)
+		if err != nil {
+		logging.Error(err).Send()
+		return nil, err
+	}
+	return rsp, nil
+}

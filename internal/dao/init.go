@@ -179,7 +179,7 @@ func autoMigrateTable(modelType interface{}) error {
 	val := reflect.Indirect(reflect.ValueOf(modelType))
 	modelName := val.Type().Name()
 
-	logging.Info().Str("modelName", modelName).Msg("Migrating Table of %s ...")
+	logging.Info().Str("modelName", modelName).Msg("Migrating Table")
 
 	err := database.AutoMigrate(modelType)
 	if err != nil {

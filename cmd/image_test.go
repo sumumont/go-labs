@@ -597,19 +597,19 @@ func (rec *Rectangle) Build(box Point) {
 func TestUIO(t *testing.T) {
 
 	boxA := Point{
-		X:      100,
-		Y:      100,
-		Width:  100,
-		Height: 100,
+		X:      3430,
+		Y:      3560,
+		Width:  3463 - 3430,
+		Height: 3583 - 3560,
 	}
 	Ra := Rectangle{}
 	Ra.Build(boxA)
 
 	boxB := Point{
-		X:      50,
-		Y:      50,
-		Width:  10,
-		Height: 10,
+		X:      3429,
+		Y:      3558,
+		Width:  32,
+		Height: 22,
 	}
 	Rb := Rectangle{}
 	Rb.Build(boxB)

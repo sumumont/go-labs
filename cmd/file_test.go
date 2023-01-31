@@ -14,7 +14,7 @@ import (
 
 func TestFileToBase64(t *testing.T) {
 	//file, err := os.ReadFile("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\aoicar\\aoicar\\20220921\\6081\\A.vrs")
-	file, err := os.ReadFile("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\1666250294.jpg.bmp")
+	file, err := os.ReadFile("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\test\\A.txt")
 	if err != nil {
 		panic(err)
 	}
