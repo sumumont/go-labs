@@ -1,28 +1,28 @@
 package controllers
 
 import (
-	"<< .modulePrefix >>/internal/dto"
-	"<< .modulePrefix >>/internal/services"
-	"<< .modulePrefix >>/pkg/exports"
-	"<< .logging >>"
+	"<< .ModulePrefix >>/internal/dto"
+	"<< .ModulePrefix >>/internal/services"
+	"<< .ModulePrefix >>/pkg/exports"
+	"<< .LogPack >>"
 	"github.com/gin-gonic/gin"
 )
 
-type << .modelName >>Ctl struct {
+type << .ModelName >>Ctl struct {
 	BaseController
 }
 
-func New<< .modelName >>Ctl() *<< .modelName >>Ctl {
-	return &<< .modelName >>Ctl{}
+func New<< .ModelName >>Ctl() *<< .ModelName >>Ctl {
+	return &<< .ModelName >>Ctl{}
 }
 
-func (p *<< .modelName >>Ctl) Save(c *gin.Context) (interface{}, exports.APIError) {
-	var param dto.<< .modelName >>
+func (p *<< .ModelName >>Ctl) Save(c *gin.Context) (interface{}, exports.APIError) {
+	var param dto.<< .ModelName >>
 	err := Bind(c, &param)
 	if err != nil {
 		return nil, err
 	}
-	rsp, err := services.Get<< .modelName >>Svc().Save(c, &param)
+	rsp, err := services.Get<< .ModelName >>Svc().Save(c, &param)
 	if err != nil {
 		logging.Error(err).Send()
 		return nil, err
@@ -30,26 +30,26 @@ func (p *<< .modelName >>Ctl) Save(c *gin.Context) (interface{}, exports.APIErro
 	return rsp, nil
 
 }
-func (p *<< .modelName >>Ctl) FindAll(c *gin.Context) (interface{}, exports.APIError) {
-	var param dto.<< .modelName >>Param
+func (p *<< .ModelName >>Ctl) FindAll(c *gin.Context) (interface{}, exports.APIError) {
+	var param dto.<< .ModelName >>Param
 	err := Bind(c, &param)
 	if err != nil {
 		return nil, err
 	}
-	rsp, err := services.Get<< .modelName >>Svc().Find(c, param)
+	rsp, err := services.Get<< .ModelName >>Svc().Find(c, param)
 	if err != nil {
 		logging.Error(err).Send()
 		return nil, err
 	}
 	return rsp, nil
 }
-func (p *<< .modelName >>Ctl) Delete(c *gin.Context) (interface{}, exports.APIError) {
-	var param dto.<< .modelName >>Id
+func (p *<< .ModelName >>Ctl) Delete(c *gin.Context) (interface{}, exports.APIError) {
+	var param dto.<< .ModelName >>Id
 	err := Bind(c, &param)
 	if err != nil {
 		return nil, err
 	}
-	rsp, err := services.Get<< .modelName >>Svc().Delete(c, param)
+	rsp, err := services.Get<< .ModelName >>Svc().Delete(c, param)
 		if err != nil {
 		logging.Error(err).Send()
 		return nil, err

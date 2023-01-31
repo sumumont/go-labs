@@ -7,38 +7,71 @@ import (
 	"testing"
 )
 
-var (
-	//modulePrefix = "github.com/go-labs"
-	//logPack      = "github.com/go-labs/internal/logging"
-	modulePrefix = "github.com/apulis/app/apulis-iqi"
-	logPack      = "github.com/apulisai/sdk/go-utils/logging"
-
-	tableName        = "people"
-	modelName        = "People"
-	privateModelName = "people"
-)
-
 func TestTemplate(t *testing.T) {
-	writeGo("dto", tableName)
-	writeGo("dao", tableName)
-	writeGo("services", tableName)
-	writeGo("controller", tableName)
+	tableName := "people"
+	autoInfo := AutoInfo{
+		//ModulePrefix:     "github.com/apulis/app/apulis-iqi",
+		//LogPack:          "github.com/apulisai/sdk/go-utils/logging",
+		ModulePrefix:     "github.com/go-labs",
+		LogPack:          "github.com/go-labs/internal/logging",
+		ModelName:        "People",
+		PrivateModelName: "people",
+	}
+	writeGo("dto", tableName, autoInfo)
+	writeGo("dao", tableName, autoInfo)
+	writeGo("services", tableName, autoInfo)
+	writeGo("controller", tableName, autoInfo)
 }
 
 func TestTemplateDto(t *testing.T) {
-	writeGo("dto", tableName)
+	tableName := "people"
+	autoInfo := AutoInfo{
+		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
+		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:        "People",
+		PrivateModelName: "people",
+	}
+	writeGo("dto", tableName, autoInfo)
 }
 func TestTemplateDao(t *testing.T) {
-	writeGo("dao", tableName)
+	tableName := "people"
+	autoInfo := AutoInfo{
+		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
+		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:        "People",
+		PrivateModelName: "people",
+	}
+	writeGo("dao", tableName, autoInfo)
 }
 func TestTemplateService(t *testing.T) {
-	writeGo("services", tableName)
+	tableName := "people"
+	autoInfo := AutoInfo{
+		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
+		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:        "People",
+		PrivateModelName: "people",
+	}
+	writeGo("services", tableName, autoInfo)
 }
 func TestTemplateController(t *testing.T) {
-	writeGo("controller", tableName)
+	tableName := "people"
+	autoInfo := AutoInfo{
+		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
+		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:        "People",
+		PrivateModelName: "people",
+	}
+	writeGo("controller", tableName, autoInfo)
 }
 
-func writeGo(templateParent string, tabelName string) {
+type AutoInfo struct {
+	ModulePrefix     string
+	LogPack          string
+	ModelName        string
+	PrivateModelName string
+}
+
+func writeGo(templateParent string, tabelName string, autoInfo AutoInfo) {
 	bytes, err := os.ReadFile(fmt.Sprintf("../configs/struct_template/%s/template.htm", templateParent))
 	if err != nil {
 		panic(err)
@@ -49,19 +82,19 @@ func writeGo(templateParent string, tabelName string) {
 		panic(err)
 	}
 
-	data := map[string]interface{}{
-		"modulePrefix":     modulePrefix,
-		"modelName":        modelName,
-		"privateModelName": privateModelName,
-		"logging":          logPack,
-	}
+	//data := map[string]interface{}{
+	//	"modulePrefix":     autoInfo.ModulePrefix,
+	//	"modelName":        autoInfo.ModelName,
+	//	"privateModelName": autoInfo.PrivateModelName,
+	//	"logging":          autoInfo.LogPack,
+	//}
 	fileName := fmt.Sprintf("%s.go", tabelName)
 	file, err := os.Create(fmt.Sprintf("../internal/%s/%s", templateParent, fileName))
 	if err != nil {
 		panic(err)
 	}
 	defer file.Close()
-	err = tpl.Execute(file, data)
+	err = tpl.Execute(file, autoInfo)
 	if err != nil {
 		panic(err)
 	}

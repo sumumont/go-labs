@@ -2,29 +2,29 @@ package services
 
 import (
 	"context"
-	"<< .modulePrefix >>/internal/dao"
-	"<< .modulePrefix >>/internal/dto"
-	"<< .modulePrefix >>/internal/models"
-	"<< .modulePrefix >>/pkg/exports"
-	"<< .logging >>"
+	"<< .ModulePrefix >>/internal/dao"
+	"<< .ModulePrefix >>/internal/dto"
+	"<< .ModulePrefix >>/internal/models"
+	"<< .ModulePrefix >>/pkg/exports"
+	"<< .LogPack >>"
 	"github.com/gin-gonic/gin"
 )
 
-type << .modelName >>Service struct {
+type << .ModelName >>Service struct {
 }
 
-var << .modelName >>Svc = &<< .modelName >>Service{}
+var << .ModelName >>Svc = &<< .ModelName >>Service{}
 
-func Get<< .modelName >>Svc() *<< .modelName >>Service {
-	return << .modelName >>Svc
+func Get<< .ModelName >>Svc() *<< .ModelName >>Service {
+	return << .ModelName >>Svc
 }
 
-func (svc *<< .modelName >>Service) Save(c *gin.Context, param *dto.<< .modelName >>) (interface{}, exports.APIError) {
+func (svc *<< .ModelName >>Service) Save(c *gin.Context, param *dto.<< .ModelName >>) (interface{}, exports.APIError) {
 	errs := dao.ExecDBTx(func(ctx context.Context) error {
-		<< .modelName >> := &models.<< .modelName >>{
+		<< .ModelName >> := &models.<< .ModelName >>{
 			//todo fill Private
 		}
-		err := dao.Get<< .modelName >>Dao().SaveOrUpdate(ctx, << .modelName >>)
+		err := dao.Get<< .ModelName >>Dao().SaveOrUpdate(ctx, << .ModelName >>)
 		if err != nil {
 			logging.Error(err).Send()
 			return err
@@ -37,9 +37,9 @@ func (svc *<< .modelName >>Service) Save(c *gin.Context, param *dto.<< .modelNam
 	}
 	return nil, nil
 }
-func (svc *<< .modelName >>Service) Delete(c *gin.Context, param dto.<< .modelName >>Id) (interface{}, exports.APIError) {
+func (svc *<< .ModelName >>Service) Delete(c *gin.Context, param dto.<< .ModelName >>Id) (interface{}, exports.APIError) {
 	errs := dao.ExecDBTx(func(ctx context.Context) error {
-		err := dao.Get<< .modelName >>Dao().Delete(ctx, param.Id)
+		err := dao.Get<< .ModelName >>Dao().Delete(ctx, param.Id)
 		if err != nil {
 			logging.Error(err).Send()
 			return err
@@ -52,14 +52,14 @@ func (svc *<< .modelName >>Service) Delete(c *gin.Context, param dto.<< .modelNa
 	}
 	return nil, nil
 }
-func (svc *<< .modelName >>Service) Find(c *gin.Context, param dto.<< .modelName >>Param) (interface{}, exports.APIError) {
-	<< .modelName >>s, total, err := dao.Get<< .modelName >>Dao().FindByParam(c, param, nil)
+func (svc *<< .ModelName >>Service) Find(c *gin.Context, param dto.<< .ModelName >>Param) (interface{}, exports.APIError) {
+	<< .ModelName >>s, total, err := dao.Get<< .ModelName >>Dao().FindByParam(c, param, nil)
 	if err != nil {
 		logging.Error(err).Send()
 		return nil, err
 	}
 	resp := &dto.BaseListResp{}
-	resp.Items = << .modelName >>s
+	resp.Items = << .ModelName >>s
 	resp.Total = total
 	return resp, nil
 }
