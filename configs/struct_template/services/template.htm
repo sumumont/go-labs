@@ -23,6 +23,9 @@ func (svc *[[ .ModelName ]]Service) Save(c *gin.Context, param *dto.[[ .ModelNam
 	errs := dao.ExecDBTx(func(ctx context.Context) error {
 		[[ .ModelName ]] := &models.[[ .ModelName ]]{
 			//todo fill Private
+			[[range $k,$v :=.Attr]]
+			[[- $k]]: param.[[ $k -]],
+			[[- end]]
 		}
 		err := dao.Get[[ .ModelName ]]Dao().SaveOrUpdate(ctx, [[ .ModelName ]])
 		if err != nil {
