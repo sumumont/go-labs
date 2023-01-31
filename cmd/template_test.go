@@ -10,7 +10,7 @@ import (
 
 func TestTemplate(t *testing.T) {
 	tableName := "people"
-	autoInfo := AutoInfo{
+	autoInfo := FillAutoInfo{
 		//ModulePrefix:     "github.com/apulis/app/apulis-iqi",
 		//LogPack:          "github.com/apulisai/sdk/go-utils/logging",
 		ModulePrefix: "github.com/go-labs",
@@ -26,7 +26,7 @@ func TestTemplate(t *testing.T) {
 
 func TestTemplateDto(t *testing.T) {
 	tableName := "people"
-	autoInfo := AutoInfo{
+	autoInfo := FillAutoInfo{
 		ModulePrefix: "github.com/apulis/app/apulis-iqi",
 		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
 		ModelName:    "People",
@@ -36,7 +36,7 @@ func TestTemplateDto(t *testing.T) {
 }
 func TestTemplateDao(t *testing.T) {
 	tableName := "people"
-	autoInfo := AutoInfo{
+	autoInfo := FillAutoInfo{
 		ModulePrefix: "github.com/apulis/app/apulis-iqi",
 		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
 		ModelName:    "People",
@@ -46,7 +46,7 @@ func TestTemplateDao(t *testing.T) {
 }
 func TestTemplateService(t *testing.T) {
 	tableName := "people"
-	autoInfo := AutoInfo{
+	autoInfo := FillAutoInfo{
 		ModulePrefix: "github.com/apulis/app/apulis-iqi",
 		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
 		ModelName:    "People",
@@ -56,7 +56,7 @@ func TestTemplateService(t *testing.T) {
 }
 func TestTemplateController(t *testing.T) {
 	tableName := "people"
-	autoInfo := AutoInfo{
+	autoInfo := FillAutoInfo{
 		ModulePrefix: "github.com/apulis/app/apulis-iqi",
 		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
 		ModelName:    "People",
@@ -65,19 +65,19 @@ func TestTemplateController(t *testing.T) {
 	writeGo("controller", tableName, autoInfo)
 }
 
-type AutoInfo struct {
+type FillAutoInfo struct {
 	ModulePrefix     string //代码模块路径前缀
 	LogPack          string //日志模块package
 	ModelName        string //模型名称
 	PrivateModelName string //模型名称
 }
 
-func (rec *AutoInfo) SetPrivateModelName() {
+func (rec *FillAutoInfo) SetPrivateModelName() {
 	prefix := rec.ModelName[:1]
 	prefix = strings.ToLower(prefix)
 	rec.PrivateModelName = prefix + rec.ModelName[1:]
 }
-func writeGo(templateParent string, tabelName string, autoInfo AutoInfo) {
+func writeGo(templateParent string, tabelName string, autoInfo FillAutoInfo) {
 	bytes, err := os.ReadFile(fmt.Sprintf("../configs/struct_template/%s/template.htm", templateParent))
 	if err != nil {
 		panic(err)
@@ -93,7 +93,9 @@ func writeGo(templateParent string, tabelName string, autoInfo AutoInfo) {
 	if err != nil {
 		panic(err)
 	}
-	defer file.Close()
+	defer func() {
+		_ = file.Close()
+	}()
 	err = tpl.Execute(file, autoInfo)
 	if err != nil {
 		panic(err)
