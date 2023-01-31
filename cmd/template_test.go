@@ -82,12 +82,6 @@ func writeGo(templateParent string, tabelName string, autoInfo AutoInfo) {
 		panic(err)
 	}
 
-	//data := map[string]interface{}{
-	//	"modulePrefix":     autoInfo.ModulePrefix,
-	//	"modelName":        autoInfo.ModelName,
-	//	"privateModelName": autoInfo.PrivateModelName,
-	//	"logging":          autoInfo.LogPack,
-	//}
 	fileName := fmt.Sprintf("%s.go", tabelName)
 	file, err := os.Create(fmt.Sprintf("../internal/%s/%s", templateParent, fileName))
 	if err != nil {
