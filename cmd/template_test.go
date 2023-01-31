@@ -27,41 +27,41 @@ func TestTemplate(t *testing.T) {
 func TestTemplateDto(t *testing.T) {
 	tableName := "people"
 	autoInfo := AutoInfo{
-		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
-		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
-		ModelName:        "People",
-		PrivateModelName: "people",
+		ModulePrefix: "github.com/apulis/app/apulis-iqi",
+		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:    "People",
 	}
+	autoInfo.SetPrivateModelName()
 	writeGo("dto", tableName, autoInfo)
 }
 func TestTemplateDao(t *testing.T) {
 	tableName := "people"
 	autoInfo := AutoInfo{
-		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
-		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
-		ModelName:        "People",
-		PrivateModelName: "people",
+		ModulePrefix: "github.com/apulis/app/apulis-iqi",
+		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:    "People",
 	}
+	autoInfo.SetPrivateModelName()
 	writeGo("dao", tableName, autoInfo)
 }
 func TestTemplateService(t *testing.T) {
 	tableName := "people"
 	autoInfo := AutoInfo{
-		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
-		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
-		ModelName:        "People",
-		PrivateModelName: "people",
+		ModulePrefix: "github.com/apulis/app/apulis-iqi",
+		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:    "People",
 	}
+	autoInfo.SetPrivateModelName()
 	writeGo("services", tableName, autoInfo)
 }
 func TestTemplateController(t *testing.T) {
 	tableName := "people"
 	autoInfo := AutoInfo{
-		ModulePrefix:     "github.com/apulis/app/apulis-iqi",
-		LogPack:          "github.com/apulisai/sdk/go-utils/logging",
-		ModelName:        "People",
-		PrivateModelName: "people",
+		ModulePrefix: "github.com/apulis/app/apulis-iqi",
+		LogPack:      "github.com/apulisai/sdk/go-utils/logging",
+		ModelName:    "People",
 	}
+	autoInfo.SetPrivateModelName()
 	writeGo("controller", tableName, autoInfo)
 }
 
