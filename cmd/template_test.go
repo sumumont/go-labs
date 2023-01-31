@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/go-labs/internal/models"
 	"html/template"
 	"os"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -15,9 +17,10 @@ func TestTemplate(t *testing.T) {
 		//LogPack:          "github.com/apulisai/sdk/go-utils/logging",
 		ModulePrefix: "github.com/go-labs",
 		LogPack:      "github.com/go-labs/internal/logging",
-		ModelName:    "People",
+		//ModelName:    "People",
+		Model: models.People{},
 	}
-	autoInfo.SetPrivateModelName()
+	autoInfo.SetModel()
 	writeGo("dto", tableName, autoInfo)
 	writeGo("dao", tableName, autoInfo)
 	writeGo("services", tableName, autoInfo)
@@ -27,22 +30,54 @@ func TestTemplate(t *testing.T) {
 type FillAutoInfo struct {
 	ModulePrefix     string //代码模块路径前缀
 	LogPack          string //日志模块package
+	Model            interface{}
 	ModelName        string //模型名称
 	PrivateModelName string //模型名称
+	Attr             map[string]interface{}
 }
 
-func (rec *FillAutoInfo) SetPrivateModelName() {
-	prefix := rec.ModelName[:1]
-	prefix = strings.ToLower(prefix)
-	rec.PrivateModelName = prefix + rec.ModelName[1:]
+func (rec *FillAutoInfo) SetModel() {
+	value := reflect.ValueOf(rec.Model)
+	tp := value.Type()
+	modelName := tp.Name()
+	numField := tp.NumField()
+	if numField > 0 {
+		rec.Attr = map[string]interface{}{}
+	}
+	for i := 0; i < numField; i++ {
+		field := tp.Field(i)
+		if field.Name == "BaseModelId" || field.Name == "UserInfo" || field.Name == "BaseModelTime" {
+			continue
+		}
+		rec.Attr[field.Name] = field.Type.String()
+	}
+	rec.ModelName = modelName
+	rec.PrivateModelName = FirstToLow(modelName)
+
 }
+func FirstToLow(str string) string {
+	if len(str) < 1 {
+		return ""
+	}
+	prefix := str[:1]
+	prefix = strings.ToLower(prefix)
+	prefix = prefix + str[1:]
+	return prefix
+}
+
+var (
+	funcMap = template.FuncMap{
+		"FirstToLow": FirstToLow,
+	}
+)
+
 func writeGo(templateParent string, tabelName string, autoInfo FillAutoInfo) {
 	bytes, err := os.ReadFile(fmt.Sprintf("../configs/struct_template/%s/template.htm", templateParent))
 	if err != nil {
 		panic(err)
 	}
 	templateStr := string(bytes)
-	tpl, err := template.New("test").Delims("<<", ">>").Parse(templateStr)
+	tpl, err := template.New("test").Delims("[[", "]]").Funcs(funcMap).Parse(templateStr)
 	if err != nil {
 		panic(err)
 	}

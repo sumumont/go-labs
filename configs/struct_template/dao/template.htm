@@ -2,28 +2,28 @@ package dao
 
 import (
 	"context"
-	"<< .ModulePrefix >>/internal/dto"
-	"<< .ModulePrefix >>/internal/utils"
+	"[[ .ModulePrefix ]]/internal/dto"
+	"[[ .ModulePrefix ]]/internal/utils"
 
-	"<< .ModulePrefix >>/internal/models"
-	"<< .ModulePrefix >>/pkg/exports"
-	"<< .LogPack >>"
+	"[[ .ModulePrefix ]]/internal/models"
+	"[[ .ModulePrefix ]]/pkg/exports"
+	"[[ .LogPack ]]"
 	"gorm.io/gorm/clause"
 )
 
-type << .ModelName >>Dao struct {
+type [[ .ModelName ]]Dao struct {
 }
 
-var << .PrivateModelName >>Dao = << .ModelName >>Dao{}
+var [[ .PrivateModelName ]]Dao = [[ .ModelName ]]Dao{}
 
-func Get<< .ModelName >>Dao() << .ModelName >>Dao {
-	return << .PrivateModelName >>Dao
+func Get[[ .ModelName ]]Dao() [[ .ModelName ]]Dao {
+	return [[ .PrivateModelName ]]Dao
 }
 
-func (svc << .ModelName >>Dao) FindByParam(ctx context.Context, param dto.<< .ModelName >>Param, userInfo *models.UserInfo) ([]models.<< .ModelName >>, int64, exports.APIError) {
+func (svc [[ .ModelName ]]Dao) FindByParam(ctx context.Context, param dto.[[ .ModelName ]]Param, userInfo *models.UserInfo) ([]models.[[ .ModelName ]], int64, exports.APIError) {
 	baseList := param.Conversion()
-	db := GetDB(ctx).Model(&models.<< .ModelName >>{})
-	var p []models.<< .ModelName >>
+	db := GetDB(ctx).Model(&models.[[ .ModelName ]]{})
+	var p []models.[[ .ModelName ]]
 	var total int64
 	db.Count(&total)
 	db, errs := models.PageList(db, baseList)
@@ -42,7 +42,7 @@ func (svc << .ModelName >>Dao) FindByParam(ctx context.Context, param dto.<< .Mo
 	return p, total, nil
 }
 
-func (svc << .ModelName >>Dao) Create(ctx context.Context, model *models.<< .ModelName >>) exports.APIError {
+func (svc [[ .ModelName ]]Dao) Create(ctx context.Context, model *models.[[ .ModelName ]]) exports.APIError {
 	tx := GetDB(ctx)
 	err := tx.Create(model).Error
 	if err != nil {
@@ -52,9 +52,9 @@ func (svc << .ModelName >>Dao) Create(ctx context.Context, model *models.<< .Mod
 	return nil
 }
 
-func (svc << .ModelName >>Dao) FindById(ctx context.Context, id int64) (*models.<< .ModelName >>, exports.APIError) {
+func (svc [[ .ModelName ]]Dao) FindById(ctx context.Context, id int64) (*models.[[ .ModelName ]], exports.APIError) {
 	tx := GetDB(ctx)
-	p := models.<< .ModelName >>{}
+	p := models.[[ .ModelName ]]{}
 	tx = tx.Where("id = ?", id)
 	err := tx.First(&p).Error
 	if err != nil {
@@ -63,10 +63,10 @@ func (svc << .ModelName >>Dao) FindById(ctx context.Context, id int64) (*models.
 	}
 	return &p, nil
 }
-func (svc << .ModelName >>Dao) Delete(ctx context.Context, id int64) exports.APIError {
+func (svc [[ .ModelName ]]Dao) Delete(ctx context.Context, id int64) exports.APIError {
 	tx := GetDB(ctx)
 	tx = tx.Where("id = ?", id)
-	err := tx.Delete(models.<< .ModelName >>{}).Error
+	err := tx.Delete(models.[[ .ModelName ]]{}).Error
 	if err != nil {
 		logging.Error(err).Send()
 		return exports.RaiseAPIErrorAuto(exports.APULIS_IQI_DB_UPDATE_UNEXPECT, err.Error())
@@ -74,7 +74,7 @@ func (svc << .ModelName >>Dao) Delete(ctx context.Context, id int64) exports.API
 	return nil
 }
 
-func (svc << .ModelName >>Dao) SaveOrUpdate(c context.Context, model *models.<< .ModelName >>) exports.APIError {
+func (svc [[ .ModelName ]]Dao) SaveOrUpdate(c context.Context, model *models.[[ .ModelName ]]) exports.APIError {
 	tx := GetDB(c)
 	model.BaseModelTime.UpdatedAt = utils.GetNowTime()
 	err := tx.Clauses(clause.OnConflict{
@@ -87,7 +87,7 @@ func (svc << .ModelName >>Dao) SaveOrUpdate(c context.Context, model *models.<< 
 	}
 	return nil
 }
-func (svc << .ModelName >>Dao) BatchSaveOrUpdate(c context.Context, model []models.<< .ModelName >>) exports.APIError {
+func (svc [[ .ModelName ]]Dao) BatchSaveOrUpdate(c context.Context, model []models.[[ .ModelName ]]) exports.APIError {
 	tx := GetDB(c)
 	for _, m := range model {
 		m.UpdatedAt = utils.GetNowTime()

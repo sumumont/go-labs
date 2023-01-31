@@ -1,13 +1,19 @@
 package dto
 
 
-type << .ModelName >> struct {
+type [[ .ModelName ]] struct {
+	[[range $k,$v :=.Attr]]
+	[[- $k]] [[ $v ]] `json:"[[FirstToLow $k ]]"`
+	[[end ]]
 }
 
-type << .ModelName >>Id struct {
+type [[ .ModelName ]]Id struct {
 	Id int64 `json:"id" uri:"id"`
 }
 
-type << .ModelName >>Param struct {
+type [[ .ModelName ]]Param struct {
 	BaseListDto
+	[[range $k,$v :=.Attr]]
+	[[- $k]] [[ $v ]] `json:"[[FirstToLow $k ]]" form:"[[FirstToLow $k ]]"`
+	[[end]]
 }
