@@ -25,7 +25,7 @@ func (svc *[[ .ModelName ]]Service) Save(c *gin.Context, param *dto.[[ .ModelNam
 			//todo fill Private
 			[[range $k,$v :=.Attr]]
 			[[- $k]]: param.[[ $k -]],
-			[[- end]]
+			[[ end]]
 		}
 		err := dao.Get[[ .ModelName ]]Dao().SaveOrUpdate(ctx, [[ .ModelName ]])
 		if err != nil {
@@ -65,4 +65,12 @@ func (svc *[[ .ModelName ]]Service) Find(c *gin.Context, param dto.[[ .ModelName
 	resp.Items = [[ .ModelName ]]s
 	resp.Total = total
 	return resp, nil
+}
+func (svc *[[ .ModelName ]]Service) Detail(c *gin.Context, param dto.[[ .ModelName ]]Id) (interface{}, exports.APIError) {
+	item, err := dao.Get[[ .ModelName ]]Dao().FindById(c, param.Id)
+	if err != nil {
+		logging.Error(err).Send()
+		return nil, err
+	}
+	return item, nil
 }

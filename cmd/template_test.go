@@ -11,14 +11,14 @@ import (
 )
 
 func TestTemplate(t *testing.T) {
-	tableName := "people"
+	tableName := "recheck_data"
 	autoInfo := FillAutoInfo{
 		//ModulePrefix:     "github.com/apulis/app/apulis-iqi",
 		//LogPack:          "github.com/apulisai/sdk/go-utils/logging",
 		ModulePrefix: "github.com/go-labs",
 		LogPack:      "github.com/go-labs/internal/logging",
 		//ModelName:    "People",
-		Model: models.People{},
+		Model: models.RecheckData{},
 	}
 	autoInfo.SetModel()
 	writeGo("dto", tableName, autoInfo)

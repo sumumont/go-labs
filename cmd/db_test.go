@@ -8,6 +8,7 @@ import (
 	"github.com/go-labs/internal/models"
 	"github.com/go-labs/internal/utils"
 	"testing"
+	"time"
 )
 
 func TestDb(t *testing.T) {
@@ -16,15 +17,21 @@ func TestDb(t *testing.T) {
 	err := dao.ExecDBTx(func(ctx context.Context) error {
 
 		var products []models.Product
-		for i := 1; i <= 10; i++ {
+		for i := 1; i <= 1; i++ {
 			attr := models.JsonB{}
+			now := utils.GetNowTime()
 			product := models.Product{
 				Num: int64(i),
+				BaseModelTime: models.BaseModelTime{
+					CreatedAt: now,
+					UpdatedAt: now,
+				},
 			}
 			attr["name"] = "hysen"
 			attr["num"] = product.Num
 			product.Attributes = attr
 			products = append(products, product)
+			time.Sleep(time.Second)
 		}
 		err := dao.GetProductDao().SaveOrUpdates(ctx, products, []string{"num"})
 		if err != nil {
@@ -97,4 +104,55 @@ func TestFindByJsonB(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
+}
+func TestDbReflect(t *testing.T) {
+	initDb()
+	err := dao.ExecDBTx(func(ctx context.Context) error {
+		//model := &models.People{}
+		dao.GetDB(ctx).Table("peoples").Find("")
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+}
+
+type PredictParam struct {
+	Tags          Tags                   `json:"tags"`
+	DataFormat    string                 `json:"data_format"`
+	RequestParams map[string]interface{} `json:"request_params"`
+	Requests      []Request              `json:"requests"`
+}
+type Tags map[string]interface{}
+type Request struct {
+	Data         string                 `json:"data"`
+	Name         string                 `json:"name"`
+	RequestParam map[string]interface{} `json:"request_param"`
+}
+
+func TestA1(t *testing.T) {
+	var param = PredictParam{
+		Tags:       nil,
+		DataFormat: "dsadsa",
+		RequestParams: map[string]interface{}{
+			"name": "hysen",
+		},
+		Requests: []Request{
+			{
+				Data:         "1",
+				Name:         "1",
+				RequestParam: map[string]interface{}{},
+			}, {
+				Data:         "2",
+				Name:         "2",
+				RequestParam: map[string]interface{}{},
+			},
+		},
+	}
+	DispatcherParam := param
+	logging.Debug().Interface("dsad", DispatcherParam).Send()
+	for i, _ := range param.Requests {
+		param.Requests[i].RequestParam["coordinate"] = "realCoordinate"
+	}
+	logging.Debug().Interface("realCoordinates", DispatcherParam.Requests).Send()
 }

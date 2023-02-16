@@ -4,7 +4,7 @@ package dto
 type [[ .ModelName ]] struct {
 	[[range $k,$v :=.Attr]]
 	[[- $k]] [[ $v ]] `json:"[[FirstToLow $k ]]"`
-	[[- end ]]
+	[[ end ]]
 }
 
 type [[ .ModelName ]]Id struct {
@@ -15,5 +15,5 @@ type [[ .ModelName ]]Param struct {
 	BaseListDto
 	[[range $k,$v :=.Attr]]
 	[[- $k]] [[ $v ]] `json:"[[FirstToLow $k ]]" form:"[[FirstToLow $k ]]"`
-	[[- end]]
+	[[ end]]
 }

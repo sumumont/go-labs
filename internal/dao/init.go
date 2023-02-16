@@ -163,7 +163,8 @@ func pingDB(db *gorm.DB) {
 func initTables() error {
 
 	modelTypes := []interface{}{&models.Product{}}
-
+	modelTypes = []interface{}{&models.People{}}
+	modelTypes = []interface{}{&models.Info{}}
 	for _, modelType := range modelTypes {
 		err := autoMigrateTable(modelType)
 		if err != nil {
