@@ -1,583 +1,936 @@
-[
-  {
-    "effect": "allow",
-    "actions": [
-      "scenes:get_all",
-      "scenes:add",
-      "scenes:get_by_id",
-      "scenes:update",
-      "scenes:get_all",
-      "scenes:add",
-      "scenes:get_by_id",
-      "scenes:update",
-      "scenes:get_all",
-      "scenes:add",
-      "scenes:get_by_id",
-      "scenes:update",
-      "scenes:get_all",
-      "scenes:add",
-      "scenes:get_by_id",
-      "scenes:update"
-    ],
-    "projects": [
-      "~~ALL-PROJECTS~~"
-    ],
-    "resources": [
-      "*"
-    ]
-  },
-  {
-    "effect": "allow",
-    "actions": [
-      "apharbor:image:*",
-      "apharbor:imageWithVersion:*",
-      "apharbor:publicImage:list",
-      "apharbor:publicImage:describe",
-      "apharbor:publicImage:getRankingList",
-      "apharbor:publicImage:getPullAccess",
-      "apharbor:userImageAndPublicImage:*",
-      "apharbor:harbor:*",
-      "apharbor:task:*",
-      "apharbor:imageVersion:*",
-      "apharbor:publicImageVersion:list",
-      "apharbor:publicImageVersion:describe",
-      "apharbor:event:*"
-    ],
-    "projects": [
-      "~~ALL-PROJECTS~~"
-    ],
-    "resources": [
-      "*"
-    ]
-  },
-  {
-    "effect": "allow",
-    "actions": [
-      "iam:users:get",
-      "iam:users:list",
-      "iam:users:edit_password",
-      "iam:platform:list",
-      "iam:refresh-token:get",
-      "iam:user-history:get",
-      "iam:verify-code:send",
-      "iam:authz-endpoints:get",
-      "iam:policies-metadata:get",
-      "iam:policies:list",
-      "iam:policies:get",
-      "iam:modules:get",
-      "iam:user-groups:switch",
-      "iam:secret-keys:list",
-      "iam:secret-keys:create",
-      "iam:secret-keys:get",
-      "iam:secret-keys:delete",
-      "iam:current-user-security:get"
-    ],
-    "projects": [
-      "~~ALL-PROJECTS~~"
-    ],
-    "resources": [
-      "*"
-    ]
-  },
-  {
-    "effect": "allow",
-    "actions": [
-      "apulis-iqi:overwrite:sdk:get_all",
-      "apulis-iqi:overwrite:sdk:add",
-      "apulis-iqi:overwrite:sdk:get_by_id",
-      "apulis-iqi:overwrite:sdk:get_sample",
-      "apulis-iqi:overwrite:sdk_version:get_versions",
-      "apulis-iqi:overwrite:sdk_version:get_by_id",
-      "apulis-iqi:overwrite:sdk_version:delete",
-      "apulis-iqi:overwrite:sdk_version:delete_batch",
-      "apulis-iqi:overwrite:labs:task-template",
-      "apulis-iqi:overwrite:labs:trains",
-      "apulis-iqi:overwrite:labs:evals",
-      "apulis-iqi:overwrite:runs:list",
-      "apulis-iqi:overwrite:run:view",
-      "apulis-iqi:overwrite:run:delete",
-      "apulis-iqi:overwrite:run:register",
-      "apulis-iqi:overwrite:train:visualize",
-      "apulis-iqi:overwrite:run:ops",
-      "apulis-iqi:overwrite:run:endpoint",
-      "apulis-iqi:overwrite:filesList:get",
-      "apulis-iqi:overwrite:viewFiles:get",
-      "apulis-iqi:overwrite:labRunImage:get",
-      "apulis-iqi:overwrite:quotas:list",
-      "apulis-iqi:overwrite:quota:limit",
-      "apulis-iqi:overwrite:info:source_types_display",
-      "apulis-iqi:overwrite:metadata:data-types",
-      "apulis-iqi:overwrite:metadata-info:meta",
-      "apulis-iqi:overwrite:datasets:file-directory",
-      "apulis-iqi:overwrite:datasets:deletePaths",
-      "apulis-iqi:overwrite:datasets:publish",
-      "apulis-iqi:overwrite:metadata:dataset-types",
-      "apulis-iqi:overwrite:datasets:unstructured_dataset-create",
-      "apulis-iqi:overwrite:datasets:list-datasets",
-      "apulis-iqi:overwrite:datasets:add_images",
-      "apulis-iqi:overwrite:datasets:start-coco-analysis",
-      "apulis-iqi:overwrite:datasets:download-coco-analysis",
-      "apulis-iqi:overwrite:datasets:list-coco-analysis-dir",
-      "apulis-iqi:overwrite:datasets:get-coco-analysis",
-      "apulis-iqi:overwrite:datasets:get-coco-analysis-status",
-      "apulis-iqi:overwrite:datasets:copy-dataset",
-      "apulis-iqi:overwrite:datasets:download",
-      "apulis-iqi:overwrite:datasets:info",
-      "apulis-iqi:overwrite:dataset-jobs:get-download-link-is-ready",
-      "apulis-iqi:overwrite:datasets:delete",
-      "apulis-iqi:overwrite:datasets:update-description",
-      "apulis-iqi:overwrite:datasets:delete-by-ids",
-      "apulis-iqi:overwrite:datasets:dataset-collection-info",
-      "apulis-iqi:overwrite:datasets:updateDatasetInfo",
-      "apulis-iqi:overwrite:connector-relations:query-by-connector",
-      "apulis-iqi:overwrite:dataset-relations:query-by-dataset",
-      "apulis-iqi:overwrite:dataset-relations:update-by-type-key",
-      "apulis-iqi:overwrite:datasets:dataset-collection-versions",
-      "apulis-iqi:overwrite:datasets:dataset-all-versions",
-      "apulis-iqi:overwrite:data-source-pool:get-pool-info",
-      "apulis-iqi:overwrite:data-source-connectors:get-connector-ids",
-      "apulis-iqi:overwrite:data-source-connectors:get-connector-info",
-      "apulis-iqi:overwrite:data-source-connectors:query-connector-data",
-      "apulis-iqi:overwrite:data-source-connectors:delete-connector-data",
-      "apulis-iqi:overwrite:data-source-connectors:query-connector-data-with-pkey",
-      "apulis-iqi:overwrite:data-source-connectors:make-dataset",
-      "apulis-iqi:overwrite:data-source-connectors:add-images",
-      "apulis-iqi:overwrite:data-source-connectors:update-main-fields",
-      "apulis-iqi:overwrite:data-source-connectors:select-images-to-download",
-      "apulis-iqi:overwrite:data-source-connectors:add-images-to-dataset",
-      "apulis-iqi:overwrite:data-sources:get-by-name",
-      "apulis-iqi:overwrite:data-process-tools:tasks:crop-start",
-      "apulis-iqi:overwrite:data-process-tools:create",
-      "apulis-iqi:overwrite:data-process-tools:get",
-      "apulis-iqi:overwrite:data-process-tools:update",
-      "apulis-iqi:overwrite:data-process-tools:delete",
-      "apulis-iqi:overwrite:data-process-tools:sets",
-      "apulis-iqi:overwrite:data-process-tools:tasks:query",
-      "apulis-iqi:overwrite:data-process-tools:tasks:start",
-      "apulis-iqi:overwrite:data-process-tools:tasks:stop",
-      "apulis-iqi:overwrite:data-process-tools:tasks:get",
-      "apulis-iqi:overwrite:data-process-tools:tasks:delete",
-      "apulis-iqi:overwrite:datasets:file-directory:dir",
-      "apulis-iqi:overwrite:datasets:file-directory:count",
-      "apulis-iqi:overwrite:datasets:file-directory:file",
-      "apulis-iqi:overwrite:datasets:file-directory:text",
-      "apulis-iqi:overwrite:datasets:file-directory:image",
-      "apulis-iqi:overwrite:datasets:file-directory:video",
-      "apulis-iqi:overwrite:datasets:export:manifest",
-      "apulis-iqi:overwrite:datasets:parse:manifest",
-      "apulis-iqi:overwrite:datasets:parse:import",
-      "apulis-iqi:overwrite:images:set-not-available",
-      "apulis-iqi:overwrite:images:recoverFromDelete",
-      "apulis-iqi:overwrite:images:set-noLabel",
-      "apulis-iqi:overwrite:images:searchByPatterns",
-      "apulis-iqi:overwrite:images:reNameImage",
-      "apulis-iqi:overwrite:images:getImageInfo",
-      "apulis-iqi:overwrite:images:get-images-by-datasetId",
-      "apulis-iqi:overwrite:images:delete-images",
-      "apulis-iqi:overwrite:image-tasks:list",
-      "apulis-iqi:overwrite:image-tasks:getInfo",
-      "apulis-iqi:overwrite:image-tasks:update",
-      "apulis-iqi:overwrite:image-tasks:get-status",
-      "apulis-iqi:overwrite:label:list",
-      "apulis-iqi:overwrite:label:get",
-      "apulis-iqi:overwrite:label:edit",
-      "apulis-iqi:overwrite:label:count",
-      "apulis-iqi:overwrite:label:subTaskCount",
-      "apulis-iqi:overwrite:image-subtasks:list",
-      "apulis-iqi:overwrite:image-subtasks:post",
-      "apulis-iqi:overwrite:image-subtasks:listCountStatus",
-      "apulis-iqi:overwrite:image-subtasks:countStatus",
-      "apulis-iqi:overwrite:image-subtasks:get",
-      "apulis-iqi:overwrite:image-subtasks:delete",
-      "apulis-iqi:overwrite:image-subtasks:review",
-      "apulis-iqi:overwrite:image-subtasks:submit",
-      "apulis-iqi:overwrite:image-subtasks:assign",
-      "apulis-iqi:overwrite:image-subtasks:set-review-sample",
-      "apulis-iqi:overwrite:annotation:viewBySubTask",
-      "apulis-iqi:overwrite:annotation:listImages",
-      "apulis-iqi:overwrite:annotation:deleteAnnot",
-      "apulis-iqi:overwrite:annotation:saveAnnot",
-      "apulis-iqi:overwrite:annotation:saveAnnots",
-      "apulis-iqi:overwrite:annotation:saveTags",
-      "apulis-iqi:overwrite:annotation:get",
-      "apulis-iqi:overwrite:annotation:create-comments",
-      "apulis-iqi:overwrite:annotation:update-comments",
-      "apulis-iqi:overwrite:annotation:delete-comments",
-      "apulis-iqi:overwrite:tools:download-images",
-      "apulis-iqi:overwrite:tools:query-job-status",
-      "apulis-iqi:overwrite:metadata:info",
-      "apulis-iqi:overwrite:image-sets:get-task",
-      "apulis-iqi:overwrite:image-label:count",
-      "apulis-iqi:overwrite:image-annots:get-by-task",
-      "apulis-iqi:overwrite:auto-annotation:start-subtask-job",
-      "apulis-iqi:overwrite:log:downloadAll",
-      "apulis-iqi:overwrite:log:download",
-      "apulis-iqi:overwrite:log:downloadFiles",
-      "apulis-iqi:overwrite:job-log:get",
-      "apulis-iqi:overwrite:job-log:download",
-      "apulis-iqi:overwrite:productWorkstation:add",
-      "apulis-iqi:overwrite:productWorkstation:get",
-      "apulis-iqi:overwrite:productWorkstation:relation",
-      "apulis-iqi:overwrite:productWorkstation:delete",
-      "apulis-iqi:overwrite:productWorkstation:getByProductName",
-      "apulis-iqi:overwrite:product:add",
-      "apulis-iqi:overwrite:product:list",
-      "apulis-iqi:overwrite:product:delete",
-      "apulis-iqi:overwrite:product:all",
-      "apulis-iqi:overwrite:product:getBySerialNum",
-      "apulis-iqi:overwrite:projects:create",
-      "apulis-iqi:overwrite:projects:update",
-      "apulis-iqi:overwrite:projects:delete",
-      "apulis-iqi:overwrite:projects:list",
-      "apulis-iqi:overwrite:projects:detail",
-      "apulis-iqi:overwrite:projects:GetModelByAiLab",
-      "apulis-iqi:overwrite:projects:status:update",
-      "apulis-iqi:overwrite:projects:status:stop",
-      "apulis-iqi:overwrite:projects:pruns:status",
-      "apulis-iqi:overwrite:projects:pruns:delete",
-      "apulis-iqi:overwrite:projects:vendors:list",
-      "apulis-iqi:overwrite:projects:vendors:apps:list",
-      "apulis-iqi:overwrite:projects:update:jobs",
-      "apulis-iqi:overwrite:projects:export",
-      "apulis-iqi:overwrite:projects:export:info",
-      "apulis-iqi:overwrite:projects:export:detail",
-      "apulis-iqi:overwrite:projects:export:update",
-      "apulis-iqi:overwrite:projects:import",
-      "apulis-iqi:overwrite:projects:commit",
-      "apulis-iqi:overwrite:projects:import:detail",
-      "apulis-iqi:overwrite:projects:deploy:list",
-      "apulis-iqi:overwrite:projects:deploy:create",
-      "apulis-iqi:overwrite:projects:deploy:titles",
-      "apulis-iqi:overwrite:projects:deploy:delete",
-      "apulis-iqi:overwrite:projects:runs:list",
-      "apulis-iqi:overwrite:projects:sdk:detail",
-      "apulis-iqi:overwrite:inference:create",
-      "apulis-iqi:overwrite:inference:edit",
-      "apulis-iqi:overwrite:inference:editdesc",
-      "apulis-iqi:overwrite:inference:list",
-      "apulis-iqi:overwrite:inference:listby",
-      "apulis-iqi:overwrite:inference:detail",
-      "apulis-iqi:overwrite:inference:delete",
-      "apulis-iqi:overwrite:inference:operate",
-      "apulis-iqi:overwrite:inference:resource",
-      "apulis-iqi:overwrite:inference:guide",
-      "apulis-iqi:overwrite:inference:ping",
-      "apulis-iqi:overwrite:inference:createVersion",
-      "apulis-iqi:overwrite:inference:updateVersionFlow",
-      "apulis-iqi:overwrite:inference:getVersions",
-      "apulis-iqi:overwrite:inferencemark:create",
-      "apulis-iqi:overwrite:inferencemark:detail",
-      "apulis-iqi:overwrite:inferencemark:delete",
-      "apulis-iqi:overwrite:inference:jobtips",
-      "apulis-iqi:overwrite:inference:getpods",
-      "apulis-iqi:overwrite:inferipc:list",
-      "apulis-iqi:overwrite:inferipc:detail",
-      "apulis-iqi:overwrite:inferipc:upproject",
-      "apulis-iqi:overwrite:inferipc:downproject",
-      "apulis-iqi:overwrite:inferipcv2:detail",
-      "apulis-iqi:overwrite:inferipcv2:upproject",
-      "apulis-iqi:overwrite:board:add",
-      "apulis-iqi:overwrite:board:get",
-      "apulis-iqi:overwrite:board:delete",
-      "apulis-iqi:datasets:create-unstructured-dataset",
-      "apulis-iqi:cv_datasets:list",
-      "apulis-iqi:cv_datasets:create",
-      "apulis-iqi:cv_datasets:delete",
-      "apulis-iqi:cv_datasets:get",
-      "apulis-iqi:cv_datasets:map_type_to_format",
-      "apulis-iqi:cv_datasets:cv_dataset_upload",
-      "apulis-iqi:cv_datasets:cv_dataset_import_img",
-      "apulis-iqi:cv_datasets:delete_by_id",
-      "apulis-iqi:cv_datasets:delete_all",
-      "apulis-iqi:cv_datasets:update",
-      "apulis-iqi:cv_datasets:publish_cv_dataset",
-      "apulis-iqi:cv_datasets:path_list",
-      "apulis-iqi:cv_datasets:add_images_by_path",
-      "apulis-iqi:cv_datasets:add_images_by_upload",
-      "apulis-iqi:cv_datasets:delete_image",
-      "apulis-iqi:cv_datasets:split_cv_dataset",
-      "apulis-iqi:cv_datasets:download_cv_dataset",
-      "apulis-iqi:cv_datasets:start_coco_analysis",
-      "apulis-iqi:cv_datasets:download-coco-analysis",
-      "apulis-iqi:cv_datasets:list-coco-analysis-dirs",
-      "apulis-iqi:cv_datasets:coco_analysis_visualization",
-      "apulis-iqi:cv_datasets:cv_dataset_copy",
-      "apulis-iqi:cv_datasets:rename",
-      "apulis-iqi:cv_datasets:publish_num",
-      "apulis-iqi:info:cv_annotation_status",
-      "apulis-iqi:info:cv_annotation_types",
-      "apulis-iqi:info:cv_annotation_scene",
-      "apulis-iqi:info:source_types_creation",
-      "apulis-iqi:info:source_types_display",
-      "apulis-iqi:info:cv_annotation_formats",
-      "apulis-iqi:info:cv_dataset_statues",
-      "apulis-iqi:info:dataset_creation_failure",
-      "apulis-iqi:apps:app_by_id",
-      "apulis-iqi:apps:datasets",
-      "apulis-iqi:apps:appCode",
-      "apulis-iqi:apps:unbind",
-      "apulis-iqi:apps:bind",
-      "apulis-iqi:dataset_jobs:crop_image",
-      "apulis-iqi:datasets:info",
-      "apulis-iqi:connectors:query_relation",
-      "apulis-iqi:datasets:query_relation",
-      "apulis-iqi:datasets:update_relation",
-      "apulis-iqi:data-process-tools:crop-start",
-      "apulis-iqi:data-process-tools:create",
-      "apulis-iqi:data-process-tools:get",
-      "apulis-iqi:data-process-tools:update",
-      "apulis-iqi:data-process-tools:delete",
-      "apulis-iqi:data-process-tools:sets",
-      "apulis-iqi:data-process-tools:tasks:query",
-      "apulis-iqi:data-process-tools:tasks:start",
-      "apulis-iqi:data-process-tools:tasks:stop",
-      "apulis-iqi:data-process-tools:tasks:get",
-      "apulis-iqi:data-process-tools:tasks:delete",
-      "apulis-iqi:datasets:file-directory:dir",
-      "apulis-iqi:datasets:file-directory:count",
-      "apulis-iqi:datasets:file-directory:file",
-      "apulis-iqi:datasets:file-directory:text",
-      "apulis-iqi:datasets:file-directory:image",
-      "apulis-iqi:datasets:file-directory:video",
-      "apulis-iqi:datasets:export:manifest",
-      "apulis-iqi:datasets:parse:manifest",
-      "apulis-iqi:datasets:import:manifest",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-sets:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-sets-dataset-{id}:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-sets-dataset-{id}-get-task:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-images:delete",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-images:patch",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-images-dataset-{id}:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-images-dataset-{id}:delete",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-images-id-{id}:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-images-search-by-patterns:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-images-rename-image:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}:patch",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}:delete",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-submit:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-image-labels:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-image-labels-{id}:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-image-labels:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-image-labels-counts:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-image-subtasks-{id}-image-labels-counts:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks-selectiveCreate:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks-countStatus:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks-id-:subTaskId:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks-id-:subTaskId-countStatus:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks-id-:subTaskId:delete",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks-id-:subTaskId-submit:patch",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-subtasks-id-:subTaskId-assign:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-task-{id}-annots:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-sub-task-{id}-annots:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-sub-task-{id}-images:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-sub-task-{id}-annots:delete",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-save-annot:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-save-annots:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-save-tags:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-{id}:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-image-tasks-{id}-sub-task-:subTaskId-semi-auto:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-image-tasks-{id}-sub-task-:subTaskId-semi-auto:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-image-tasks-{id}-sub-task-:subTaskId-semi-auto:patch",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-annots-npu-info:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-inference:post",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-inference:patch",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-image-tasks-{id}-inference:get",
-      "apulis-iqi:apulis-iqi-api-v1-admagic-tools-download-selected-task-images:post",
-      "apulis-iqi:image:list",
-      "apulis-iqi:image:uploadByUser",
-      "apulis-iqi:image:upload",
-      "apulis-iqi:image:uploadFromDockerhub",
-      "apulis-iqi:image:describe",
-      "apulis-iqi:image:stopUploading",
-      "apulis-iqi:image:getRankingList",
-      "apulis-iqi:image:listAllImage",
-      "apulis-iqi:publicImage:list",
-      "apulis-iqi:publicImage:create",
-      "apulis-iqi:publicImage:describe",
-      "apulis-iqi:publicImage:getRankingList",
-      "apulis-iqi:publicImage:getPullAccess",
-      "apulis-iqi:imageVersion:list",
-      "apulis-iqi:publicImageVersion:list",
-      "apulis-iqi:publicImageVersion:describe",
-      "apulis-iqi:event:*",
-      "apulis-iqi:imageWithVersion:*",
-      "apulis-iqi:userImageAndPublicImage:*",
-      "apulis-iqi:harbor:*",
-      "apulis-iqi:task:*",
-      "apulis-iqi:alert-resource-rules:list",
-      "apulis-iqi:alert-resource-rules:create",
-      "apulis-iqi:alert-resource-rules:get",
-      "apulis-iqi:alert-resource-rules:update",
-      "apulis-iqi:alert-resource-rules:change_status",
-      "apulis-iqi:alert-resource-rules:delete",
-      "apulis-iqi:alert-resource-history:get",
-      "apulis-iqi:alert-resource-history:delete",
-      "apulis-iqi:alert-resource-history:update",
-      "apulis-iqi:alert-history-records:list",
-      "apulis-iqi:alert-history-records:delete",
-      "apulis-iqi:alert-history-records:export",
-      "apulis-iqi:alert-resource-history:exportAll",
-      "apulis-iqi:alert-setting-metadata:get",
-      "apulis-iqi:resources-conf-metadata:get",
-      "apulis-iqi:nodes-pod-info:list",
-      "apulis-iqi:nodes-job-info:list",
-      "apulis-iqi:org-resources:list",
-      "apulis-iqi:org-resources:get",
-      "apulis-iqi:org-resources-nodes:get",
-      "apulis-iqi:user-group-resources:list",
-      "apulis-iqi:user-group-resources:get",
-      "apulis-iqi:resource-quotas:list",
-      "apulis-iqi:nodes-overview:get",
-      "apulis-iqi:alert-rule-mail-test:get",
-      "apulis-iqi:alert-setting-mail-test:create",
-      "apulis-iqi:mail-send:post",
-      "apulis-iqi:mail-status:get",
-      "apulis-iqi:system-version:get",
-      "apulis-iqi:alert-setting-sender:get",
-      "apulis-iqi:job-management:list",
-      "apulis-iqi:job-management-meta-info:get",
-      "apulis-iqi:log-query-range:get",
-      "apulis-iqi:log-download:get",
-      "apulis-iqi:log-label:get",
-      "apulis-iqi:log-label-values:list",
-      "apulis-iqi:resource-overview:get",
-      "apulis-iqi:alarm-overview:get",
-      "apulis-iqi:model-source:status",
-      "apulis-iqi:overview:get",
-      "apulis-iqi:types:get",
-      "apulis-iqi:model:name",
-      "apulis-iqi:model:create",
-      "apulis-iqi:model:create-whin-model",
-      "apulis-iqi:model:list",
-      "apulis-iqi:model:describe",
-      "apulis-iqi:model:delete",
-      "apulis-iqi:model-version:get",
-      "apulis-iqi:model-version:list",
-      "apulis-iqi:model-versions:list",
-      "apulis-iqi:model-version:delete",
-      "apulis-iqi:model-version-inference:get",
-      "apulis-iqi:model-version-page:download",
-      "apulis-iqi:version:download-status",
-      "apulis-iqi:model-version:download",
-      "apulis-iqi:transform-job:create",
-      "apulis-iqi:transform-job:delete",
-      "apulis-iqi:transform-job:get",
-      "apulis-iqi:transform-job:list",
-      "apulis-iqi:transform-job:cancel",
-      "apulis-iqi:transform-job-status:get",
-      "apulis-iqi:transform-job:overview",
-      "apulis-iqi:transform-job:check",
-      "apulis-iqi:transform-job:log",
-      "apulis-iqi:all-job:delete",
-      "apulis-iqi:convert:get",
-      "apulis-iqi:sampleModel:get",
-      "apulis-iqi:transform-job:resource",
-      "apulis-iqi:monitorInstance:*",
-      "apulis-iqi:monitorRecords:*",
-      "apulis-iqi:monitorRules:*",
-      "apulis-iqi:stats:*"
-    ],
-    "projects": [
-      "~~ALL-PROJECTS~~"
-    ],
-    "resources": [
-      "*"
-    ]
-  },
-  {
-    "effect": "allow",
-    "actions": [
-      "apworkshop:model-source:status",
-      "apworkshop:overview:get",
-      "apworkshop:types:get",
-      "apworkshop:model:name",
-      "apworkshop:model:create",
-      "apworkshop:model:list",
-      "apworkshop:model:describe",
-      "apworkshop:model:delete",
-      "apworkshop:model-version:get",
-      "apworkshop:model-version:list",
-      "apworkshop:model-version:delete",
-      "apworkshop:model-version-inference:get",
-      "apworkshop:model-version-page:download",
-      "apworkshop:model-version:download",
-      "apworkshop:transform-job:create",
-      "apworkshop:transform-job:delete",
-      "apworkshop:transform-job:get",
-      "apworkshop:transform-job:list",
-      "apworkshop:transform-job:cancel",
-      "apworkshop:transform-job-status:get",
-      "apworkshop:transform-job:overview",
-      "apworkshop:transform-job:check",
-      "apworkshop:transform-job:log",
-      "apworkshop:all-job:delete",
-      "apworkshop:convert:get",
-      "apworkshop:sampleModel:get",
-      "apworkshop:transform-job:resource"
-    ],
-    "projects": [
-      "~~ALL-PROJECTS~~"
-    ],
-    "resources": [
-      "*"
-    ]
-  },
-  {
-    "effect": "allow",
-    "actions": [
-      "apsc:alert-resource-rules:list",
-      "apsc:alert-resource-rules:create",
-      "apsc:alert-resource-rules:get",
-      "apsc:alert-resource-rules:update",
-      "apsc:alert-resource-rules:change_status",
-      "apsc:alert-resource-rules:delete",
-      "apsc:alert-resource-history:get",
-      "apsc:alert-resource-history:delete",
-      "apsc:alert-resource-history:update",
-      "apsc:alert-setting-metadata:get",
-      "apsc:resources-conf-metadata:get",
-      "apsc:nodes-pod-info:list",
-      "apsc:nodes-job-info:list",
-      "apsc:org-resources:list",
-      "apsc:org-resources:get",
-      "apsc:org-resources-nodes:get",
-      "apsc:org-resources-iqi:get",
-      "apsc:user-group-resources:list",
-      "apsc:user-group-resources:get",
-      "apsc:resource-quotas:list",
-      "apsc:nodes-overview:get",
-      "apsc:alert-rule-mail-test:get",
-      "apsc:alert-setting-mail-test:create",
-      "apsc:mail-send:post",
-      "apsc:mail-status:get",
-      "apsc:system-version:get",
-      "apsc:system-certs:get",
-      "apsc:alert-setting-sender:get",
-      "apsc:job-management:list",
-      "apsc:job-management-meta-info:get",
-      "apsc:log-query-range:get",
-      "apsc:log-download:get",
-      "apsc:log-label:get",
-      "apsc:log-label-values:list",
-      "apsc:log-history:create",
-      "apsc:log-history:list",
-      "apsc:log-history:delete",
-      "apsc:log-history:update",
-      "apsc:resource-overview:get",
-      "apsc:alarm-overview:get",
-      "apsc:spark-etl-task-list:get",
-      "apsc:user-list:list",
-      "apsc:annotation-npu-count:get"
-    ],
-    "projects": [
-      "~~ALL-PROJECTS~~"
-    ],
-    "resources": [
-      "*"
-    ]
-  }
-]
+{
+  "name": "common_annot_datas_v1",
+  "description": "",
+  "protocolType": "http",
+  "storageMethod": "postgres_new",
+  "schema": [
+    {
+      "fieldName": "id",
+      "fieldNameInDB": "id",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "主键",
+      "setAsPrimaryKey": true,
+      "nullable": false,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "seq",
+      "fieldNameInDB": "seq",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "自增序号",
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "virtualDatasetId",
+      "fieldNameInDB": "virtual_dataset_id",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "虚拟数据集id",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "virtualDatasetName",
+      "fieldNameInDB": "virtual_dataset_name",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "虚拟数据集名称",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "annotTaskId",
+      "fieldNameInDB": "annot_task_id",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "标注任务id",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "dataSourceConnId",
+      "fieldNameInDB": "data_source_conn_id",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "数据通道id",
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "dataSourceId",
+      "fieldNameInDB": "data_source_id",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "数据源id",
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "annotationType",
+      "fieldNameInDB": "annotation_type",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "classifications",
+      "fieldNameInDB": "classifications",
+      "transportType": "list",
+      "storageType": "sublist",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": true,
+        "newTable": true,
+        "arrayElementTransportType": "map",
+        "arrayElementStorageType": "more",
+        "innerFields": [
+          {
+            "fieldName": "label",
+            "fieldNameInDB": "label",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "color",
+            "fieldNameInDB": "color",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          }
+        ]
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "imageName",
+      "fieldNameInDB": "image_name",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "图片名称",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "boxes",
+      "fieldNameInDB": "boxes",
+      "transportType": "list",
+      "storageType": "sublist",
+      "description": "框",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": true,
+        "newTable": true,
+        "arrayElementTransportType": "map",
+        "arrayElementStorageType": "more",
+        "innerFields": [
+          {
+            "fieldName": "location",
+            "fieldNameInDB": "location",
+            "transportType": "map",
+            "storageType": "more",
+            "description": "坐标",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": true,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": [
+                {
+                  "fieldName": "x",
+                  "fieldNameInDB": "x",
+                  "transportType": "float64",
+                  "storageType": "double_precision",
+                  "description": "横坐标",
+                  "setAsPrimaryKey": false,
+                  "nullable": true,
+                  "flatteningOptions": {
+                    "dataFlattening": false,
+                    "newTable": false,
+                    "arrayElementTransportType": "",
+                    "arrayElementStorageType": "",
+                    "innerFields": null
+                  },
+                  "imageDataAttrs": {
+                    "imageNameRule": "",
+                    "imageNameFieldName": "",
+                    "imageStorageType": "",
+                    "storageRootPath": ""
+                  },
+                  "postgresAttrs": {
+                    "varCharLength": 0,
+                    "enumeratedValues": ""
+                  },
+                  "questDBAttrs": {
+                    "geoHashPrecision": "",
+                    "symbolCache": false,
+                    "symbolCapacity": 0,
+                    "symbolIndex": false
+                  }
+                },
+                {
+                  "fieldName": "y",
+                  "fieldNameInDB": "y",
+                  "transportType": "float64",
+                  "storageType": "double_precision",
+                  "description": "纵坐标",
+                  "setAsPrimaryKey": false,
+                  "nullable": true,
+                  "flatteningOptions": {
+                    "dataFlattening": false,
+                    "newTable": false,
+                    "arrayElementTransportType": "",
+                    "arrayElementStorageType": "",
+                    "innerFields": null
+                  },
+                  "imageDataAttrs": {
+                    "imageNameRule": "",
+                    "imageNameFieldName": "",
+                    "imageStorageType": "",
+                    "storageRootPath": ""
+                  },
+                  "postgresAttrs": {
+                    "varCharLength": 0,
+                    "enumeratedValues": ""
+                  },
+                  "questDBAttrs": {
+                    "geoHashPrecision": "",
+                    "symbolCache": false,
+                    "symbolCapacity": 0,
+                    "symbolIndex": false
+                  }
+                },
+                {
+                  "fieldName": "width",
+                  "fieldNameInDB": "width",
+                  "transportType": "float64",
+                  "storageType": "double_precision",
+                  "description": "宽度",
+                  "setAsPrimaryKey": false,
+                  "nullable": true,
+                  "flatteningOptions": {
+                    "dataFlattening": false,
+                    "newTable": false,
+                    "arrayElementTransportType": "",
+                    "arrayElementStorageType": "",
+                    "innerFields": null
+                  },
+                  "imageDataAttrs": {
+                    "imageNameRule": "",
+                    "imageNameFieldName": "",
+                    "imageStorageType": "",
+                    "storageRootPath": ""
+                  },
+                  "postgresAttrs": {
+                    "varCharLength": 0,
+                    "enumeratedValues": ""
+                  },
+                  "questDBAttrs": {
+                    "geoHashPrecision": "",
+                    "symbolCache": false,
+                    "symbolCapacity": 0,
+                    "symbolIndex": false
+                  }
+                },
+                {
+                  "fieldName": "height",
+                  "fieldNameInDB": "height",
+                  "transportType": "float64",
+                  "storageType": "double_precision",
+                  "description": "高度",
+                  "setAsPrimaryKey": false,
+                  "nullable": true,
+                  "flatteningOptions": {
+                    "dataFlattening": false,
+                    "newTable": false,
+                    "arrayElementTransportType": "",
+                    "arrayElementStorageType": "",
+                    "innerFields": null
+                  },
+                  "imageDataAttrs": {
+                    "imageNameRule": "",
+                    "imageNameFieldName": "",
+                    "imageStorageType": "",
+                    "storageRootPath": ""
+                  },
+                  "postgresAttrs": {
+                    "varCharLength": 0,
+                    "enumeratedValues": ""
+                  },
+                  "questDBAttrs": {
+                    "geoHashPrecision": "",
+                    "symbolCache": false,
+                    "symbolCapacity": 0,
+                    "symbolIndex": false
+                  }
+                }
+              ]
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "boxType",
+            "fieldNameInDB": "box_type",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "框类型",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "status",
+            "fieldNameInDB": "status",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "框状态",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "labels",
+            "fieldNameInDB": "labels",
+            "transportType": "list",
+            "storageType": "array",
+            "description": "标签组",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "string",
+              "arrayElementStorageType": "text",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          }
+        ]
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "userName",
+      "fieldNameInDB": "user_name",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "用户",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "userId",
+      "fieldNameInDB": "user_id",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "用户ID",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "groupName",
+      "fieldNameInDB": "group_name",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "用户组",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "groupId",
+      "fieldNameInDB": "group_id",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "用户组ID",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "orgName",
+      "fieldNameInDB": "org_name",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "组织名称",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "orgId",
+      "fieldNameInDB": "org_id",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "组织ID",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldNameInDB": "created_at",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "创建时间",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldNameInDB": "updated_at",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "更新时间",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    }
+  ]
+}

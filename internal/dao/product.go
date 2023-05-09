@@ -18,7 +18,13 @@ func GetProductDao() ProductDao {
 	return productDao
 }
 func (svc ProductDao) FindByParam(ctx context.Context) ([]models.Product, int64, error) {
-	return nil, 0, nil
+	var result []models.Product
+	tx := GetDB(ctx)
+	err := tx.Where("num", 1).Find(&result).Error
+	if err != nil {
+		return nil, 0, err
+	}
+	return result, int64(len(result)), nil
 }
 func (svc ProductDao) Create(ctx context.Context, model *models.Product) error {
 	tx := GetDB(ctx)

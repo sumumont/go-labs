@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/go-labs/internal/configs"
-	"github.com/go-labs/internal/dto"
 	"reflect"
 	"testing"
 )
@@ -36,9 +35,9 @@ func TestRefc(t *testing.T) {
 	//var dest []dto.People //Slice
 	//var dest dto.People //Pointer
 	//var dest []dto.People
-	dest := dto.People{} //Slice
-	ref(&dest)
-	fmt.Println(dest)
+	//dest := dto.People{} //Slice
+	//ref(&dest)
+	//fmt.Println(dest)
 }
 func ref(dest interface{}) error {
 	t := reflect.TypeOf(dest)

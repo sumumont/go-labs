@@ -11,13 +11,13 @@ package logging
 
 import (
 	"bytes"
-	"fmt"
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/pkgerrors"
 	"io"
 	"os"
 	"runtime"
 	"strconv"
-	"strings"
 )
 
 const timeFormat = "2006-01-02 15:04:05"
@@ -27,39 +27,41 @@ var logger zerolog.Logger
 
 func init() {
 	zerolog.CallerSkipFrameCount = 3
+	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
+	logger = zerolog.New(os.Stdout).With().Logger()
 	//zerolog.TimeFieldFormat = timeFormat
-	output := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: timeFormat}
-	output.FormatLevel = func(i interface{}) string {
-		return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
-	}
-	output.FormatCaller = func(i interface{}) string {
-		return fmt.Sprintf("%s", i)
-	}
-	{
-		output.FormatFieldName = func(i interface{}) string {
-			return fmt.Sprintf("%s=", i)
-		}
-		output.FormatFieldValue = func(i interface{}) string {
-			return fmt.Sprintf("%s", i)
-		}
-
-		output.FormatErrFieldName = func(i interface{}) string {
-			return fmt.Sprintf("%s=", i)
-		}
-		output.FormatErrFieldValue = func(i interface{}) string {
-			return fmt.Sprintf("%s", i)
-		}
-	}
-
-	output.FormatMessage = func(i interface{}) string {
-		if i == nil {
-			return fmt.Sprintf("Msg=")
-		}
-		return fmt.Sprintf("Msg=%s", i)
-	}
-	output.PartsOrder = []string{zerolog.TimestampFieldName, zerolog.LevelFieldName, "goroutineId", zerolog.CallerFieldName, zerolog.MessageFieldName}
+	//output := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: timeFormat}
+	//output.FormatLevel = func(i interface{}) string {
+	//	return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
+	//}
+	//output.FormatCaller = func(i interface{}) string {
+	//	return fmt.Sprintf("%s", i)
+	//}
+	//{
+	//	output.FormatFieldName = func(i interface{}) string {
+	//		return fmt.Sprintf("%s=", i)
+	//	}
+	//	output.FormatFieldValue = func(i interface{}) string {
+	//		return fmt.Sprintf("%s", i)
+	//	}
+	//
+	//	output.FormatErrFieldName = func(i interface{}) string {
+	//		return fmt.Sprintf("%s=", i)
+	//	}
+	//	output.FormatErrFieldValue = func(i interface{}) string {
+	//		return fmt.Sprintf("%s", i)
+	//	}
+	//}
+	//
+	//output.FormatMessage = func(i interface{}) string {
+	//	if i == nil {
+	//		return fmt.Sprintf("Msg=")
+	//	}
+	//	return fmt.Sprintf("Msg=%s", i)
+	//}
+	//output.PartsOrder = []string{zerolog.TimestampFieldName, zerolog.LevelFieldName, "goroutineId", zerolog.CallerFieldName, zerolog.MessageFieldName}
 	//output.PartsExclude = []string{"goroutineId"}
-	logger = zerolog.New(output).With().Timestamp().Logger()
+	//logger = zerolog.New(output).With().Timestamp().Logger()
 }
 
 func SetOutput(w io.Writer) zerolog.Logger {
@@ -80,7 +82,7 @@ func Warn() *zerolog.Event {
 }
 
 func Error(err error) *zerolog.Event {
-	return logger.Err(err).Caller().Str(goroutineId, GetGoroutineId())
+	return logger.Error().Caller().Str(goroutineId, GetGoroutineId()).Stack().Err(errors.New(err.Error()))
 }
 
 func Fatal() *zerolog.Event {

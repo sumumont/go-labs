@@ -7,3 +7,13 @@ type Product struct {
 	UserInfo
 	BaseModelTime
 }
+
+type School struct {
+	ID   int64  `gorm:"primary_key" json:"id"`
+	Name string `json:"name"`
+}
+type Student struct {
+	ID       int64  `gorm:"primary_key" json:"id"`
+	Name     string `json:"name"`
+	SchoolId int64  `json:"schoolId"`
+}

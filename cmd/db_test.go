@@ -44,6 +44,30 @@ func TestDb(t *testing.T) {
 	}
 
 }
+
+func TestQuery(t *testing.T) {
+	initDb()
+	result := []map[string]interface{}{}
+	tx := dao.GetDB(context.Background()).Model(&models.Student{}).Select("students.*,b.*").Joins("left join schools as b on students.school_id = b.id")
+
+	rows, err := tx.Rows()
+	if err != nil {
+		panic(err)
+	}
+
+	cl, err := rows.Columns()
+	logging.Debug().Interface("cl", cl).Send()
+	tx = tx.Find(&result)
+	err = tx.Error
+	if err != nil {
+		panic(err)
+	}
+	logging.Debug().Interface("result", cl).Send()
+
+}
+func TestQuery1(t *testing.T) {
+
+}
 func initDb() {
 	_, err := configs.InitConfig("../configs")
 	if err != nil {

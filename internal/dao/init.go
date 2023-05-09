@@ -26,6 +26,7 @@ import (
 	"github.com/go-labs/internal/configs"
 	"github.com/go-labs/internal/logging"
 	"github.com/go-labs/internal/models"
+	"github.com/go-labs/internal/plugins"
 	"reflect"
 	"time"
 
@@ -85,6 +86,10 @@ func InitDb() error {
 
 	if configs.GetAppConfig().Db.Debug {
 		database = database.Debug()
+	}
+	err = database.Use(plugins.New())
+	if err != nil {
+		logging.Error(err).Send()
 	}
 	//@add: set connection pool configuration
 	SetConnPool(dbConf, database)
@@ -163,8 +168,11 @@ func pingDB(db *gorm.DB) {
 func initTables() error {
 
 	modelTypes := []interface{}{&models.Product{}}
-	modelTypes = []interface{}{&models.People{}}
-	modelTypes = []interface{}{&models.Info{}}
+	//modelTypes = append(modelTypes, &models.People{})
+	//modelTypes = append(modelTypes, &models.Info{})
+
+	modelTypes = append(modelTypes, &models.School{})
+	modelTypes = append(modelTypes, &models.Student{})
 	for _, modelType := range modelTypes {
 		err := autoMigrateTable(modelType)
 		if err != nil {
