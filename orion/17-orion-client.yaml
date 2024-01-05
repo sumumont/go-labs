@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orion-runtime
+  namespace: orion
+spec:
+  replicas: 17
+  selector:
+    matchLabels:
+      name: orion-runtime
+  template:
+    metadata:
+      labels:
+        name: orion-runtime
+    spec:
+      #hostNetwork: true
+      schedulerName: orion-scheduler
+      containers:
+        - name: orion-runtime
+          image: harbor.internal.cn:8443/orionx/native:tensorflow2.6.2-hvd0.24.2-cu11.2.0-cudnn8-py3.6-ubuntu20.04
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c"]
+          args: ["while true; do sleep 30; done;"]
+          resources:
+            requests:
+              virtaitech.com/gpu: 1
+            limits:
+              virtaitech.com/gpu: 1
+          env:
+            - name : ORION_GMEM
+              value : "15000"
+            - name : ORION_RATIO
+              value : "100"
+            - name: ORION_VGPU
+              value: "1"
+            - name: ORION_RESERVED
+              value: "0"
+            - name: ORION_CROSS_NODE
+              value: "1"
+            - name: ORION_DEVICE_TYPE
+              value: "GPU"
+            - name : ORION_GROUP_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+            - name: ORION_K8S_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ORION_K8S_POD_UID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid

@@ -254,6 +254,9 @@ func printKv(kv []Kv) string {
 type Kv struct {
 	K string
 	V string
+
+	Key   string
+	Value string
 }
 
 func TestReflect(t *testing.T) {

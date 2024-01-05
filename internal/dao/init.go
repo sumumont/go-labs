@@ -224,7 +224,7 @@ func SetConnPool(dbConf configs.DbConfig, db *gorm.DB) {
 	} else {
 		sqlDb.SetConnMaxLifetime(time.Duration(3600) * time.Second)
 	}
-
+	sqlDb.SetConnMaxIdleTime(time.Duration(dbConf.MaxIdleTime) * time.Second)
 	data, _ := json.Marshal(sqlDb.Stats())
 	logging.Info().Str("db.stats", string(data)).Send()
 

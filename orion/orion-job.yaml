@@ -1,0 +1,292 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    sidecar.istio.io/inject: "false"
+    vault.security.banzaicloud.io/vault-addr: https://vault.kube-system:8200
+    vault.security.banzaicloud.io/vault-tls-secret: vault-tls
+  labels:
+    archType: amd64
+    job-id: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+    module: ai-arts
+    org-id: "1"
+    org-name: apulis
+    submodule: dev
+    task-affinity: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+  name: dev3-e62e060a-89d4-4650-85e1-84fd2be79b95
+  namespace: apulis-orgadmin-user-group
+spec:
+  backoffLimit: 0
+  completions: 1
+  manualSelector: true
+  parallelism: 1
+  selector:
+    matchLabels:
+      archType: amd64
+      job-id: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+      module: ai-arts
+      org-id: "1"
+      org-name: apulis
+      submodule: dev
+      task-affinity: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+        vault.security.banzaicloud.io/vault-addr: https://vault.kube-system:8200
+        vault.security.banzaicloud.io/vault-tls-secret: vault-tls
+      creationTimestamp: null
+      labels:
+        archType: amd64
+        job-id: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+        module: ai-arts
+        org-id: "1"
+        org-name: apulis
+        submodule: dev
+        task-affinity: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: series
+                    operator: DoesNotExist
+      containers:
+        - command:
+            - bash
+            - -c
+            - sleep 36000
+          env:
+            - name: ORION_RATIO
+              value: "25"
+            - name: ORION_VGPU
+              value: "2"
+            - name: ORION_RESERVED
+              value: "1"
+            - name: ORION_CROSS_NODE
+              value: "1"
+            - name: ORION_GROUP_ID
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.uid
+            - name: ORION_CLIENT_ID
+              value: orgadmin_group
+            - name: ORION_K8S_POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: ORION_K8S_POD_UID
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.uid
+            - name: AILAB_OUTOF_ISTIO_MESH
+              value: "1"
+            - name: AIARTS_ADDR
+              value: http://ai-arts.apulis:80/api/v1
+            - name: AILAB_DEVICE_SERIES
+            - name: AILAB_LAB_ID
+              value: "65626"
+            - name: DEV_PROJECT_REPO
+              value: j_NcyOFwRP6AIqGEXlSO8A
+            - name: DEV_TEAMDATA_DIR
+              value: /home/org-admin/teamdata
+            - name: DEV_USERDATA_DIR
+              value: /home/org-admin/userdata
+            - name: NEED_HTTP
+              value: "on"
+            - name: AILAB_JOB_ID
+              value: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+            - name: AILAB_NODE_NUM
+              value: "1"
+            - name: DEV_APWORKSHOP_DIR
+              value: /home/org-admin/.model_tmp
+            - name: SSH_USER
+              value: org-admin
+            - name: AILAB_JOB_TYPE
+              value: dev
+            - name: AILAB_NAMESPACE
+              value: apulis-orgadmin-user-group
+            - name: APULIS_CLUSTER_ID
+              value: ee6e9d17-782a-5e24-8783-252bdb62bd33
+            - name: DEV_PROJECT_CODE
+              value: /home/org-admin/code
+            - name: DEV_USER_CONDA
+              value: /home/org-admin/conda
+            - name: SSH_PASSWD
+              value: Tr6I4qXn
+            - name: AILAB_USER_ID
+              value: "101837816"
+            - name: DEV_PROJ_idECT_OUTPUT
+              value: /home/org-admin/outputs
+            - name: PRESTART_SCRIPTS
+              value: 01.init_user.sh 03.setup_ssh.sh
+            - name: JOB_CMD
+              value: /start/aiarts_launcher
+            - name: AILAB_DEVICE_NUM
+              value: "1"
+            - name: AILAB_DEVICE_TYPE
+              value: nvidia.com/gpu
+            - name: AILAB_OUTPUT
+              value: /home/AppData/_out_
+            - name: AILAB_ADDR
+              value: http://ai-lab.apulis:80/api/v1
+            - name: AILAB_ORG_NAME
+              value: apulis
+            - name: AILAB_TOKEN
+              value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA2Njg3MTQsImdyb3VwX2FjY291bnQiOiJvcmdhZG1pbi11c2VyLWdyb3VwIiwiZ3JvdXBfaWQiOjUyODU5ODExLCJvcmdhbml6YXRpb25fYWNjb3VudCI6ImFwdWxpcyIsIm9yZ2FuaXphdGlvbl9pZCI6MSwib3JnYW5pemF0aW9uX3N0YXR1cyI6ImluVXNlIiwib3JpZ19pYXQiOjE2ODkxMzI3MTQsInJvbGUiOjIsInVzYWdlIjoiYml6IiwidXNlcl9pZCI6MTAxODM3ODE2LCJ1c2VyX25hbWUiOiJvcmctYWRtaW4ifQ.-zkjFrYqDPAJmIvG9f6HhAGbwa45ixu2PEB4YIKbHBM
+            - name: JOB_I_idD
+              value: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: USER_NAME
+              value: org-admin
+            - name: DLWS_USER_NAME
+              value: org-admin
+            - name: DLWS_JOB_ID
+              value: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+            - name: DLWS_ROLE_NAME
+              value: master
+          image: harbor.internal.cn:8443/publicharbor_apulis/cambricon-pytorch19-python375-ubuntu2004-sdk1-120:v2
+          imagePullPolicy: Always
+          name: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+            - containerPort: 8081
+              protocol: TCP
+            - containerPort: 22
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "4"
+              memory: 8Gi
+              virtaitech.com/gpu: "1"
+            requests:
+              cpu: "4"
+              memory: 8Gi
+              virtaitech.com/gpu: "1"
+          securityContext:
+            privileged: false
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /home/org-admin/teamdata
+              name: putwwx
+              subPath: ai-arts/1/teamdata/52859811
+            - mountPath: /home/org-admin/userdata
+              name: putwwx
+              subPath: ai-arts/1/userdata/101837816
+            - mountPath: /home/org-admin/conda
+              name: putwwx
+              readOnly: true
+              subPath: ai-arts/1/userconda/101837816
+            - mountPath: /home/org-admin/.model_tmp
+              name: nwcxlc
+              subPath: tmp/org-admin
+            - mountPath: /home/AppData/_out_
+              name: sojxzh
+              subPath: 1.org/orgadmin-user-group/ai-arts/65626/dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+            - mountPath: /home/org-admin/code
+              name: putwwx
+              subPath: ai-arts/1/project/134/101837816/code
+            - mountPath: /home/org-admin/outputs
+              name: putwwx
+              subPath: ai-arts/1/project/134/101837816/output
+            - mountPath: /prestart
+              name: prestart
+              readOnly: true
+            - mountPath: /start
+              name: start
+              readOnly: true
+            - mountPath: /dlts-runtime
+              name: dlts-runtime
+              readOnly: true
+            - mountPath: /etc/localtime
+              name: time-zone-info
+              readOnly: true
+            - mountPath: /dev/shm
+              name: dshm
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+        - name: regcred
+      initContainers:
+        - command:
+            - bash
+            - -c
+            - cp -r /code/prestart/* /prestart && cp -r /code/start/* /start/ && cp -r
+              /dlts-init/* /dlts-runtime/
+          env:
+            - name: JOB_ID
+              value: dev1-e62e060a-89d4-4650-85e1-84fd2be79b95
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: USER_NAME
+              value: org-admin
+          image: harbor.internal.cn:8443/internal/aistudio/infra/init-container:aistudio-v1.7.2-rc5
+          imagePullPolicy: Always
+          name: init-tools
+          resources:
+            limits:
+              cpu: "4"
+              memory: 16Gi
+            requests:
+              cpu: "4"
+              memory: 16Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /prestart
+              name: prestart
+            - mountPath: /start
+              name: start
+            - mountPath: /dlts-runtime
+              name: dlts-runtime
+      nodeSelector:
+        gpunode: nvidia
+      restartPolicy: Never
+      schedulerName: orion-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: putwwx
+          persistentVolumeClaim:
+            claimName: aiplatform-app-data-pvc
+        - name: nwcxlc
+          persistentVolumeClaim:
+            claimName: aiplatform-model-data-pvc
+        - name: sojxzh
+          persistentVolumeClaim:
+            claimName: aiplatform-ailab-data-pvc
+        - emptyDir: {}
+          name: prestart
+        - emptyDir: {}
+          name: start
+        - emptyDir: {}
+          name: dlts-runtime
+        - hostPath:
+            path: /etc/localtime
+            type: ""
+          name: time-zone-info
+        - emptyDir:
+            medium: Memory
+          name: dshm

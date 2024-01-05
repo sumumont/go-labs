@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orion-runtime-a2
+  namespace: orion
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: orion-runtime-a2
+  template:
+    metadata:
+      labels:
+        name: orion-runtime-a2
+    spec:
+      #hostNetwork: true
+      #schedulerName: orion-scheduler
+      containers:
+        - name: orion-runtime-a2
+          image: harbor.internal.cn:8443/orionx/native:tensorflow2.6.2-hvd0.24.2-cu11.2.0-cudnn8-py3.6-ubuntu20.04
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c"]
+          args: ["while true; do sleep 30; done;"]
+          resources:
+            requests:
+              virtaitech.com/gpu: 1
+              virtaitech.com/ratio: 50
+              virtaitech.com/gmem: 10
+            limits:
+              virtaitech.com/gpu: 1
+              virtaitech.com/ratio: 50
+              virtaitech.com/gmem: 10
+          env:
+            - name: ORION_DEVICE_TYPE
+              value: "GPU"

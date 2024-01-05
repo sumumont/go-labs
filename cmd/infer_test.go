@@ -1,6 +1,10 @@
 package main
 
 import (
+	"crypto/md5"
+	"encoding/hex"
+	"fmt"
+	"strings"
 	"testing"
 )
 
@@ -20,4 +24,30 @@ func TestInferImage(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func SplitBy(key string, split string) (string, string) {
+	idx := strings.LastIndex(key, split)
+	if idx == -1 {
+		return "", key
+	}
+	key1 := key[:idx]
+	if key1 == "." {
+		key1 = ""
+	}
+	key2 := key[idx+1:]
+	return key1, key2
+}
+func TestSplitBy(t *testing.T) {
+	a, b := SplitBy("./b.json", "/")
+	fmt.Println(a, b)
+}
+
+func md5Encrypt(inputString string) string {
+	hash := md5.Sum([]byte(inputString))
+	encryptedString := hex.EncodeToString(hash[:])
+	return encryptedString
+}
+func TestMd5(t *testing.T) {
+	fmt.Println(md5Encrypt("apulis@123"))
 }

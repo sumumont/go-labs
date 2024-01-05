@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orion-mlu-runtime
+  namespace: orion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: orion-mlu-runtime
+  template:
+    metadata:
+      labels:
+        name: orion-mlu-runtime
+    spec:
+      #hostNetwork: true
+      #schedulerName: orion-scheduler
+      nodeSelector:
+        gpunode: "mlu"
+      containers:
+        - name: orion-mlu-runtime
+          #image: harbor.internal.cn:8443/orionx/orionx-mlu/orion-mlu-client:2.1.2-0826-tf2.15.5-mlu2.8.5-tk2.4.1-ubuntu18.04
+          image: harbor.internal.cn:8443/orionx/orionx-mlu/orion-mlu-client:2.1.2-0826-tf1.15.5-mlu2.8.5-tk2.4.1-ubuntu18.04
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c"]
+          args: ["while true; do sleep 30; done;"]
+          resources:
+            requests:
+              virtaitech.com/gpu: 1
+              virtaitech.com/gmem: 10000
+              virtaitech.com/ratio: 50
+            limits:
+              virtaitech.com/gpu: 1
+              virtaitech.com/gmem: 10000
+              virtaitech.com/ratio: 50

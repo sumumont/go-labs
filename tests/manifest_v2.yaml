@@ -1,0 +1,148 @@
+#【必填】
+name: river-测试检测模型-1-cpu
+#选填,模型简介
+description: lenet-model
+#选填:  用户自定义 key value型标签,key为平台预定义枚举,value由用户自由添加,全部可选,支持按属性名称筛选
+props:
+  #算法框架描述
+  framework:  TensorFlow
+  #算法框架版本描述:
+  framework_version: "v2.0"
+  #网络名称:
+  backbone: lenet
+  #领域分类:
+  field:    cv
+  #任务类型
+  task:     detection
+  #用户自定义版本tag
+  version:  "aion-mask-rc1"
+#选填:  用户自定义关联标签,平台自动跟踪多个值,支持检索
+labels: ["coco","lenet"]
+# 模板定义了在平台可视化操作流程的UI参数
+templates:
+  #训练模板参数定义
+  train:
+    #开关打开,校验填充内容完整性,否则仅记录内容,不实际生效(可训练)
+    enable: true
+    #【必填】启动环境配置
+    startup:
+      #【必填】如果需要用平台中的镜像，需要在镜像名前加井号# 如 #apulistech/tensorflow:2.3
+      engine: "python:3"
+      #【必填】训练启动脚本,相对code目录(平台会validate该脚本存在) 为空默认为 train.sh
+      entry: train.py
+      #镜像内的启动入口,为空由平台根据entry自动推导
+      cmd:   python3
+      #【选填】 平台跟踪的conda virtual env
+      conda: "cyx@python3.5.7"
+      #选填，模型推荐可使用的设备信息列表
+      devices:
+        #必填，目前可选值  cpu | gpu | npu
+        - type: cpu
+          #[obsolete] 选填，设备型号描述字符串,例如 a310 | a910
+          series: ""
+          #cpu架构: 枚举值  amd64 | arm64
+          arch:   "amd64,arm64"
+          #选填，最少使用的设备卡数
+          device_num: 1
+          #选填，最少使用的CPU核心数，单位 个
+          cpu: 1
+          #选填，最少使用的内存大小，单位 GB
+          memory: 2
+        - type: gpu
+          #选填，设备型号，gpu与cpu不需要填写该字段 目前可选值 a310 | a910
+          #选填，最少使用的设备卡数
+          device_num: 1
+          #选填，最少使用的CPU核心数，单位 个
+          cpu: 1
+          #选填，最少使用的内存大小，单位 GB
+          memory: 2
+          #[obsolete] 选填，设备型号描述字符串,例如 a310 | a910
+          series: 310,710
+    #选填，是否支持训练可视化，默认可视化路径为平台定义的输出路径，TensorBoard | MindInsight | NNI
+    visualization: TensorBoard
+    #bool 选填，是否支持分布式训练(Horovod | MPI | Ray | HCCL)
+    distributed: true
+    #选填: 平台目前支持  modelArts , slurm 两种云端调度器
+    cloud_train:
+    #选填: 模型训练自定义参数,支持页面可视化交互
+    user_params:
+      - name: sleep
+        #validator:  int,string,array(逗号分隔的strings),bool(true or false),float(浮点数)
+        type: int
+        #默认值:
+        default: 2
+        #代表该参数是否必填,UI提交时校验该参数是否为空
+        required: true
+        #UI上tooltips
+        desc: input batch size
+        #代表该参数是否可修改，如果为false，key和value都不可修改
+        editable: true
+        #限定只能取枚举值,仅适用于 integer,string,float
+        enum:   ["",""]
+      - name: ret
+        type: int
+        default: 1
+        required: true
+        desc: "exit code"
+        editable: true
+    #选填: 支持的平台参数映射到命令行参数,支持页面可视化交互
+    sys_params:
+      #平台参数名称
+      - name: pretrained_model
+        desc: 预训练模型路径
+        #命令行参数名称: 空值和name取值一样
+        arg: pretrained_model
+        #控制是否必需
+        required: true
+      - name: data_path
+        desc: 数据集路径
+        arg: data_path
+        #【propsoal】默认空: 不支持多输入参数
+        #可选:  join 方式,多输入目录以逗号分割传递给 arg 命令行参数,例如 --data_path=/path/to/0,/path/to/1,/path/to/2
+        #      child方式,多输入目录挂载在统一 arg 命令行参数目录下的子目录中,例如 --data_path=/path/to ,下面有子目录表示每个输入目录
+        #multiple: join
+      - name: output_path
+        desc: 输出路径
+        arg: output_path
+  #评估模板参数定义
+  eval:
+    #开关打开,校验填充内容完整性,否则仅记录内容,不实际生效(可训练)
+    enable: true
+    #【必填】启动环境配置,和训练类同
+    startup:
+    #选填,模型评估参数
+    user_params:
+    # 必填，平台参数相对于模型命令行参数的映射
+    sys_params:
+      - name: "data_path"
+        desc: "数据集路径"
+        arg: data_path
+      - name: output_path
+        desc: 输出路径
+        arg: output_path
+      - name: checkpoint_path
+        desc: 评估模型路径
+        arg: checkpoint_path
+    #[obsolete] 在模型工厂中使用全局模板定义,不单独定义在每个模型包中
+  export:
+  #推理模板参数定义
+  #【proposal】
+  infer:
+    #开关打开,校验填充内容完整性,否则仅记录内容,不实际生效(可训练)
+    enable: true
+    #【必填】推理框架,  apuisv表示使用平台预置 triton 推理框架;llm 表示大模型推理框架
+    kernel: apuisv
+    #选填:  已知kernel推理框架的情况下平台可以自动选择内置的启动配置
+    startup:
+    #选填: 选值参考selector.yaml中 model_format 字段
+    format: om
+    #选填，对应serve.yaml中的值, 模型推理精度,可选值参考selector.yaml中 precision 字段
+    precision: int8
+    #选填,模型自定义推理参数
+    user_params:
+    #选填,模型平台参数
+    sys_params:
+      #可推理模型文件路径(多模型以,分隔)
+      - name: model_path
+      #推理框架对接插件路径(前后处理代码目录)
+      - name: infer_plugin

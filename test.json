@@ -1,936 +1,4516 @@
 {
-  "name": "common_annot_datas_v1",
-  "description": "",
-  "protocolType": "http",
-  "storageMethod": "postgres_new",
-  "schema": [
-    {
-      "fieldName": "id",
-      "fieldNameInDB": "id",
-      "transportType": "string",
-      "storageType": "text",
-      "description": "主键",
-      "setAsPrimaryKey": true,
-      "nullable": false,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+  "code": 0,
+  "data": {
+    "endpoints": {
+      "/adhub-bff/api/v1/ad-hub/cv_datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/dashboard/stats/datapools": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/dashboard/stats/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "seq",
-      "fieldNameInDB": "seq",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "自增序号",
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/dashboard/usage-details": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/db-connection-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/db-connection-connectors/ping": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "virtualDatasetId",
-      "fieldNameInDB": "virtual_dataset_id",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "虚拟数据集id",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/db-connection-connectors/postgres/schemas-tables": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/db-connection-connectors/query-columns-types": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/db-connection-connectors/questdb/connector-tables": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "virtualDatasetName",
-      "fieldNameInDB": "virtual_dataset_name",
-      "transportType": "string",
-      "storageType": "text",
-      "description": "虚拟数据集名称",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/db-connection-connectors/{id}/create-data-source": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/db-connection-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-image-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "annotTaskId",
-      "fieldNameInDB": "annot_task_id",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "标注任务id",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-image-connectors/{id}/funcs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-image-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-image-connectors/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "dataSourceConnId",
-      "fieldNameInDB": "data_source_conn_id",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "数据通道id",
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-image-connectors/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-json-pg-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-json-pg-connectors/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "dataSourceId",
-      "fieldNameInDB": "data_source_id",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "数据源id",
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-json-pg-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-json-pg-connectors/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-json-pg-connectors/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "annotationType",
-      "fieldNameInDB": "annotation_type",
-      "transportType": "string",
-      "storageType": "text",
-      "description": "",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-json-questdb-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-mongodb-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-mongodb-connectors/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "classifications",
-      "fieldNameInDB": "classifications",
-      "transportType": "list",
-      "storageType": "sublist",
-      "description": "",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": true,
-        "newTable": true,
-        "arrayElementTransportType": "map",
-        "arrayElementStorageType": "more",
-        "innerFields": [
-          {
-            "fieldName": "label",
-            "fieldNameInDB": "label",
-            "transportType": "string",
-            "storageType": "text",
-            "description": "",
-            "setAsPrimaryKey": false,
-            "nullable": true,
-            "flatteningOptions": {
-              "dataFlattening": false,
-              "newTable": false,
-              "arrayElementTransportType": "",
-              "arrayElementStorageType": "",
-              "innerFields": null
-            },
-            "imageDataAttrs": {
-              "imageNameRule": "",
-              "imageNameFieldName": "",
-              "imageStorageType": "",
-              "storageRootPath": ""
-            },
-            "postgresAttrs": {
-              "varCharLength": 0,
-              "enumeratedValues": ""
-            },
-            "questDBAttrs": {
-              "geoHashPrecision": "",
-              "symbolCache": false,
-              "symbolCapacity": 0,
-              "symbolIndex": false
-            }
-          },
-          {
-            "fieldName": "color",
-            "fieldNameInDB": "color",
-            "transportType": "string",
-            "storageType": "text",
-            "description": "",
-            "setAsPrimaryKey": false,
-            "nullable": true,
-            "flatteningOptions": {
-              "dataFlattening": false,
-              "newTable": false,
-              "arrayElementTransportType": "",
-              "arrayElementStorageType": "",
-              "innerFields": null
-            },
-            "imageDataAttrs": {
-              "imageNameRule": "",
-              "imageNameFieldName": "",
-              "imageStorageType": "",
-              "storageRootPath": ""
-            },
-            "postgresAttrs": {
-              "varCharLength": 0,
-              "enumeratedValues": ""
-            },
-            "questDBAttrs": {
-              "geoHashPrecision": "",
-              "symbolCache": false,
-              "symbolCapacity": 0,
-              "symbolIndex": false
-            }
-          }
-        ]
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-mongodb-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-mongodb-connectors/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/http-mongodb-connectors/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "imageName",
-      "fieldNameInDB": "image_name",
-      "transportType": "string",
-      "storageType": "text",
-      "description": "图片名称",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/id/{id}": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/id/{id}/data-sources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/csv": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "boxes",
-      "fieldNameInDB": "boxes",
-      "transportType": "list",
-      "storageType": "sublist",
-      "description": "框",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": true,
-        "newTable": true,
-        "arrayElementTransportType": "map",
-        "arrayElementStorageType": "more",
-        "innerFields": [
-          {
-            "fieldName": "location",
-            "fieldNameInDB": "location",
-            "transportType": "map",
-            "storageType": "more",
-            "description": "坐标",
-            "setAsPrimaryKey": false,
-            "nullable": true,
-            "flatteningOptions": {
-              "dataFlattening": true,
-              "newTable": false,
-              "arrayElementTransportType": "",
-              "arrayElementStorageType": "",
-              "innerFields": [
-                {
-                  "fieldName": "x",
-                  "fieldNameInDB": "x",
-                  "transportType": "float64",
-                  "storageType": "double_precision",
-                  "description": "横坐标",
-                  "setAsPrimaryKey": false,
-                  "nullable": true,
-                  "flatteningOptions": {
-                    "dataFlattening": false,
-                    "newTable": false,
-                    "arrayElementTransportType": "",
-                    "arrayElementStorageType": "",
-                    "innerFields": null
-                  },
-                  "imageDataAttrs": {
-                    "imageNameRule": "",
-                    "imageNameFieldName": "",
-                    "imageStorageType": "",
-                    "storageRootPath": ""
-                  },
-                  "postgresAttrs": {
-                    "varCharLength": 0,
-                    "enumeratedValues": ""
-                  },
-                  "questDBAttrs": {
-                    "geoHashPrecision": "",
-                    "symbolCache": false,
-                    "symbolCapacity": 0,
-                    "symbolIndex": false
-                  }
-                },
-                {
-                  "fieldName": "y",
-                  "fieldNameInDB": "y",
-                  "transportType": "float64",
-                  "storageType": "double_precision",
-                  "description": "纵坐标",
-                  "setAsPrimaryKey": false,
-                  "nullable": true,
-                  "flatteningOptions": {
-                    "dataFlattening": false,
-                    "newTable": false,
-                    "arrayElementTransportType": "",
-                    "arrayElementStorageType": "",
-                    "innerFields": null
-                  },
-                  "imageDataAttrs": {
-                    "imageNameRule": "",
-                    "imageNameFieldName": "",
-                    "imageStorageType": "",
-                    "storageRootPath": ""
-                  },
-                  "postgresAttrs": {
-                    "varCharLength": 0,
-                    "enumeratedValues": ""
-                  },
-                  "questDBAttrs": {
-                    "geoHashPrecision": "",
-                    "symbolCache": false,
-                    "symbolCapacity": 0,
-                    "symbolIndex": false
-                  }
-                },
-                {
-                  "fieldName": "width",
-                  "fieldNameInDB": "width",
-                  "transportType": "float64",
-                  "storageType": "double_precision",
-                  "description": "宽度",
-                  "setAsPrimaryKey": false,
-                  "nullable": true,
-                  "flatteningOptions": {
-                    "dataFlattening": false,
-                    "newTable": false,
-                    "arrayElementTransportType": "",
-                    "arrayElementStorageType": "",
-                    "innerFields": null
-                  },
-                  "imageDataAttrs": {
-                    "imageNameRule": "",
-                    "imageNameFieldName": "",
-                    "imageStorageType": "",
-                    "storageRootPath": ""
-                  },
-                  "postgresAttrs": {
-                    "varCharLength": 0,
-                    "enumeratedValues": ""
-                  },
-                  "questDBAttrs": {
-                    "geoHashPrecision": "",
-                    "symbolCache": false,
-                    "symbolCapacity": 0,
-                    "symbolIndex": false
-                  }
-                },
-                {
-                  "fieldName": "height",
-                  "fieldNameInDB": "height",
-                  "transportType": "float64",
-                  "storageType": "double_precision",
-                  "description": "高度",
-                  "setAsPrimaryKey": false,
-                  "nullable": true,
-                  "flatteningOptions": {
-                    "dataFlattening": false,
-                    "newTable": false,
-                    "arrayElementTransportType": "",
-                    "arrayElementStorageType": "",
-                    "innerFields": null
-                  },
-                  "imageDataAttrs": {
-                    "imageNameRule": "",
-                    "imageNameFieldName": "",
-                    "imageStorageType": "",
-                    "storageRootPath": ""
-                  },
-                  "postgresAttrs": {
-                    "varCharLength": 0,
-                    "enumeratedValues": ""
-                  },
-                  "questDBAttrs": {
-                    "geoHashPrecision": "",
-                    "symbolCache": false,
-                    "symbolCapacity": 0,
-                    "symbolIndex": false
-                  }
-                }
-              ]
-            },
-            "imageDataAttrs": {
-              "imageNameRule": "",
-              "imageNameFieldName": "",
-              "imageStorageType": "",
-              "storageRootPath": ""
-            },
-            "postgresAttrs": {
-              "varCharLength": 0,
-              "enumeratedValues": ""
-            },
-            "questDBAttrs": {
-              "geoHashPrecision": "",
-              "symbolCache": false,
-              "symbolCapacity": 0,
-              "symbolIndex": false
-            }
-          },
-          {
-            "fieldName": "boxType",
-            "fieldNameInDB": "box_type",
-            "transportType": "string",
-            "storageType": "text",
-            "description": "框类型",
-            "setAsPrimaryKey": false,
-            "nullable": true,
-            "flatteningOptions": {
-              "dataFlattening": false,
-              "newTable": false,
-              "arrayElementTransportType": "",
-              "arrayElementStorageType": "",
-              "innerFields": null
-            },
-            "imageDataAttrs": {
-              "imageNameRule": "",
-              "imageNameFieldName": "",
-              "imageStorageType": "",
-              "storageRootPath": ""
-            },
-            "postgresAttrs": {
-              "varCharLength": 0,
-              "enumeratedValues": ""
-            },
-            "questDBAttrs": {
-              "geoHashPrecision": "",
-              "symbolCache": false,
-              "symbolCapacity": 0,
-              "symbolIndex": false
-            }
-          },
-          {
-            "fieldName": "status",
-            "fieldNameInDB": "status",
-            "transportType": "string",
-            "storageType": "text",
-            "description": "框状态",
-            "setAsPrimaryKey": false,
-            "nullable": true,
-            "flatteningOptions": {
-              "dataFlattening": false,
-              "newTable": false,
-              "arrayElementTransportType": "",
-              "arrayElementStorageType": "",
-              "innerFields": null
-            },
-            "imageDataAttrs": {
-              "imageNameRule": "",
-              "imageNameFieldName": "",
-              "imageStorageType": "",
-              "storageRootPath": ""
-            },
-            "postgresAttrs": {
-              "varCharLength": 0,
-              "enumeratedValues": ""
-            },
-            "questDBAttrs": {
-              "geoHashPrecision": "",
-              "symbolCache": false,
-              "symbolCapacity": 0,
-              "symbolIndex": false
-            }
-          },
-          {
-            "fieldName": "labels",
-            "fieldNameInDB": "labels",
-            "transportType": "list",
-            "storageType": "array",
-            "description": "标签组",
-            "setAsPrimaryKey": false,
-            "nullable": true,
-            "flatteningOptions": {
-              "dataFlattening": false,
-              "newTable": false,
-              "arrayElementTransportType": "string",
-              "arrayElementStorageType": "text",
-              "innerFields": null
-            },
-            "imageDataAttrs": {
-              "imageNameRule": "",
-              "imageNameFieldName": "",
-              "imageStorageType": "",
-              "storageRootPath": ""
-            },
-            "postgresAttrs": {
-              "varCharLength": 0,
-              "enumeratedValues": ""
-            },
-            "questDBAttrs": {
-              "geoHashPrecision": "",
-              "symbolCache": false,
-              "symbolCapacity": 0,
-              "symbolIndex": false
-            }
-          }
-        ]
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/csv/{id}/add-file": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/csv/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/csv/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "userName",
-      "fieldNameInDB": "user_name",
-      "transportType": "string",
-      "storageType": "text",
-      "description": "用户",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/csv/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/parquet": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/parquet/{id}/add-file": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "userId",
-      "fieldNameInDB": "user_id",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "用户ID",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/parquet/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/parquet/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/parquet/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "groupName",
-      "fieldNameInDB": "group_name",
-      "transportType": "string",
-      "storageType": "text",
-      "description": "用户组",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/video": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/video/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/video/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "groupId",
-      "fieldNameInDB": "group_id",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "用户组ID",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/local-upload-connectors/video/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/mqtt-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/mqtt-connectors/ping": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "orgName",
-      "fieldNameInDB": "org_name",
-      "transportType": "string",
-      "storageType": "text",
-      "description": "组织名称",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/mqtt-connectors/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/mqtt-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/mqtt-connectors/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "orgId",
-      "fieldNameInDB": "org_id",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "组织ID",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/mqtt-connectors/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/output-connectors": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/output-connectors/{id}/create-datasource": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "createdAt",
-      "fieldNameInDB": "created_at",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "创建时间",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/output-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/output-connectors/{id}/list-datasource": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
-      }
-    },
-    {
-      "fieldName": "updatedAt",
-      "fieldNameInDB": "updated_at",
-      "transportType": "int64",
-      "storageType": "bigint",
-      "description": "更新时间",
-      "setAsPrimaryKey": false,
-      "nullable": true,
-      "flatteningOptions": {
-        "dataFlattening": false,
-        "newTable": false,
-        "arrayElementTransportType": "",
-        "arrayElementStorageType": "",
-        "innerFields": null
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/added-tables/{dataSourceId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       },
-      "imageDataAttrs": {
-        "imageNameRule": "",
-        "imageNameFieldName": "",
-        "imageStorageType": "",
-        "storageRootPath": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/ping": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "postgresAttrs": {
-        "varCharLength": 0,
-        "enumeratedValues": ""
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/add-tables": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
       },
-      "questDBAttrs": {
-        "geoHashPrecision": "",
-        "symbolCache": false,
-        "symbolCapacity": 0,
-        "symbolIndex": false
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/added-tables": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/start-sync": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/stop-sync": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/sync-config": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/sync-status": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/table/{tblName}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rdb-connectors/{id}/tables": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rtsp-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rtsp-connectors/{id}/funcs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rtsp-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rtsp-connectors/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/rtsp-connectors/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/schema-based-connectors": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/schema-based-connectors/mqtt-broker-ping": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/schema-based-connectors/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/schema-based-connectors/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/schema-based-connectors/{id}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-connectors/schema-based-connectors/{id}/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-modeling/source-data-modeling": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-modeling/source-data-modeling/{id}": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-modeling/source-data-modeling/{id}/publish": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/ad-hub/data-modeling/storage-data-modeling": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-modeling/storage-data-modeling/{id}": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-modeling/storage-data-modeling/{id}/publish": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/csv": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/deltaLake": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/etl-preview-images": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/images": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/live-streaming": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/mongodb": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/parquet": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/postgres": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/postgres_new": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/questdb": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/rename": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/schema": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/status": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/usage": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/videos": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/data-sources/{id}/videos/add-file": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datapools": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datapools/{id}": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datapools/{id}/basic": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datapools/{id}/data-connectors": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/dataset-relations/query-by-dataset/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/dataset_jobs/{id}/download-link/is-ready": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets-collection/{datasetCode}": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets-collection/{datasetCode}/versions": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/calc-chart-data": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/custom-dataset-types": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/structured-datasets": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/structured-datasets/{datasetCode}/add-version": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/structured-datasets/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/unstructured-datasets": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/annots/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/annots/label-stats": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/copy": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/cover-img": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/description": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/download": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/extractframes": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/file-directory": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/file-directory/add-file": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/file-directory/count": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/file-directory/file": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/file-directory/image": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/file-directory/text-file": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/file-directory/video": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/path": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/path/rename": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/path/unzip": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/publish": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/datasets/{id}/scope": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/ad-hub/dataworkflow/datapool/{id}/datasources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/dataworkflow/datapools": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/dataworkflow/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/dataworkflow/generate-image-type-url": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/ad-hub/metadata/data-types": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dashboard/stats/dataworkflows-dataworkrecords": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/datawork-records/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/datawork-records/{id}/args": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/datawork-records/{id}/result": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/debug-settings": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/import": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/save": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/{id}/args": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/{id}/datawork-records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/{id}/export": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/{id}/publish": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/{id}/start-debug": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow-template/{id}/start-full": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/datawork-records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/datawork-records/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records/position": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records/priority": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records/{id}/cancel": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/real": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/real/debug-settings": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/real/{id}/start-debug": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/real/{id}/start-full": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkflow/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkrecord/record/{id}/data-sse": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkrecord/record/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/dataworkrecord/record/{id}/outputs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/etl/{id}/data-sources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/etl/{id}/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/schema-info": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/spark-cluster/delete-user-spark-cluster": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/spark-cluster/uspark-start": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/datawork-agent/spark-cluster/uspark-status": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/db-querier/execute-sql": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/etl/executors": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/etl/executors/async-run": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/etl/executors/run": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/etl/executors/{id}": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/etl/queriers": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/etl/queriers/run": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/adhub-bff/api/v1/etl/queriers/{id}": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/auto-annotation/template": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/auto-annotation/template/id/{templateId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/auto-annotation/template/id/{templateId}/download": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/auto-annotation/template/upload": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/auto-annotation/templates": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/configurations": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/configurations/{id}": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/correction-mapping": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/model/{id}/model-version/{versionId}/tags": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/tags-mapping": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/tags-mapping/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/task/{id}/subtask/{subtaskid}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/task/{id}/subtask/{subtaskid}/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/automatic-annot/task/{id}/subtask/{subtaskid}/stop": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/datasets/{id}/check-annot-exist": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/datasets/{id}/file-directory": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/datasets/{id}/get-image-path-item": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/getInferenceDevices/{versionId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-annots/save-annot": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-annots/save-annots": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-annots/save-tags": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-annots/sub-task/{id}/annots": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-annots/sub-task/{id}/comments": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": true,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/image-annots/sub-task/{id}/images": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-annots/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-subtasks": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-subtasks/countStatus": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-subtasks/id/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-subtasks/id/{id}/assign": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-subtasks/id/{id}/countStatus": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-subtasks/id/{id}/review": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/image-subtasks/id/{id}/sample": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-subtasks/id/{id}/set-not-available": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/image-subtasks/id/{id}/submit": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/image-tasks": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-tasks/list-cv-datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-tasks/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/image-tasks/{id}/image-labels": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-tasks/{id}/image-labels/counts": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-tasks/{id}/image-labels/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-tasks/{id}/image-subtasks/{id}/image-labels/counts": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-tasks/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/image-tasks/{id}/submit": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/images": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": true
+      },
+      "/admagic-bff/api/v1/images/id/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/images/rename-image": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/images/search-by-patterns": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/metadata/auto-annotation-req-value-sources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/metadata/auto-annotation-resp-object-mapping-types": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/metadata/auto-annotation-resp-value-functions": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/metadata/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/resource-quotas": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/studioModelVersionsByModel/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/studioModels": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/admagic-bff/api/v1/task/resource": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/apharbor/images/imageAndPublicImage": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/apharbor/images/imageVersion": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/apharbor/images/listImageWithVersion": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioGetRelatedTypes": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioGetYaml/{id}/{version}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioModel/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioModelNameCheck": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioModelVersion/{id}/{version}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioModelVersionInference/{id}/{version}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioModelVersionsByModel/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/arts-studioModels": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/comparison-sdk": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/config/platform": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/datasets/datasets-collection/{datasetCode}/versions": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/datasets/list": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/datasets/metadata/data-type": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/directories": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/envs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/files/callback": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/files/callback/cancel": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/files/webhook": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/ibnode": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/job-management/{moduleName}/jobs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/metaInfo": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/misc/job-tips": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/model/template": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/history": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/infer/images/list": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/list": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/repo/connect": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/batchReady": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/list": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/ready": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/resourcePath": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/run": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/check/runs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/image-push": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/image-push/{imagePushId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": true
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/Image": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/Image/catalog": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/Image/files": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/config/runfile": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/download/logs/triton": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/endpoints": {
+        "get": true,
+        "put": true,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/endpoints/{name}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/jupyter/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/process/option/{option}": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/code-lab/{lab}/runs/{runId}/vscode/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/comparison-ui-url": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/models": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/run-comparison-data": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/run-list-for-comparison": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}": {
+        "get": true,
+        "put": true,
+        "post": true,
+        "delete": true,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}/download-files": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}/download-ready": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}/download-start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}/fetch-logs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}/files": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}/logs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/runs/{runId}/view": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/spaces": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/trains": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/trains/{runId}/evals": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/labs/{labId}/trains/{runId}/register": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/runs/{runId}/metrics": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/projects/{id}/task-template": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/quota-limits": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/resource-quotas": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/runs/{runId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/user-group-resources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/user-group/delete-notify": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/user-group/delete-status": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v1/visualizations": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/evals/{runId}/register": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/labs/{labId}/runs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/labs/{labId}/runs/{runId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/labs/{labId}/runs/{runId}/register-log": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/labs/{labId}/runs/{runId}/unregister-log": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/labs/{labId}/trains/{runId}/visualize": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}/endpoint": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}/fetch-logs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}/files": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}/files/images": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}/list-logs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}/logs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/runs/{runId}/view": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/task-template": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/trains": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/projects/{projectId}/trains/{runId}/evals": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/quota-limits": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/ai-arts/api/v2/resource-quotas": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/inference": {
+        "get": true,
+        "put": true,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/inference/predict_info/{serviceId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/inference/serviceNode": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": true,
+        "patch": true
+      },
+      "/apedge/api/v1/apedge/inference/{serviceId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node/certificate/{nodeId}": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node/download/{nodeId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node/nodeArchType": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node/nodeType": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node/offline": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node/scripts": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node/{nodeId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/nodeGroup": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/nodeGroup/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apedge/api/v1/apedge/node{nodeId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/events/event": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/harbor/getHarborAddress": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/harbor/getPublicHarborAccess": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/harbor/getPublicHarborPullAccess": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/harbor/getUserHarborAccess": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/download-retry/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/download/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/getTaskStatus": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/getUserImgAndPublicImgNum": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/image": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/image/stopUploading": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/image/uploadFromDockerhub": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/image/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/image/{id}/scope": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/apharbor/api/v1/images/imageAndPublicImage": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/imageList/getRankingList": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/imageVersion": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/imageVersion/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/installpackage": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/installpackage/check": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/installpackage/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/installpackage/update": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/public-download-retry/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/public-download/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/publicImage": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/publicImage/editDescription": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/publicImage/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/publicImageList/getRankingList": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/publicImageVersion": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apharbor/api/v1/images/publicImageVersion/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/accessmanager/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/accessmanager/{id}/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alarm/overview": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/resource-history": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/resource-history/records/export/all": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/resource-history/{id}": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/resource-history/{id}/records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/resource-history/{id}/records/export": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/resource-rules": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/resource-rules/{id}": {
+        "get": true,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": true
+      },
+      "/apsc-bff/api/v1/alert/rule-mail-test": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/setting/mail-test": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/setting/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/setting/record-limit": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/alert/setting/sender": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/health-check": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/health-check/{id}/check": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/job-management/{moduleName}/jobs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/job-management/{moduleName}/metaInfo": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/k8s/jobs/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/k8s/jobs/queueing/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/k8s/jobs/running": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/k8s/jobs/waiting": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/k8s/jobs/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/k8s/jobs/{id}/adjust": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/apsc-bff/api/v1/license/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/license/{id}/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log-limit": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/download": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/download-all": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/download-query": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/files/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/label": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/label/values": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/query-range": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/search/history": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/log/search/history/{id}": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/mail/send": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/mail/status": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/modelarts-setting": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/nodes": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/nodes-info/annotation-npu-count": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/nodes/job-info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/nodes/overview": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/nodes/pod-info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/nodes/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org-resources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org-resources/iqi/{orgId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org-resources/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org-resources/{id}/nodes": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/dataworkflow/queued-datawork-records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/dataworkflow/queued-datawork-records/position": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/get-first/{orgId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/get/{orgId}/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/list": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/recommend/driver": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/recommend/executor": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/reset": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/restart": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/org/spark/type/{orgId}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/orgs/freeze-notify": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/orgs/freeze-status": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/orgs/unfreeze-notify": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/orgs/unfreeze-status": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/prometheus/query-range": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/recycle-bin": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/recycle-bin/overlay": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/recycle-bin/overlay-query": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/resource-quotas": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/resource-quotas/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/resource/overview": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/resources-conf/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm-k8s/jobs/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm-k8s/jobs/queueing/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm-k8s/jobs/running": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm-k8s/jobs/waiting": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm-k8s/jobs/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm-k8s/jobs/{id}/adjust": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/apsc-bff/api/v1/slurm/job": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm/job/squeue": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm/job/stop/{id}": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm/job/top/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/slurm/partition": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/system-version": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/system/certs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/user-group-resources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/user-group-resources/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/user-group/delete-notify": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/user-group/delete-status": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apsc-bff/api/v1/users": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/addCustomTask": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/commitModel": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/delCustomTask/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/downloadModelSample": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/getInferenceDevices/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/getModelExport/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/getModelVersionDownload/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/getStudioModelCount": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/listCustomTask": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/models/{org}/{ug}/{modelId}/logo/{image}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/prepareModel": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/sampleModelLink": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioCancelInferenceModelTrandformJob": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioCreateInferenceModelTransformJob": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioDeleteInferenceModelTrandformJob/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioDeleteTransformJob/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioDescribeInferenceModelTrandformJob/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioDownLoadModel": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioDownLoadModel/{id}/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioGetConvertMap": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioGetModelSourceList": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioGetRelatedTypes": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioInferenceModelTrandformJobLog": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioInferenceModelTrandformJobStatusList": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioInferenceModelTrandformJobs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioInferenceModelTransformJob/resource": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioJobNameCheck": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioJobOverview": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModel/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModelNameCheck": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModelPack": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModelVersion/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModelVersion/{id}/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModelVersionInference/{id}/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModelVersionsByModel/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioModels": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioOverview": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/studioUploadNoYamlModel": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/apworkshop/api/v1/updateLogo/{id}": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/app": {
+        "get": true,
+        "put": true,
+        "post": true,
+        "delete": false,
+        "patch": true
+      },
+      "/bffapflow/api/v1/app/port": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": true,
+        "patch": false
+      },
+      "/bffapflow/api/v1/app/static": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/app/{serviceId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task": {
+        "get": true,
+        "put": true,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/abpublish": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/abpublish/allow": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/abpublish/flowPersent": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/abpublish/start": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/abpublish/stop": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/abpublish/upgrade": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/abpublish/{serviceId}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/list": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/log": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/pods": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/predict_info/{taskId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/replicas": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/resource": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/static_info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/useGuide": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/bffapflow/api/v1/bffapflow/task/{taskId}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": true
+      },
+      "/bffapflow/api/v1/public/infer_data": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/data-sources/{id}/schema": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/datasets-collection/{datasetCode}/versions": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/dataworkflow/datapool/{id}/datasources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/dataworkflow/datapools": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/dataworkflow/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/dataworkflow/generate-image-type-url": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/ad-hub/metadata-with-children": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/dashboard/stats/projects": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/data-sources/{id}/etl-preview-images": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/project": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/project/{id}": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/project/{id}/datasets": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": true,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/project/{id}/datasources": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": true,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/project/{id}/detail": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/dataeyes/project/{id}/stats/data": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dashboard/stats/records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/datawork-records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/datawork-records/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records/position": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records/priority": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/queued-datawork-records/{id}/cancel": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/real": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/real/debug-settings": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/real/{id}/start-debug": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/real/{id}/start-full": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkflow/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkrecord/record/{id}/data-sse": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkrecord/record/{id}/info": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/dataworkrecord/record/{id}/outputs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/etl/{id}/data-sources": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/etl/{id}/datasets": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/generate-matplotlib-path/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/inferences": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/inferences/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/inferences/{id}/using-datasource": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/inferences/{id}/{option}": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/metadata": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/ml-models": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/ml-models/evaluation": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/project/{id}/dataworkflow": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/project/{id}/dataworkflow/{flowId}": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/project/{id}/dataworkflow/{flowId}/dataworkrecord/{recordId}": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/project/{id}/running-record": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/project/{id}/stats/experiment": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/schema-info": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/spark-cluster/delete-user-spark-cluster": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/spark-cluster/uspark-start": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/spark-cluster/uspark-status": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/step-template": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/dataeyes-bff/api/v1/datawork-agent/step-template/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": true
+      },
+      "/iam/api/v1/authz/endpoints": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/endpoints/modules": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/events": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/events/list/types": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/login-setting/user-account-lock": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/nodes": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/org-resources/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/org-settings/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/active": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/freeze-notify": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/freeze-restart": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/freeze-status": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/freeze-subtask-order": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/subtask-order": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/unfreeze-notify": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/unfreeze-restart": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/unfreeze-status": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/unfreeze-subtask-order": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/orgs/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/overview": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/platform/overview": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/policies": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/policies/metadata/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/policies/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/refresh": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/resources-conf/metadata": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/secret-keys": {
+        "get": true,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/secret-keys/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/iam/api/v1/user-group-resources": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-group-resources/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups/current": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups/delete-notify": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups/delete-restart": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups/delete-status": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups/org-admin-group": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups/subtask-order": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/user-groups/{id}": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/users": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/users-history/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/users/current/answers": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/users/password": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": true
+      },
+      "/iam/api/v1/users/send-verify-code": {
+        "get": false,
+        "put": false,
+        "post": true,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/users/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/iam/api/v1/users/{id}/reset-password": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/message-center/api/v1/mct/metadata/msg-types": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/message-center/api/v1/mct/msg/content/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/message-center/api/v1/mct/msg/deletes": {
+        "get": false,
+        "put": false,
+        "post": false,
+        "delete": true,
+        "patch": false
+      },
+      "/message-center/api/v1/mct/msg/reads": {
+        "get": false,
+        "put": true,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/message-center/api/v1/mct/msg/stats": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/message-center/api/v1/mct/msg/{id}": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
+      },
+      "/message-center/api/v1/mct/msgs": {
+        "get": true,
+        "put": false,
+        "post": false,
+        "delete": false,
+        "patch": false
       }
     }
-  ]
+  },
+  "msg": "ok.ActionSuccess"
 }

@@ -1,0 +1,602 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: job-scheduler-pa
+  namespace: default
+spec:
+  mtls:
+    mode: PERMISSIVE
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: job-scheduler
+
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: datahub-bff-pa
+  namespace: apulis
+spec:
+  mtls:
+    mode: PERMISSIVE
+  selector:
+    matchLabels:
+      app: datahub-bff
+
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: datahub-backend-pa
+  namespace: apulis
+spec:
+  mtls:
+    mode: PERMISSIVE
+  selector:
+    matchLabels:
+      app: datahub-backend
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: adhub-backend-pa
+  namespace: apulis
+spec:
+  mtls:
+    mode: PERMISSIVE
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: adhub-backend
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: iam-backend-pa
+  namespace: default
+spec:
+  mtls:
+    mode: PERMISSIVE
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: iam-backend
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: job-scheduler
+    app.kubernetes.io/name: job-scheduler
+  name: job-scheduler-test
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30001
+  selector:
+    app.kubernetes.io/instance: job-scheduler
+    app.kubernetes.io/name: job-scheduler
+  type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: iam-backend
+    app.kubernetes.io/name: iam-backend
+  name: iam-backend-test
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30002
+  selector:
+    app.kubernetes.io/instance: iam-backend
+    app.kubernetes.io/name: iam-backend
+  type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-test
+  namespace: kube-system
+  labels:
+    postgres-operator.crunchydata.com/cluster: pgo
+    postgres-operator.crunchydata.com/instance-set: instance1
+    postgres-operator.crunchydata.com/patroni: pgo-ha
+    postgres-operator.crunchydata.com/role: master
+spec:
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+      nodePort: 30003
+  selector:
+    postgres-operator.crunchydata.com/cluster: pgo
+    postgres-operator.crunchydata.com/instance-set: instance1
+    postgres-operator.crunchydata.com/patroni: pgo-ha
+    postgres-operator.crunchydata.com/role: master
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-test
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/instance: rabbitmq
+    app.kubernetes.io/name: rabbitmq
+    statefulset.kubernetes.io/pod-name: rabbitmq-0
+spec:
+  ports:
+    - protocol: TCP
+      port: 5672
+      targetPort: 5672
+      nodePort: 30004
+      name: msg
+    - protocol: TCP
+      port: 15672
+      targetPort: 15672
+      nodePort: 30015
+      name: web
+  selector:
+    app.kubernetes.io/instance: rabbitmq
+    app.kubernetes.io/name: rabbitmq
+    statefulset.kubernetes.io/pod-name: rabbitmq-0
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-test
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/component: master
+    app.kubernetes.io/instance: redis
+    app.kubernetes.io/name: redis
+    statefulset.kubernetes.io/pod-name: redis-master-0
+spec:
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+      nodePort: 30005
+  selector:
+    app.kubernetes.io/component: master
+    app.kubernetes.io/instance: redis
+    app.kubernetes.io/name: redis
+    statefulset.kubernetes.io/pod-name: redis-master-0
+  type: NodePort
+  externalTrafficPolicy: Cluster
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-test
+  namespace: kube-system
+  labels:
+    app: prometheus
+    component: server
+    release: prometheus
+spec:
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090
+      nodePort: 30006
+  selector:
+    app: prometheus
+    component: server
+    release: prometheus
+  type: NodePort
+  externalTrafficPolicy: Cluster
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-work-agent-test
+  namespace: apulis
+  labels:
+    aistudio: tenant-platform
+    app.kubernetes.io/instance: data-work-agent
+    app.kubernetes.io/name: data-work-agent
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30007
+  selector:
+    aistudio: tenant-platform
+    app.kubernetes.io/instance: data-work-agent
+    app.kubernetes.io/name: data-work-agent
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki-test
+  namespace: logging
+  labels:
+    app: loki
+    name: loki
+    release: loki
+    statefulset.kubernetes.io/pod-name: loki-0
+spec:
+  ports:
+    - protocol: TCP
+      port: 3100
+      targetPort: 3100
+      nodePort: 30008
+  selector:
+    app: loki
+    name: loki
+    release: loki
+    statefulset.kubernetes.io/pod-name: loki-0
+  type: NodePort
+  externalTrafficPolicy: Cluster
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-test
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/name: grafana
+spec:
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30009
+  selector:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/name: grafana
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: file-server-test
+  namespace: apulis
+  labels:
+    app.kubernetes.io/instance: file-server
+    app.kubernetes.io/name: file-server
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30017
+  selector:
+    app.kubernetes.io/instance: file-server
+    app.kubernetes.io/name: file-server
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apworkshop-backend-test
+  namespace: apulis
+  labels:
+    app: apworkshop-backend
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30012
+  selector:
+    app: apworkshop-backend
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: aom-backend
+    app.kubernetes.io/name: aom-backend
+  name: aom-backend-test
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30013
+  selector:
+    app.kubernetes.io/instance: aom-backend
+    app.kubernetes.io/name: aom-backend
+  type: NodePort
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bff-apflow-test
+  namespace: apulis
+  labels:
+    app: bff-apflow
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30014
+  selector:
+    app: bff-apflow
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adhub-backend-test
+  namespace: apulis
+  labels:
+    app: adhub-backend
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30016
+  selector:
+    app.kubernetes.io/instance: adhub-backend
+    app.kubernetes.io/name: adhub-backend
+  type: NodePort
+  externalTrafficPolicy: Cluster
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pch-bff-pipeline-test
+  namespace: apulis
+  labels:
+    app: pch-bff-pipeline
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30018
+  selector:
+    app.kubernetes.io/instance: pch-bff-pipeline
+    app.kubernetes.io/name: pch-bff-pipeline
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ruid-test
+  namespace: default
+  labels:
+    app: ruid
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30019
+  selector:
+    app.kubernetes.io/instance: ruid
+    app.kubernetes.io/name: ruid
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wsconn-test
+  namespace: default
+  labels:
+    app: wsconn
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30020
+  selector:
+    app.kubernetes.io/instance: wsconn
+    app.kubernetes.io/name: wsconn
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nats-test
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/instance: nats
+    app.kubernetes.io/name: nats
+spec:
+  ports:
+    - protocol: TCP
+      port: 4222
+      targetPort: 4222
+      nodePort: 30021
+  selector:
+    app.kubernetes.io/instance: nats
+    app.kubernetes.io/name: nats
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pipeline-grpc-test
+  namespace: apulis
+  labels:
+    app.kubernetes.io/instance: pipeline
+    app.kubernetes.io/name: pipeline
+spec:
+  ports:
+    - protocol: TCP
+      port: 81
+      targetPort: 81
+      nodePort: 30022
+  selector:
+    app.kubernetes.io/instance: pipeline
+    app.kubernetes.io/name: pipeline
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admagic-backend-test
+  namespace: apulis
+  labels:
+    app.kubernetes.io/instance: admagic-backend
+    app.kubernetes.io/name: admagic-backend
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30023
+  selector:
+    app.kubernetes.io/instance: admagic-backend
+    app.kubernetes.io/name: admagic-backend
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admagic-bff-test
+  namespace: apulis
+  labels:
+    app.kubernetes.io/instance: admagic-bff
+    app.kubernetes.io/name: admagic-bff
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30024
+  selector:
+    app.kubernetes.io/instance: admagic-bff
+    app.kubernetes.io/name: admagic-bff
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datahub-backend-test
+  namespace: apulis
+  labels:
+    app.kubernetes.io/instance: datahub-backend
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30025
+  selector:
+    app: datahub-backend
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datahub-bff-test
+  namespace: apulis
+  labels:
+    app: datahub-bff
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30026
+  selector:
+    app: datahub-bff
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-test
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/instance: minio
+    app.kubernetes.io/name: minio
+spec:
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+      nodePort: 30010
+      name: web
+    - protocol: TCP
+      port: 9001
+      targetPort: 9001
+      nodePort: 30011
+      name: console
+  selector:
+    app.kubernetes.io/instance: minio
+    app.kubernetes.io/name: minio
+  type: NodePort
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-lab-test
+  namespace: apulis
+  labels:
+    app.kubernetes.io/name: ai-lab
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30027
+  selector:
+    app.kubernetes.io/name: ai-lab
+  type: NodePort
+  externalTrafficPolicy: Cluster

@@ -1,0 +1,354 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "number"
+    },
+    "msg": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "modelName": {
+          "type": "string"
+        },
+        "modelVersion": {
+          "type": "string"
+        },
+        "manifest": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "null"
+            },
+            "labels": {
+              "type": "null"
+            },
+            "props": {
+              "type": "null"
+            },
+            "templates": {
+              "type": "object",
+              "properties": {
+                "train": {
+                  "type": "object",
+                  "properties": {
+                    "enable": {
+                      "type": "boolean"
+                    },
+                    "userParams": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    },
+                    "sysParams": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "desc": {
+                            "type": "string"
+                          },
+                          "arg": {
+                            "type": "string"
+                          },
+                          "required": {
+                            "type": "boolean"
+                          },
+                          "options": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "desc",
+                          "arg",
+                          "required",
+                          "options"
+                        ]
+                      }
+                    },
+                    "startup": {
+                      "type": "object",
+                      "properties": {
+                        "cmd": {
+                          "type": "string"
+                        },
+                        "entry": {
+                          "type": "string"
+                        },
+                        "entrypoint": {
+                          "type": "string"
+                        },
+                        "conda": {
+                          "type": "string"
+                        },
+                        "devices": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "memory": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "series": {
+                                "type": "string"
+                              },
+                              "arch": {
+                                "type": "string"
+                              },
+                              "deviceNum": {
+                                "type": "number"
+                              },
+                              "cpu": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        },
+                        "engine": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "visualization": {
+                      "type": "string"
+                    },
+                    "distributed": {
+                      "type": "boolean"
+                    },
+                    "cloudTrain": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "infer": {
+                  "type": "object",
+                  "properties": {
+                    "enable": {
+                      "type": "boolean"
+                    },
+                    "startup": {
+                      "type": "object",
+                      "properties": {
+                        "cmd": {
+                          "type": "string"
+                        },
+                        "entry": {
+                          "type": "string"
+                        },
+                        "entrypoint": {
+                          "type": "string"
+                        },
+                        "conda": {
+                          "type": "string"
+                        },
+                        "devices": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "memory": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "series": {
+                                "type": "string"
+                              },
+                              "arch": {
+                                "type": "string"
+                              },
+                              "deviceNum": {
+                                "type": "number"
+                              },
+                              "cpu": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        },
+                        "engine": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "userParams": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "default": {
+                            "type": "string",
+                            "description": "默认值"
+                          },
+                          "options": {
+                            "type": "string"
+                          },
+                          "desc": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "type",
+                          "default",
+                          "options",
+                          "desc"
+                        ]
+                      }
+                    },
+                    "sysParams": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "desc": {
+                            "type": "string"
+                          },
+                          "arg": {
+                            "type": "string"
+                          },
+                          "required": {
+                            "type": "boolean"
+                          },
+                          "options": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "desc",
+                          "arg",
+                          "required",
+                          "options"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "enable",
+                    "userParams"
+                  ]
+                },
+                "eval": {
+                  "type": "object",
+                  "properties": {
+                    "enable": {
+                      "type": "boolean"
+                    },
+                    "userParams": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sysParams": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "desc": {
+                            "type": "string"
+                          },
+                          "arg": {
+                            "type": "string"
+                          },
+                          "required": {
+                            "type": "boolean"
+                          },
+                          "options": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "desc",
+                          "arg",
+                          "required",
+                          "options"
+                        ]
+                      }
+                    },
+                    "startup": {
+                      "type": "object",
+                      "properties": {
+                        "cmd": {
+                          "type": "string"
+                        },
+                        "entry": {
+                          "type": "string"
+                        },
+                        "entrypoint": {
+                          "type": "string"
+                        },
+                        "conda": {
+                          "type": "string"
+                        },
+                        "devices": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "memory": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "series": {
+                                "type": "string"
+                              },
+                              "arch": {
+                                "type": "string"
+                              },
+                              "deviceNum": {
+                                "type": "number"
+                              },
+                              "cpu": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        },
+                        "engine": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

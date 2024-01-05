@@ -44,12 +44,16 @@ func InitRouter() *gin.Engine {
 	//r.NoRoute(HandleNotFound)
 
 	r.Use(gin.Recovery())
-
+	r.Use(logging.Middleware())
 	r.POST("/test", func(c *gin.Context) {
 		var req interface{}
 		c.ShouldBindJSON(&req)
 		logging.Info().Msg(c.Request.URL.RawQuery)
 	})
-
+	r.POST("/resource/*filepath", func(c *gin.Context) {
+		var req interface{}
+		c.ShouldBindJSON(&req)
+		logging.Info().Str("filepath", c.Query("filepath")).Msg(c.Request.URL.RawQuery)
+	})
 	return r
 }

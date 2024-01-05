@@ -45,3 +45,16 @@ func Level1QueryConvert(level1Query map[string]string) {
 type NextRecheckQuery struct {
 	Level1Query map[string]string `json:"level1Query"`
 }
+
+type DTO struct {
+	Envs map[string]string `json:"envs"`
+}
+
+func TestDto(t *testing.T) {
+	a := DTO{Envs: map[string]string{}}
+	SetClientId(a.Envs, "org")
+	fmt.Println(a)
+}
+func SetClientId(envs map[string]string, groupName string) {
+	envs["EnvOrionClientId"] = groupName
+}

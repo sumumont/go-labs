@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/go-labs/internal/logging"
 	"github.com/go-labs/internal/utils"
+	"github.com/rs/xid"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -51,17 +52,18 @@ func InferImage(dirPath string, fileName string) error {
 	//src := "D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\模型适配\\长鑫存储\\数据集\\coco128\\images\\train2017\\" + fileName
 	src := filepath.Join(dirPath, fileName)
 	imageBase := ReadImageBase64(src)
-	url := "https://192.168.2.75:443/inference/router-r7q2pwnanqbbusj5g4bpvn/api/v1/scenes/20/infer"
+	url := "https://192.168.3.234:443/inference/router-npr66jwavup47xgupgvpa3/api/v1/scenes/6/infer"
+	traceId := xid.New().String()
 	header := map[string]string{
 		//"Content-Type": 'application/json',
-		"Traceid": "88888888",
+		"Traceid": traceId,
 		//"X-Apulis-Infer-Result-Store": "N",
 	}
 	now := utils.GetNowTime()
 	param := InferData{
 		RequestId: fmt.Sprintf("%v", now),
 		Tags: map[string]string{
-			"productSN": "cxcc-p1",
+			"productSN": "yinyan-p1",
 		},
 		DataFormat:    "image/jpg",
 		DataEncoding:  "base64",

@@ -11,7 +11,10 @@ package logging
 
 import (
 	"bytes"
+	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
+	"github.com/rs/xid"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
 	"io"
@@ -70,23 +73,23 @@ func SetOutput(w io.Writer) zerolog.Logger {
 }
 
 func Debug() *zerolog.Event {
-	return logger.Debug().Caller().Str(goroutineId, GetGoroutineId())
+	return logger.Debug().Caller()
 }
 
 func Info() *zerolog.Event {
-	return logger.Info().Caller().Str(goroutineId, GetGoroutineId())
+	return logger.Info().Caller()
 }
 
 func Warn() *zerolog.Event {
-	return logger.Warn().Caller().Str(goroutineId, GetGoroutineId())
+	return logger.Warn().Caller()
 }
 
 func Error(err error) *zerolog.Event {
-	return logger.Error().Caller().Str(goroutineId, GetGoroutineId()).Stack().Err(errors.New(err.Error()))
+	return logger.Error().Caller().Stack().Err(errors.New(err.Error()))
 }
 
 func Fatal() *zerolog.Event {
-	return logger.Fatal().Caller().Str(goroutineId, GetGoroutineId())
+	return logger.Fatal().Caller()
 }
 
 // 后续接入了链路追踪，可以从ctx里面取出来
@@ -101,4 +104,23 @@ func GetGID() uint64 {
 	b = b[:bytes.IndexByte(b, ' ')]
 	n, _ := strconv.ParseUint(string(b), 10, 64)
 	return n
+}
+
+var traceId = "traceId"
+
+func Middleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// creates a correlation_id in the request header if not present
+		id := c.Request.Header.Get(traceId)
+		if id == "" {
+			id = xid.New().String()
+			c.Request.Header.Add(traceId, id)
+		}
+		// add correlationID to the logger context
+		fmt.Println("traceId", id)
+		logger = zerolog.New(os.Stdout).With().Logger()
+		logger.UpdateContext(func(c zerolog.Context) zerolog.Context {
+			return c.Str(traceId, id)
+		})
+	}
 }

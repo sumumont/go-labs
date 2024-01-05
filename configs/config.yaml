@@ -5,13 +5,14 @@ debug: true # gin debug模式
 
 db:
   serverType: postgres # 数据库服务器类型当前模板可选(postgres postgresql)
-  host: 192.168.2.92
-  port: 28146
+  host: 192.168.0.23
+  port: 31003
   username: postgres
-  password: "YCeKKOCVCy3b94FF"
+  password: "ZXBPLpGAtjbxnDly"
   database: hysen_test # db名称
-  maxOpenConns: 10   # 数据库连接池最大数量
-  maxIdleConns: 2    # 数据库空闲连接池最大数量
-  maxConnLifeTime: 7200 # 数据库连接池最大重用时间
+  maxOpenConns: 5   # 数据库连接池最大数量
+  maxIdleConns: 1    # 数据库空闲连接池最大数量
+  maxConnLifeTime: 20 # 数据库连接池最大重用时间
+  maxIdleTime: 10
   debug:        true #数据库debug模式
   sslmode:      require

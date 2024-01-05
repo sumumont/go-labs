@@ -7,6 +7,7 @@ import (
 	"github.com/go-labs/internal/logging"
 	"github.com/go-labs/internal/models"
 	"github.com/go-labs/internal/utils"
+	"gorm.io/gorm"
 	"testing"
 	"time"
 )
@@ -17,7 +18,7 @@ func TestDb(t *testing.T) {
 	err := dao.ExecDBTx(func(ctx context.Context) error {
 
 		var products []models.Product
-		for i := 1; i <= 1; i++ {
+		for i := 1; i <= 20; i++ {
 			attr := models.JsonB{}
 			now := utils.GetNowTime()
 			product := models.Product{
@@ -31,7 +32,7 @@ func TestDb(t *testing.T) {
 			attr["num"] = product.Num
 			product.Attributes = attr
 			products = append(products, product)
-			time.Sleep(time.Second)
+			//time.Sleep(time.Second)
 		}
 		err := dao.GetProductDao().SaveOrUpdates(ctx, products, []string{"num"})
 		if err != nil {
@@ -66,7 +67,33 @@ func TestQuery(t *testing.T) {
 
 }
 func TestQuery1(t *testing.T) {
+	// 设置 GORM 的连接参数
 
+	initDb()
+
+	tx := dao.GetDB(context.Background())
+	// 连续占用连接
+	for i := 1; i <= 20; i++ {
+		go occupyConnection(tx, i)
+	}
+
+	// 阻止程序退出
+	select {}
+}
+
+func occupyConnection(db *gorm.DB, id int) {
+	for {
+		attr := models.JsonB{}
+		attr["name"] = "hysen"
+		attr["num"] = 1
+		ids, err := dao.GetProductDao().FindByAttr(context.Background(), attr)
+		if err != nil {
+			panic(err)
+		}
+		logging.Debug().Interface("num", id).Interface("ids", ids).Send()
+
+		time.Sleep(120 * time.Second)
+	}
 }
 func initDb() {
 	_, err := configs.InitConfig("../configs")

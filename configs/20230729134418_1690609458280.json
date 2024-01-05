@@ -1,0 +1,95 @@
+{
+  "type": "object",
+  "title": "empty object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "模型名称"
+    },
+    "id": {
+      "type": "number"
+    },
+    "sourceType": {
+      "type": "string",
+      "description": "来源"
+    },
+    "tags": {
+      "type": "object",
+      "properties": {},
+      "description": "预留一些可扩展的字段,k，v形式"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "业务标签"
+    },
+    "description": {
+      "type": "string",
+      "description": "描述"
+    },
+    "parentModel": {
+      "type": "object",
+      "properties": {
+        "modelId": {
+          "type": "number"
+        },
+        "modelVersionId": {
+          "type": "number"
+        },
+        "modelName": {
+          "type": "string"
+        },
+        "modelVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "modelId",
+        "modelVersion",
+        "modelName",
+        "modelVersionId"
+      ],
+      "description": "从哪个模型衍生过来的"
+    },
+    "userInfo": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "number"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "number"
+        },
+        "groupName": {
+          "type": "string"
+        },
+        "orgId": {
+          "type": "number"
+        },
+        "orgName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "userId",
+        "orgName",
+        "orgId",
+        "groupName",
+        "groupId",
+        "userName"
+      ],
+      "description": "创建人"
+    }
+  },
+  "required": [
+    "name",
+    "sourceType",
+    "description",
+    "id"
+  ]
+}

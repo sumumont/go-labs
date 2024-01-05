@@ -1,0 +1,844 @@
+{
+  "dataPoolId": 1,
+  "name": "deasy",
+  "description": "",
+  "protocolType": "http",
+  "storageMethod": "postgres_new",
+  "schema": [
+    {
+      "fieldName": "requestId",
+      "fieldNameInDB": "requestid",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "",
+      "setAsPrimaryKey": true,
+      "nullable": false,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "requestParams",
+      "fieldNameInDB": "requestparams",
+      "transportType": "map",
+      "storageType": "jsonb",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": false,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "tags",
+      "fieldNameInDB": "tags",
+      "transportType": "map",
+      "storageType": "more",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": false,
+      "flatteningOptions": {
+        "dataFlattening": true,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": [
+          {
+            "fieldName": "productName",
+            "fieldNameInDB": "product_name",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "serialNumber",
+            "fieldNameInDB": "serial_number",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "productSN",
+            "fieldNameInDB": "product_sn",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          }
+        ]
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "predictBBoxes",
+      "fieldNameInDB": "predictbboxes",
+      "transportType": "list",
+      "storageType": "sublist",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": true,
+        "newTable": true,
+        "arrayElementTransportType": "map",
+        "arrayElementStorageType": "more",
+        "innerFields": [
+          {
+            "fieldName": "x0",
+            "fieldNameInDB": "x0",
+            "transportType": "float64",
+            "storageType": "double_precision",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "y0",
+            "fieldNameInDB": "y0",
+            "transportType": "float64",
+            "storageType": "double_precision",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "x1",
+            "fieldNameInDB": "x1",
+            "transportType": "float64",
+            "storageType": "double_precision",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "y1",
+            "fieldNameInDB": "y1",
+            "transportType": "float64",
+            "storageType": "double_precision",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "score",
+            "fieldNameInDB": "score",
+            "transportType": "float64",
+            "storageType": "double_precision",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "labelName",
+            "fieldNameInDB": "label_name",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "labelId",
+            "fieldNameInDB": "label_id",
+            "transportType": "int64",
+            "storageType": "bigint",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "result",
+            "fieldNameInDB": "result",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          }
+        ]
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "predictLabels",
+      "fieldNameInDB": "predictlabels",
+      "transportType": "list",
+      "storageType": "sublist",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": true,
+        "newTable": true,
+        "arrayElementTransportType": "map",
+        "arrayElementStorageType": "more",
+        "innerFields": [
+          {
+            "fieldName": "labelId",
+            "fieldNameInDB": "label_id",
+            "transportType": "int64",
+            "storageType": "bigint",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "labelName",
+            "fieldNameInDB": "label_name",
+            "transportType": "string",
+            "storageType": "text",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          },
+          {
+            "fieldName": "score",
+            "fieldNameInDB": "score",
+            "transportType": "float64",
+            "storageType": "double_precision",
+            "description": "",
+            "setAsPrimaryKey": false,
+            "nullable": true,
+            "flatteningOptions": {
+              "dataFlattening": false,
+              "newTable": false,
+              "arrayElementTransportType": "",
+              "arrayElementStorageType": "",
+              "innerFields": null
+            },
+            "imageDataAttrs": {
+              "imageNameRule": "",
+              "imageNameFieldName": "",
+              "imageStorageType": "",
+              "storageRootPath": ""
+            },
+            "postgresAttrs": {
+              "varCharLength": 0,
+              "enumeratedValues": ""
+            },
+            "questDBAttrs": {
+              "geoHashPrecision": "",
+              "symbolCache": false,
+              "symbolCapacity": 0,
+              "symbolIndex": false
+            }
+          }
+        ]
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "requestName",
+      "fieldNameInDB": "request_name",
+      "transportType": "string",
+      "storageType": "text",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": false,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "requestTime",
+      "fieldNameInDB": "request_time",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": false,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "generateDateTime",
+      "fieldNameInDB": "generate_date_time",
+      "transportType": "int64",
+      "storageType": "bigint",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": false,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "attributes",
+      "fieldNameInDB": "attributes",
+      "transportType": "map",
+      "storageType": "jsonb",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "inferenceTime",
+      "fieldNameInDB": "inference_time",
+      "transportType": "map",
+      "storageType": "jsonb",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "result",
+      "fieldNameInDB": "result",
+      "transportType": "string",
+      "storageType": "character_varying",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 20,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    },
+    {
+      "fieldName": "score",
+      "fieldNameInDB": "score",
+      "transportType": "float64",
+      "storageType": "double_precision",
+      "description": "",
+      "setAsPrimaryKey": false,
+      "nullable": true,
+      "flatteningOptions": {
+        "dataFlattening": false,
+        "newTable": false,
+        "arrayElementTransportType": "",
+        "arrayElementStorageType": "",
+        "innerFields": null
+      },
+      "imageDataAttrs": {
+        "imageNameRule": "",
+        "imageNameFieldName": "",
+        "imageStorageType": "",
+        "storageRootPath": ""
+      },
+      "postgresAttrs": {
+        "varCharLength": 0,
+        "enumeratedValues": ""
+      },
+      "questDBAttrs": {
+        "geoHashPrecision": "",
+        "symbolCache": false,
+        "symbolCapacity": 0,
+        "symbolIndex": false
+      }
+    }
+  ]
+}
