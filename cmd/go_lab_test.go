@@ -4,11 +4,20 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"github.com/google/uuid"
-	"regexp"
+	"github.com/fatih/color"
+	"github.com/go-labs/internal/http_client"
+	"github.com/go-labs/internal/logging"
+	"github.com/gosuri/uiprogress"
+	"github.com/robfig/cron/v3"
+	"github.com/vbauerster/mpb/v8"
+	"github.com/vbauerster/mpb/v8/decor"
+	"math/rand"
+	"net/http"
+	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 )
@@ -126,7 +135,7 @@ type Metadata struct {
 }
 
 func TestTimeFormat(t *testing.T) {
-	now := time.Now().Format("20060102150405")
+	now := time.Now().Format("20060102150405001")
 	fmt.Println("now:", now)
 }
 
@@ -183,14 +192,27 @@ func TestSort(t *testing.T) {
 }
 
 func TestReg(t *testing.T) {
-	//regex := regexp.MustCompile("^[a-zA-Z0-9_\u4e00-\u9fa5]+$")
-	regex := regexp.MustCompile("^[\u4e00-\u9fa5_a-zA-Z0-9-]+$")
-	str := "--大河坎打-."
-	var result = regex.MatchString(str)
-	fmt.Println(result)
+	tmp := "YXB1bGlzLmNvbQ=="
+	vstr, _ := base64.StdEncoding.DecodeString(tmp)
+	fmt.Println(string(vstr))
 
-	uid := uuid.New().String()
-	fmt.Println(uid)
+	fmt.Println(parseId(tmp + "MQ=="))
+}
+func parseId(idString string) (int64, error) {
+	prefix := base64.StdEncoding.EncodeToString([]byte("apulis.com"))
+	if !strings.HasPrefix(idString, prefix) {
+		return 0, errors.New("id format not right")
+	}
+	idStr := strings.TrimPrefix(idString, prefix)
+	idBytes, err := base64.StdEncoding.DecodeString(idStr)
+	if err != nil {
+		return 0, err
+	}
+	id, err := strconv.ParseInt(string(idBytes), 10, 64)
+	if err != nil {
+		return 0, err
+	}
+	return id, nil
 }
 
 func TestBase64(t *testing.T) {
@@ -268,4 +290,233 @@ func TestReflect(t *testing.T) {
 	proto := domains[0]
 	fmt.Println(domain, proto)
 
+}
+
+func TestArray1(t *testing.T) {
+	endStatus := 357 & 0xFF
+	fmt.Println(endStatus)
+}
+
+func Append1(a []string) {
+	s := []string{"153", "234432", "13123"}
+	a = append(a, s...)
+	fmt.Println(a)
+}
+
+func TestBar(t *testing.T) {
+	waitTime := time.Millisecond * 100
+	uiprogress.Start()
+
+	// start the progress bars in go routines
+	var wg sync.WaitGroup
+
+	bar1 := uiprogress.AddBar(20).AppendCompleted().PrependElapsed()
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		for bar1.Incr() {
+			time.Sleep(waitTime)
+		}
+	}()
+
+	bar2 := uiprogress.AddBar(40).AppendCompleted().PrependElapsed()
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		for bar2.Incr() {
+			time.Sleep(waitTime)
+		}
+	}()
+
+	time.Sleep(time.Second)
+	bar3 := uiprogress.AddBar(20).PrependElapsed().AppendCompleted()
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		for i := 1; i <= bar3.Total; i++ {
+			bar3.Set(i)
+			time.Sleep(waitTime)
+		}
+	}()
+
+	// wait for all the go routines to finish
+	wg.Wait()
+}
+func TestBar4(t *testing.T) {
+	fmt.Println("zzzzzz")
+	for i := 0; i < 100; i++ {
+		fmt.Printf("\r%d", i)
+		time.Sleep(500 * time.Millisecond)
+	}
+}
+
+func TestBar3(t *testing.T) {
+	p := mpb.New(
+		mpb.WithOutput(color.Output),
+		mpb.WithAutoRefresh(),
+	)
+	red, green := color.New(color.FgRed), color.New(color.FgGreen)
+	task := fmt.Sprintf("Task#%02d:", 1)
+	queue := make([]*mpb.Bar, 2)
+	queue[0] = p.AddBar(rand.Int63n(201)+100,
+		mpb.PrependDecorators(
+			decor.Name(task, decor.WC{C: decor.DindentRight | decor.DextraSpace}),
+			decor.Name("downloading", decor.WCSyncSpaceR),
+			decor.CountersNoUnit("%d / %d", decor.WCSyncWidth),
+		),
+		mpb.AppendDecorators(
+			decor.OnComplete(decor.Percentage(decor.WC{W: 5}), "done"),
+		),
+	)
+	queue[1] = p.AddBar(rand.Int63n(101)+100,
+		mpb.BarQueueAfter(queue[0]), // this bar is queued
+		mpb.BarFillerClearOnComplete(),
+		mpb.PrependDecorators(
+			decor.Name(task, decor.WC{C: decor.DindentRight | decor.DextraSpace}),
+			decor.OnCompleteMeta(
+				decor.OnComplete(
+					decor.Meta(decor.Name("installing", decor.WCSyncSpaceR), toMetaFunc(red)),
+					"done!",
+				),
+				toMetaFunc(green),
+			),
+			decor.OnComplete(decor.EwmaETA(decor.ET_STYLE_MMSS, 0, decor.WCSyncWidth), ""),
+		),
+		mpb.AppendDecorators(
+			decor.OnComplete(decor.Percentage(decor.WC{W: 5}), ""),
+		),
+	)
+
+	go func() {
+		for _, b := range queue {
+			complete(b)
+		}
+	}()
+	p.Wait()
+}
+func TestBar2(t *testing.T) {
+	numBars := 1
+	// to support color in Windows following both options are required
+	p := mpb.New(
+		mpb.WithOutput(color.Output),
+		mpb.WithAutoRefresh(),
+	)
+
+	red, green := color.New(color.FgRed), color.New(color.FgGreen)
+
+	for i := 0; i < numBars; i++ {
+		task := fmt.Sprintf("Task#%02d:", i)
+		queue := make([]*mpb.Bar, 2)
+		queue[0] = p.AddBar(rand.Int63n(201)+100,
+			mpb.PrependDecorators(
+				decor.Name(task, decor.WC{C: decor.DindentRight | decor.DextraSpace}),
+				decor.Name("downloading", decor.WCSyncSpaceR),
+				decor.CountersNoUnit("%d / %d", decor.WCSyncWidth),
+			),
+			mpb.AppendDecorators(
+				decor.OnComplete(decor.Percentage(decor.WC{W: 5}), "done"),
+			),
+		)
+		queue[1] = p.AddBar(rand.Int63n(101)+100,
+			mpb.BarQueueAfter(queue[0]), // this bar is queued
+			mpb.BarFillerClearOnComplete(),
+			mpb.PrependDecorators(
+				decor.Name(task, decor.WC{C: decor.DindentRight | decor.DextraSpace}),
+				decor.OnCompleteMeta(
+					decor.OnComplete(
+						decor.Meta(decor.Name("installing", decor.WCSyncSpaceR), toMetaFunc(red)),
+						"done!",
+					),
+					toMetaFunc(green),
+				),
+				decor.OnComplete(decor.EwmaETA(decor.ET_STYLE_MMSS, 0, decor.WCSyncWidth), ""),
+			),
+			mpb.AppendDecorators(
+				decor.OnComplete(decor.Percentage(decor.WC{W: 5}), ""),
+			),
+		)
+
+		go func() {
+			for _, b := range queue {
+				complete(b)
+			}
+		}()
+	}
+
+	p.Wait()
+}
+func complete(bar *mpb.Bar) {
+	max := 100 * time.Millisecond
+	for !bar.Completed() {
+		// start variable is solely for EWMA calculation
+		// EWMA's unit of measure is an iteration's duration
+		start := time.Now()
+		time.Sleep(time.Duration(rand.Intn(10)+1) * max / 10)
+		// we need to call EwmaIncrement to fulfill ewma decorator's contract
+		bar.EwmaIncrInt64(rand.Int63n(5)+1, time.Since(start))
+	}
+}
+
+func toMetaFunc(c *color.Color) func(string) string {
+	return func(s string) string {
+		return c.Sprint(s)
+	}
+}
+
+type A struct {
+	Name string
+}
+
+func (a A) Say() {
+	fmt.Printf("hello")
+}
+
+type Out1 interface {
+	Say()
+}
+
+type B struct {
+}
+
+func (b B) Say() {
+	fmt.Printf("hello2")
+}
+
+func SendRequest[Res Out1](a Out1) error {
+	a.Say()
+	return nil
+}
+
+func TestAny(t *testing.T) {
+	a := A{}
+	_ = SendRequest[Out1](a)
+}
+
+func TestHeader(t *testing.T) {
+	headers := http.Header{}
+	headers.Set("Authorization", "Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkwNDQ1NzQsImdyb3VwX2FjY291bnQiOiJvcmdhZG1pbi11c2VyLWdyb3VwIiwiZ3JvdXBfaWQiOjczNDE5NjUwLCJvcmdhbml6YXRpb25fYWNjb3VudCI6ImFwdWxpcyIsIm9yZ2FuaXphdGlvbl9pZCI6MSwib3JnYW5pemF0aW9uX3N0YXR1cyI6ImluVXNlIiwib3JpZ19pYXQiOjE3MTY0NTI1NzQsInJvbGUiOjIsInVzYWdlIjoiIiwidXNlcl9pZCI6MTI1NDg2MzUxLCJ1c2VyX25hbWUiOiJoeXNlbi1vcmcifQ.-8vmQQj57k8nZqSaVW8hZOu4x5gX0ju2p2T1U1-dLeM")
+	for i := 0; i < 1000; i++ {
+		headers.Add("clusterId", "0")
+		headers.Set("Content-Type", "application/json")
+
+	}
+	rsp, err := http_client.DoRequest("http://127.0.0.1:8001/test/123", "GET", headers, nil)
+	//_, err = AIStudioRequestWithData(apHarborUrl.String(), "GET", headers, nil, data3)
+	if err != nil {
+		fmt.Printf("err: %v", err.Error())
+	}
+	if rsp.Body != nil {
+		fmt.Print(rsp.Body)
+	}
+}
+func TestAny1(t *testing.T) {
+	c := cron.New()
+	c.AddFunc("* * * * * ?", func() {
+		logging.Debug().Msg("hello 1")
+	})
+	c.Start()
+	signals(c)
+}
+func TestAny2(t *testing.T) {
+	fmt.Println(filepath.Dir("/a/b/"))
 }

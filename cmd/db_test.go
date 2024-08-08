@@ -105,6 +105,20 @@ func initDb() {
 		panic(err)
 	}
 }
+func TestForeignKey(t *testing.T) {
+	initDb()
+	err := dao.ExecDBTx(func(ctx context.Context) error {
+		result, err := dao.GetTheClassDao().FindById(ctx, 1)
+		if err != nil {
+			return err
+		}
+		logging.Debug().Interface("result", result).Send()
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+}
 func TestDelete(t *testing.T) {
 	initDb()
 	defer utils.TimeCost("delete")()

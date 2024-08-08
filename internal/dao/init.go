@@ -75,7 +75,7 @@ func InitDb() error {
 
 		dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s", dbConf.Host,
 			dbConf.Port, dbConf.Username, dbConf.Password, dbConf.Database, dbConf.Sslmode)
-		database, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+		database, err = gorm.Open(postgres.Open(dsn), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true})
 		if err != nil {
 			logging.Error(err).Send()
 			return err
@@ -173,6 +173,7 @@ func initTables() error {
 
 	modelTypes = append(modelTypes, &models.School{})
 	modelTypes = append(modelTypes, &models.Student{})
+	modelTypes = append(modelTypes, &models.TheClass{})
 	for _, modelType := range modelTypes {
 		err := autoMigrateTable(modelType)
 		if err != nil {

@@ -45,10 +45,10 @@ func InitRouter() *gin.Engine {
 
 	r.Use(gin.Recovery())
 	r.Use(logging.Middleware())
-	r.POST("/test", func(c *gin.Context) {
-		var req interface{}
-		c.ShouldBindJSON(&req)
-		logging.Info().Msg(c.Request.URL.RawQuery)
+	r.GET("/test/:id", func(c *gin.Context) {
+		var req TestReq
+		c.ShouldBindUri(&req)
+		logging.Info().Interface("req", req).Send()
 	})
 	r.POST("/resource/*filepath", func(c *gin.Context) {
 		var req interface{}
@@ -56,4 +56,8 @@ func InitRouter() *gin.Engine {
 		logging.Info().Str("filepath", c.Query("filepath")).Msg(c.Request.URL.RawQuery)
 	})
 	return r
+}
+
+type TestReq struct {
+	Id string `json:"id" uri:"id"`
 }

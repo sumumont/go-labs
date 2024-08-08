@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: train
+metadata:
+  name: test1
+spec:
+  # 在哪个项目下训练
+  projectId: 14
+  # 模型来自于哪里 library:模型库  mySpace: 个人空间
+  modelSource: "library"
+  # 模型名称
+  modelName: "test-0711"
+  # 模型id
+  modelId: "42"
+  # 模型版本id
+  modelVersion: "2205013"
+  # 模型的自定义参数
+  customParams:
+    - name: "config",
+      type: "string",
+      default: "configs/AD_mlops/AD_mlops_test18.py",
+      required: true,
+      desc: "Model config relative path",
+      editable: false,
+      value: "configs/AD_mlops/AD_mlops_test18.py"
+    - name: "epoch",
+      type: "int",
+      default: "20",
+      required: true,
+      desc: "epoch size",
+      editable: true,
+      value": "20"
+  # 本次训练用到哪些数据集
+  datasets:
+    #数据集id
+    - id: "1070",
+      #数据集名称
+      name: "VPD_VEH20240102-20240103",
+      # 流式数据集表达式
+      query: "(collected_at >= '2024-01-2 00:00:00' and collected_at < '2024-01-3 00:00:00' and cam_id = 'cam13' and vehicle_name='A13Y_N1261' and frame_id in ('1','5','9','13','17','21','25','29','33','37','41','45','49','53','57','61','65','69','73','77','81','85','89','93','97')) and sensor_type = 'camera' ",
+      # 数据集来源 datastream: 流式数据集
+      sourceType: "datastream"
+  # 是否检查排队: 1将提前检查资源是否充足，如果检查到资源不足，则无法提交任务 0:无论如何提交任务
+  checkUsed: 1
+  resourceType: "GPU"
+  # 选择的资源规格
+  quota:
+    # 资源规格id 通过 "aion get quota -arch cpu"命令获取资源规格信息
+    quotaId: 44,
+    # 训练所需要的节点数
+    node: 1,
+    # 训练所需要的卡数 如果资源规格有卡的话
+    num: 1,

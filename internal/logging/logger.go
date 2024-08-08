@@ -21,6 +21,7 @@ import (
 	"os"
 	"runtime"
 	"strconv"
+	"time"
 )
 
 const timeFormat = "2006-01-02 15:04:05"
@@ -73,23 +74,25 @@ func SetOutput(w io.Writer) zerolog.Logger {
 }
 
 func Debug() *zerolog.Event {
-	return logger.Debug().Caller()
+	return logger.Debug().Str("time", Timer()).Caller()
 }
 
 func Info() *zerolog.Event {
-	return logger.Info().Caller()
+	return logger.Info().Str("time", Timer()).Caller()
 }
 
 func Warn() *zerolog.Event {
-	return logger.Warn().Caller()
+	return logger.Warn().Str("time", Timer()).Caller()
 }
 
 func Error(err error) *zerolog.Event {
-	return logger.Error().Caller().Stack().Err(errors.New(err.Error()))
+	return logger.Error().Str("time", Timer()).Caller().Err(errors.New(err.Error()))
 }
-
+func ErrorStack(err error) *zerolog.Event {
+	return logger.Error().Str("time", Timer()).Caller().Stack().Err(errors.New(err.Error()))
+}
 func Fatal() *zerolog.Event {
-	return logger.Fatal().Caller()
+	return logger.Fatal().Str("time", Timer()).Caller()
 }
 
 // 后续接入了链路追踪，可以从ctx里面取出来
@@ -123,4 +126,7 @@ func Middleware() gin.HandlerFunc {
 			return c.Str(traceId, id)
 		})
 	}
+}
+func Timer() string {
+	return time.Now().Format(timeFormat)
 }

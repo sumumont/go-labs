@@ -6,6 +6,7 @@ import (
 	"github.com/go-labs/internal/configs"
 	"github.com/go-labs/internal/logging"
 	"github.com/go-labs/internal/routers"
+	"github.com/robfig/cron/v3"
 	"net/http"
 	"os"
 	"os/signal"
@@ -22,7 +23,7 @@ func main() {
 	if config.Port != 0 {
 		httpSrv = startHttpServer(config.Port)
 	}
-
+	startCron()
 	quit := make(chan os.Signal)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
@@ -59,4 +60,17 @@ func stopHttpServer(server interface{}, ts time.Duration) {
 	if err := srv.Shutdown(ctx); err != nil {
 		logging.Fatal().Msgf("Server forced to shutdown:%s", err.Error())
 	}
+}
+
+func startCron() *cron.Cron {
+	c := cron.New()
+	if eid, err := c.AddFunc("*/2 * * * *", func() {
+		logging.Debug().Msg("hello 1")
+	}); err != nil {
+		logging.Error(err).Send()
+	} else {
+		logging.Info().Interface("eid", eid).Send()
+	}
+	c.Start()
+	return c
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/google/uuid"
 	"strings"
 	"testing"
 )
@@ -35,18 +34,8 @@ func TestStr1(t *testing.T) {
 }
 
 func TestNew(t *testing.T) {
-	fmt.Println(uuid.New().ID())
-	// Generate 10 ids
-	//ids := make([]xid.ID, 10)
-	//ids := map[string]xid.ID{}
-	//tm := time.Now()
-	//for i := 0; i < 100; i++ {
-	//	id := xid.NewWithTime(tm)
-	//	ids[id.String()] = id
-	//	fmt.Println(i, id.String())
-	//}
-	//fmt.Println("===============================")
-	//for k, v := range ids {
-	//	fmt.Println(k, v.String())
-	//}
+	a := fmt.Sprintf("%.2f", 11.11)
+	fmt.Println(a)
+	a = fmt.Sprintf("%.2f", 11.00)
+	fmt.Println(a)
 }

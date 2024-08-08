@@ -3,12 +3,16 @@ package main
 import (
 	"archive/tar"
 	"archive/zip"
+	"bytes"
 	"compress/gzip"
 	"errors"
 	"fmt"
 	"github.com/go-labs/internal/logging"
 	"github.com/samber/lo"
+	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
 	"io"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -21,9 +25,12 @@ func TestCapacity(t *testing.T) {
 	//capacity := Capacity([]string{"train"})
 
 	//fmt.Println(capacity.AllCap(), capacity.OnlyTrain(), capacity.OnlyInfer())
-	a := []string{}
-	b := []string{"b", "a"}
-	fmt.Println(IsEqual(a, b))
+	//a := []string{}
+	//b := []string{"b", "a"}
+	//fmt.Println(IsEqual(a, b))
+	s := "apulis/orgadmin-user-group/11/14"
+	pvPaths := filepath.Join(strings.TrimSuffix(s, filepath.Base(s)))
+	fmt.Println(pvPaths)
 }
 
 type Array []string
@@ -59,7 +66,7 @@ func TestFp(t *testing.T) {
 	fmt.Println(filepath.Join("code/"))
 }
 func TestZipHandler(t *testing.T) {
-	zipHandler("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\model_sample (1)\\model_sample_no_infer.zip", "", "code")
+	zipHandler("D:\\OneDrive\\OneDrive - 依瞳科技（深圳）有限公司\\桌面\\model_sample (1)\\model_sample_utf8.zip", "", "code")
 }
 func TestStandard(t *testing.T) {
 	standard("D:\\Program Files (x86)\\WXWork\\data\\WXWork\\1688855031533911\\Cache\\File\\2023-11\\code+model+manifest.tar", "code+model+manifest.tar")
@@ -80,8 +87,18 @@ func zipHandler(src, dest string, zipDir string) error {
 
 	for _, f := range r.File {
 		fmt.Println(f.Name)
-		s := strings.Split(f.Name, "/")
-		fmt.Println(s)
+		fname := f.Name
+		if f.Flags == 0 {
+			//如果标致位是0  则是默认的本地编码   默认为gbk
+			i := bytes.NewReader([]byte(f.Name))
+			decoder := transform.NewReader(i, simplifiedchinese.GB18030.NewDecoder())
+			content, _ := ioutil.ReadAll(decoder)
+			fname = string(content)
+		} else {
+			//如果标志为是 1 << 11也就是 2048  则是utf-8编码
+			fname = f.Name
+		}
+		fmt.Println(fname)
 	}
 
 	return nil
