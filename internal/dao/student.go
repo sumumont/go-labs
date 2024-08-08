@@ -24,6 +24,15 @@ func (svc TheClassDao) FindById(ctx context.Context, id int64) (*models.TheClass
 	}
 	return &result, nil
 }
+func (svc TheClassDao) Find(ctx context.Context) ([]models.TheClass, error) {
+	var result []models.TheClass
+	tx := GetDB(ctx)
+	err := tx.Preload("Students").Find(&result).Error
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
 func (svc TheClassDao) Create(ctx context.Context, model *models.TheClass) error {
 	tx := GetDB(ctx)
 	err := tx.Create(model).Error

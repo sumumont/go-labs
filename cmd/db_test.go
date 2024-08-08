@@ -108,7 +108,7 @@ func initDb() {
 func TestForeignKey(t *testing.T) {
 	initDb()
 	err := dao.ExecDBTx(func(ctx context.Context) error {
-		result, err := dao.GetTheClassDao().FindById(ctx, 1)
+		result, err := dao.GetTheClassDao().Find(ctx)
 		if err != nil {
 			return err
 		}
